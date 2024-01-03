@@ -52,6 +52,7 @@
   width: 80%; /* Form should fill the container */
   padding: 40px; /* Padding inside the form */
   margin: 0; /* Override any default margins */
+  max-width: 600px;
 }
 
 /* ...rest of your styles for h2, buttons, inputs... */

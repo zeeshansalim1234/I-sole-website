@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import './SignupPage.css'; // Make sure this is the correct path to your CSS file
+import './LoginPage.css'; // Make sure this is the correct path to your CSS file
 import logoImage from './images/logo.png'; // Update with the correct path to your logo image
 import google from './images/google.png'; // Update with the correct path to your logo image
 import outlook from './images/outlook.png'; // Update with the correct path to your logo image
 
-const SignupPage = () => {
+const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [fullName, setFullName] = useState('');
@@ -16,24 +16,20 @@ const SignupPage = () => {
 
   return (
     <div className="signup-page-container">
-      <div className="signup-image-section">
-        {/* This will be the left side with your image or design */}
-        <img src={logoImage} alt="I-Sole Diabetic Tracking" />
-      </div>
       <div className="signup-form-container">
         <div className="signup-form">
-          <h1>Create Account</h1>
+          <h1>Sign In</h1>
 
           <div className="social-signup">
 
             <button className="google-signup">
               <img src={google} alt="Google logo" /> {/* Replace with your image path */}
-              Sign up with Google
+              Sign in with Google
             </button>
 
             <button className="outlook-signup">
               <img src={outlook} alt="Outlook logo" /> {/* Replace with your image path */}
-              Sign up with Outlook
+              Sign in with Outlook
             </button>
 
           </div>
@@ -42,12 +38,6 @@ const SignupPage = () => {
             <span>OR</span>
           </div>
           <form onSubmit={handleSignUp}>
-            <input
-              type="text"
-              placeholder="Full Name"
-              value={fullName}
-              onChange={(e) => setFullName(e.target.value)}
-            />
             <input
               type="email"
               placeholder="Email Address"
@@ -60,18 +50,24 @@ const SignupPage = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <button type="submit" className="create-account-button">Create Account</button>
+            <button type="submit" className="create-account-button">Sign In</button>
           </form>
           <div className="signup-footer">
             <p>
-              <a href="http://localhost:3000/login">Already have an account?</a>
+              <a href="http://localhost:3000/signup">Don't have an account?</a>
             </p>
           </div>
 
         </div>
       </div>
+
+      <div className="signup-image-section">
+        {/* This will be the left side with your image or design */}
+        <img src={logoImage} alt="I-Sole Diabetic Tracking" />
+      </div>
+
     </div>
   );
 };
 
-export default SignupPage;
+export default LoginPage;
