@@ -200,6 +200,8 @@ button:hover {
 .sidebar-profile-name {
   /* Your existing styles */
   margin-right: auto; /* This will push all elements to the right */
+  font-weight: bold;
+  color: #DEB992;
 }
 
 .signout-button {
