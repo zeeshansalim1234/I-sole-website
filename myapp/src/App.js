@@ -1,47 +1,10 @@
 import React, { useState } from 'react';
 import './App.css'
+import FeedbackForm from './FeedbackForm';
+import ChatPage from './ChatPage'; 
+import FeedbackMessage from './FeedbackMessage';
 import logo from './images/logo.png'
 import zeeshan_profile from './images/zeeshan.png'
-
-const FeedbackMessage = ({ date, message, index, doctorName }) => {
-  return (
-    <div className="feedback-message">
-      <div className="message-header">
-        <div className="doctor-info">
-          <span className="doctor-icon">👤</span> {/* Replace with an actual image or icon */}
-          <span className="doctor-name">{doctorName}</span>
-        </div>
-        <div className="message-details">
-          <span className="message-index">{index}</span>
-          <span className="message-date">{date}</span>
-        </div>
-      </div>
-      <div className="message-body">{message}</div>
-    </div>
-  );
-};
-
-
-const FeedbackForm = () => {
-  const [feedback, setFeedback] = useState('');
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Here you would typically handle the submission e.g. send it to a server
-    console.log(feedback);
-  };
-
-  return (
-    <form onSubmit={handleSubmit}>
-      <textarea
-        value={feedback}
-        onChange={(e) => setFeedback(e.target.value)}
-        placeholder="Enter your feedback..."
-      />
-      <button type="submit">Submit</button>
-    </form>
-  );
-};
 
 const App = () => {
   const messages = [
@@ -49,6 +12,18 @@ const App = () => {
     { date: '25 May 2023', message: 'Your glucose levels have displayed a slight upward trend in the past few weeks. It\'s essential to review your diet and medication regimen to identify any potential triggers and work towards stabilizing your glucose levels. Consider scheduling a follow-up to discuss adjustments.', index: 2 },
     { date: '10 June 2023', message: 'Your glucose trends reflect remarkable stability, suggesting effective adherence to your treatment plan. Continue maintaining this balance and remember to communicate any significant changes or concerns during your next appointment for ongoing personalized care.', index: 1 },
   ];
+
+  const [showChat, setShowChat] = useState(false);
+
+  // Function to handle message click
+  const handleFeedbackClick = () => {
+    setShowChat(true); // When a message box is clicked, show the chat
+  };
+
+  // Function to return back to the feedback message list
+  const handleBackToFeedback = () => {
+    setShowChat(false); // Hide the chat and show the feedback list
+  };
 
   return (
     <div className="app">
@@ -77,16 +52,29 @@ const App = () => {
       </aside>
 
       <div className="main-container">
+        {!showChat ? (
+          <>
+            <main className="content">
 
-        <main className="content">
-          {messages.map((msg, index) => (
-            <FeedbackMessage key={index} date={msg.date} message={msg.message} index={msg.index} doctorName={'Dr. Z Chougle'}/>
-          ))}
-        </main>
+              {messages.map((msg, index) => (
+                <div key={index} onClick={handleFeedbackClick}>
+                  <FeedbackMessage
+                    date={msg.date}
+                    message={msg.message}
+                    index={msg.index}
+                    doctorName={'Dr. Z Chougle'}
+                  />
+                </div>
+              ))}        
+            </main>
 
-        <div className="feedback-form-container">
-            <FeedbackForm />
-        </div>
+            <div className="feedback-form-container">
+              <FeedbackForm />
+            </div>
+          </>
+        ) : (
+          <ChatPage onBack={handleBackToFeedback} />
+        )}
       </div>
 
     </div>

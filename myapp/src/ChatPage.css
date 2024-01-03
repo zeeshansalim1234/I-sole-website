@@ -1,0 +1,86 @@
+/* ChatPage.css */
+
+/* ChatPage container */
+.chat-page {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: #051622;
+    height: 100%;
+    font-weight: bold;
+}
+
+.top-right {
+    position: absolute;
+    top: 20px; /* Adjust the top position as needed */
+    right: 20px; /* Adjust the right position as needed */
+    z-index: 1; /* Ensure it's above other content */
+}
+
+/* Back button styles */
+.back-button {
+  background-color: #1BA098;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 10px 20px;
+  margin-top: 10px; /* Adjust margin as needed to position the button */
+  font-weight: bold;
+}
+
+/* Messages list */
+.messages-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+    display: flex;
+    margin-top: 70px;
+    flex-direction: column; /* Ensure messages stack vertically */
+}
+
+/* Individual message style */
+.message {
+    background-color: #E6F7EC;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    max-width: 50%; /* Set the maximum width to 50% */
+    word-wrap: break-word; /* Allow long words to break onto the next line */
+    align-self: flex-start; /* Align messages to the left by default */
+}
+
+/* User message style */
+.message.user {
+    background-color: #DEB992;
+    color: black;
+    align-self: flex-end; /* Align user messages to the right */
+    font-weight: bold;
+}
+
+/* User message style */
+.message.other {
+    background-color: #1BA098;
+    color: white;
+    align-self: flex-start; /* Align user messages to the right */
+}
+
+
+/* Message form container */
+.message-form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #F4F4F4;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+    font-weight: bold;
+}
+
+.feedback-form-container {
+    background: #051622; /* Your chosen color for the feedback form */
+    padding: 20px;
+    /* Make sure this container is not flex or you need to set flex: none; */
+  }
+  
+
