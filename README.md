@@ -17,3 +17,7 @@ Current Progress:
 4. Chat Page:
 
 ![Alt text](image-1.png)
+
+5. Settings:
+
+![Alt text](image-5.png)
