@@ -19,7 +19,7 @@ const ChatPage = ({ onBack }) => {
   // Function to send message (to be passed to FeedbackForm)
   const sendChat = (chatMessage) => {
     if (chatMessage.trim() !== '') {
-      setMessages([...messages, { text: chatMessage, isUser: true }]);
+      setMessages([...messages, { text: chatMessage, isUser: false }]);
     }
   };
 
