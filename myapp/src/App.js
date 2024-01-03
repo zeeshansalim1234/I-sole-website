@@ -3,8 +3,10 @@ import './App.css'
 import FeedbackForm from './FeedbackForm';
 import ChatPage from './ChatPage'; 
 import FeedbackMessage from './FeedbackMessage';
+import LoginPage from './LoginPage';
 import logo from './images/logo.png'
 import zeeshan_profile from './images/zeeshan.png'
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 const App = () => {
   const messages = [
@@ -26,6 +28,7 @@ const App = () => {
   };
 
   return (
+
     <div className="app">
       
       <aside className="sidebar">
@@ -78,6 +81,7 @@ const App = () => {
       </div>
 
     </div>
+   
   );
 };
 
