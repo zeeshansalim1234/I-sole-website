@@ -4,7 +4,7 @@ Current Progress:
 
 1. SignUp Page:
 
-![Alt text](image-2.png)
+![Alt text](image-3.png)
 
 2. Feedback Page:
 
