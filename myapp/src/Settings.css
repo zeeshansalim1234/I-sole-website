@@ -19,7 +19,8 @@
   border-radius: 12px; /* Rounded corners for the rectangle */
   margin-bottom: 2rem;
   margin-top: 2rem;
-  width: 90%; /* Set the width to 60% of the parent container */
+  max-width: 650px;
+  width: 80%; /* Set the width to 60% of the parent container */
   margin-left: auto; /* These two margin properties will */
   margin-right: auto; /* center the element horizontally */
 }
