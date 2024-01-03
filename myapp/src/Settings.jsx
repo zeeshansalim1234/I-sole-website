@@ -14,6 +14,7 @@ function Settings() {
       { name: 'Jane Smith', relationship: 'Doctor', phoneNumber: '234-567-8901', email: 'janesmith@example.com' },
       { name: 'Emily Johnson', relationship: 'Caregiver', phoneNumber: '345-678-9012', email: 'emilyj@example.com' },
       { name: 'Michael Brown', relationship: 'Family', phoneNumber: '456-789-0123', email: 'michaelb@example.com' },
+      { name: 'Emily Johnson', relationship: 'Caregiver', phoneNumber: '345-678-9012', email: 'emilyj@example.com' },
       { name: 'Sarah Davis', relationship: 'Family', phoneNumber: '567-890-1234', email: 'sarahd@example.com' }
     ];
 
@@ -53,70 +54,81 @@ function Settings() {
 
 
         <main className="settings">
-          <h1>Notifications Settings</h1>
-          <div className="toggle">
-            <label>
-              Allow Family Members to see Activity
-              <input
-                type="checkbox"
-                checked={activity}
-                onChange={() => setActivity(!activity)}
-              />
-              <span className="slider"></span>
-            </label>
-          </div>
-          <div className="toggle">
-            <label>
-              Allow Family Members to see Meals
-              <input
-                type="checkbox"
-                checked={meals}
-                onChange={() => setMeals(!meals)}
-              />
-              <span className="slider"></span>
-            </label>
-          </div>
-          <div className="toggle">
-            <label>
-              Allow Family Members to see Doctor's Feedback
-              <input
-                type="checkbox"
-                checked={feedback}
-                onChange={() => setFeedback(!feedback)}
-              />
-              <span className="slider"></span>
-            </label>
-          </div>
+
+       
 
 
-
-
-        {/* Contact list */}
-        <h1>Your Contacts</h1>
-        <div className="contact-list">
-          {contacts.map((contact, index) => (
-            <div key={index} className="contact-item">
-              <div className="contact-info">
-                <div className="contact-name">{contact.name}</div>
-                <div className="contact-relationship">{contact.relationship}</div>
-                {/* You can display other contact details here as well */}
-              </div>
-              <button className="edit-contact-btn">Edit</button>
-              <button 
-                className="remove-contact-btn"
-                onClick={() => removeContact(index)}
-              >
-                Remove
-              </button>
+              <div className="update-notifications">
+                <h1>Notifications Settings</h1>
+                <div className="toggle">
+                  <label>
+                    Allow Family Members to see Activity
+                    <input
+                      type="checkbox"
+                      checked={activity}
+                      onChange={() => setActivity(!activity)}
+                    />
+                    <span className="slider"></span>
+                  </label>
+                </div>
+                <div className="toggle">
+                  <label>
+                    Allow Family Members to see Meals
+                    <input
+                      type="checkbox"
+                      checked={meals}
+                      onChange={() => setMeals(!meals)}
+                    />
+                    <span className="slider"></span>
+                  </label>
+                </div>
+                <div className="toggle">
+                  <label>
+                    Allow Family Members to see Doctor's Feedback
+                    <input
+                      type="checkbox"
+                      checked={feedback}
+                      onChange={() => setFeedback(!feedback)}
+                    />
+                    <span className="slider"></span>
+                  </label>
+                </div>
             </div>
-          ))}
-        </div>
 
 
 
+      <div className="contacts-section">
+        {/* Contact list */}
 
+
+        <div className="contact-list">
+                <h1>Your Contact</h1>
+                <br></br>
+                {contacts.map((contact, index) => (
+                    <div key={index} className="contact-item">
+                      <div className="contact-info">
+                        <div className="contact-name">{contact.name}</div>
+                        <div className="contact-relationship">{contact.relationship}</div>
+                        {/* You can display other contact details here as well */}
+                      </div>
+                      <div className="contact-item-buttons">
+                        <button className="edit-contact-btn">Edit</button>
+                        <button 
+                          className="remove-contact-btn"
+                          onClick={() => removeContact(index)}
+                        >
+                          Remove
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+
+
+        <form className="new-contact-form">
           <h1>Add New Contact</h1>
-        <form className="contact-form">
+          <br></br>
           <div className="field">
             <label htmlFor="contactName">Contact Name</label>
             <input type="text" id="contactName" />
@@ -140,17 +152,22 @@ function Settings() {
           </div>
           <div className="field">
             <div className="checkbox-group">
-              <input type="checkbox" id="glucoseAlert" />
-              <label htmlFor="glucoseAlert">Glucose Level Alert</label>
-              <input type="checkbox" id="medicationReminder" />
-              <label htmlFor="medicationReminder">Medication Reminder</label>
+              <div className="checkbox-custom">
+                <input type="checkbox" id="glucoseAlert" className="checkbox-input" />
+                <label htmlFor="glucoseAlert" className="checkbox-label">Glucose Level Alert</label>
+              </div>
+              <div className="checkbox-custom">
+                <input type="checkbox" id="medicationReminder" className="checkbox-input" />
+                <label htmlFor="medicationReminder" className="checkbox-label">Medication Reminder</label>
+              </div>
             </div>
           </div>
          
           <button type="submit" className="save-contact-btn">Save Contact</button>
         </form>
-          
-          
+    
+        </div>
+
         </main>
       </div>
     );

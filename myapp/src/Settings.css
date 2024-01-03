@@ -19,7 +19,7 @@
   border-radius: 12px; /* Rounded corners for the rectangle */
   margin-bottom: 2rem;
   margin-top: 2rem;
-  width: 60%; /* Set the width to 60% of the parent container */
+  width: 90%; /* Set the width to 60% of the parent container */
   margin-left: auto; /* These two margin properties will */
   margin-right: auto; /* center the element horizontally */
 }
@@ -160,6 +160,55 @@
   font-size: 16px;
 }
 
+.checkbox-custom {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.checkbox-input {
+  accent-color: #00a699;
+  margin-right: 0.5rem;
+  cursor: pointer;
+}
+
+.checkbox-label {
+  cursor: pointer;
+  user-select: none;
+  color: #DEB992;
+  font-size: 16px;
+}
+
+/* Custom checkbox styling */
+.checkbox-input + .checkbox-label:before {
+  content: '';
+  display: inline-block;
+  vertical-align: middle;
+  width: 20px;
+  height: 20px;
+  background: white;
+  border-radius: 3px;
+  margin-right: 10px;
+  border: 1px solid #00a699;
+}
+
+.checkbox-input:checked + .checkbox-label:before {
+  background-color: #00a699;
+  background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18"><path fill="white" d="M1,9 L3,9 L7,13 L15,5 L17,7 L7,17 z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Hide the default checkbox */
+.checkbox-input {
+  opacity: 0;
+  position: absolute;
+}
+
+.checkbox-input:focus + .checkbox-label:before {
+  outline: 2px solid #00a699;
+}
+
 
 .checkbox-group {
   display: flex;
@@ -223,12 +272,13 @@
 
 .contact-item {
   display: flex;
-  justify-content: space-between; /* Spreads out the items in each row */
-  align-items: center; /* Vertically centers the items in each row */
+  justify-content: space-around; /* Evenly space items within the container */
+  align-items: center;
   padding: 10px;
-  border-bottom: 1px solid #00a699; /* Separating border between rows */
-  color: #DEB992; /* Text color */
+  border-bottom: 1px solid #00a699;
+  color: #DEB992;
 }
+
 
 .contact-item:last-child {
   border-bottom: none; /* Removes the border for the last item */
@@ -236,23 +286,13 @@
 
 .contact-info {
   flex-grow: 1; /* Allows the contact information to fill the space */
-  margin-right: 10px; /* Space between contact info and buttons */
+  margin-right: 0 10px; /* Space between contact info and buttons */
 }
 
 .contact-name,
 .contact-relationship {
   text-align: left; /* Aligns the text to the left */
   white-space: nowrap; /* Prevents the text from wrapping */
-}
-
-.edit-contact-btn,
-.remove-contact-btn {
-  padding: 5px 10px;
-  margin-left: 5px; /* Space between buttons */
-  border-radius: 5px;
-  border: none;
-  font-size: 0.875rem; /* Smaller font size for buttons */
-  transition: background-color 0.3s, transform 0.3s;
 }
 
 .edit-contact-btn {
@@ -265,19 +305,74 @@
 
 .edit-contact-btn,
 .remove-contact-btn {
-  padding: 10px 15px; /* Adjust padding to ensure buttons are large enough */
-  margin-left: 5px; /* Space between buttons */
+  flex: 1; /* Allow the buttons to grow */
+  max-width: 120px; /* Maximum width to prevent buttons from growing too large */
+  padding: 10px 15px;
+  margin: 0 10px; /* Ensure there is space between buttons */
   border-radius: 5px;
   border: none;
-  font-size: 0.875rem; /* Consistent font size for buttons */
-  transition: background-color 0.3s, transform 0.3s;
-  min-width: 90px; /* Sets a minimum width for buttons */
-  text-align: center; /* Ensures text is centered */
+  font-size: 0.875rem;
+  text-align: center;
 }
+
+
+
+.contact-item-buttons {
+  display: flex;
+  justify-content: flex-end; /* Align buttons to the end */
+  gap: 15px; /* Space between buttons */
+}
+
 
 .remove-contact-btn:hover {
   background-color: #b71c1c; /* Darker color on hover for remove button */
 }
+
+
+.content-layout {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-top: 2rem; /* Add space above the layout */
+}
+
+.contacts-section {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px; /* Adjust spacing as necessary */
+}
+
+.contact-list {
+  flex: 1; /* Takes up only necessary space */
+  max-width: 60%; /* Adjust based on your design preference */
+  /* Other styles remain unchanged */
+  margin-right: 10px;
+  padding: 25px;
+}
+
+.new-contact-form {
+  flex: 1;
+  max-width: 100%; /* Adjust based on your design preference */
+  background-color: #022b3a;
+  padding: 25px;
+  border-radius: 10px;
+  margin-top: 28px;
+  /* Add styles for the form if needed */
+}
+
+.contacts-section > *:last-child {
+  margin-right: 0;
+}
+
+.settings .update-notifications {
+  flex: 1;
+  max-width: 100%; /* Adjust based on your design preference */
+  background-color: #022b3a;
+  padding: 10px;
+  border-radius: 10px;
+  /* Add styles for the form if needed */
+}
+
 
 @media (max-width: 768px) {
   /* ... rest of the media query styles remain unchanged ... */
