@@ -19,7 +19,7 @@ const App = () => {
         <Route path="/feedback" element={<FeedbackPage />} />
 
         {/* Default route in case no other route matches */}
-        <Route path="*" element={<div>Home Page Placeholder</div>} />
+        <Route path="*" element={<SignupPage />} />
       </Routes>
     </Router>
   );
