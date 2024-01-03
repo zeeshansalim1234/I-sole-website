@@ -1,0 +1,142 @@
+.settings {
+  text-align: center;
+  flex: 1;
+  background: #051622; /* Dark background */
+  padding: 20px;
+  color: #DEB992; /* Light text for better contrast */
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  overflow: auto;
+}
+
+.toggle {
+  position: relative;
+  display: flex;
+  justify-content: space-between; /* Align label to the left and toggle button to the right */
+  align-items: center;
+  background-color: #00a699; /* Toggle background */
+  padding: 10px;
+  border-radius: 12px; /* Rounded corners for the rectangle */
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+}
+
+.toggle label {
+  cursor: pointer;
+  font-size: 22px;
+  user-select: none;
+  flex-grow: 1; /* Ensure label takes up all available space */
+  display: flex;
+  justify-content: space-between; /* Align text to the left and the invisible input to the right */
+  align-items: center;
+  margin-bottom: 0; /* Reset the bottom margin */
+}
+
+.toggle input {
+  position: absolute;
+  width: 60px; /* Same as the width of the slider */
+  right: 10px; /* Align to the right with the same padding as .toggle */
+  opacity: 0;
+  cursor: pointer;
+  height: 34px; /* Same as the height of the slider */
+}
+
+.slider {
+  position: absolute; /* Absolute position to align properly */
+  right: 10px; /* Align to the right with the same padding as .toggle */
+  width: 60px; /* Width of the slider */
+  height: 34px; /* Height of the slider */
+  background-color: #ccc; /* Default background */
+  border-radius: 34px; /* Rounded borders */
+  transition: 0.4s; /* Smooth transition for sliding effect */
+}
+
+.slider:before {
+  content: "";
+  position: absolute;
+  height: 26px; /* Height of the circle */
+  width: 26px; /* Width of the circle */
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+.settings input:checked + .slider {
+  background-color: #DEB992; /* Slider color when checked */
+}
+
+.settings input:checked + .slider:before {
+  transform: translateX(26px); /* Distance circle moves when checked */
+}
+
+/* Focus styles for accessibility */
+.settings input:focus + .slider {
+  box-shadow: 0 0 1px #00a699;
+}
+
+/* Input fields styling */
+.settings input[type="text"] {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border-radius: 20px;
+  border: 2px solid #00a699; /* Example color */
+  background-color: #0c2d3d; /* Input background */
+  color: #DEB992; /* Input text color */
+  font-size: 18px;
+  outline: none;
+}
+
+/* Input group for side-by-side inputs */
+.settings .input-group {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.settings .input-group input[type="text"] {
+  width: calc(50% - 10px); /* Adjust the width calculation if there's a gap or overlap */
+}
+
+/* Button styling */
+.settings button {
+  background-color: #00a699; /* Button background */
+  color: white; /* Button text color */
+  padding: 12px 20px;
+  border-radius: 20px;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  outline: none;
+  margin-bottom: 20px;
+  transition: background-color 0.3s;
+  width: auto; /* Adjust if you want full width or auto width for buttons */
+}
+
+.settings button:hover {
+  background-color: #00897b; /* Darker shade on hover */
+}
+
+/* Large button styling */
+.settings .large-btn {
+  width: 100%; /* Full width for large buttons */
+  /* Other styles same as button */
+}
+
+/* Save button specific styling if needed */
+.settings .save-btn {
+  /* Custom styles for save button if different from other buttons */
+}
+
+.field {
+  width: 100%;
+}
+
+.field label {
+  display: block;
+  color: #DEB992;
+  font-size: 16px;
+  margin-bottom: 0.5rem;
+}

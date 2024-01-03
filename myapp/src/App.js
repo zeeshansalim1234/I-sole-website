@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import FeedbackPage from './FeedbackPage';
 import SignupPage from './SignupPage';
 import LoginPage from './LoginPage';
+import Settings from './Settings';
 
 const App = () => {
   return (
@@ -17,6 +18,9 @@ const App = () => {
         
         {/* Updated route for the feedback page */}
         <Route path="/feedback" element={<FeedbackPage />} />
+
+        {/* Updated route for the feedback page */}
+        <Route path="/settings" element={<Settings />} />
 
         {/* Default route in case no other route matches */}
         <Route path="*" element={<SignupPage />} />
