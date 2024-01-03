@@ -1,0 +1,268 @@
+/* Basic reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  font-family: 'Arial', sans-serif;
+  font-size: 14px;
+}
+
+.app {
+  display: flex;
+  height: 100vh;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column; /* Stack children vertically inside the main container */
+  flex: 1; /* Take up all available space besides the sidebar */
+  height: 100%; /* Full height */
+}
+
+.sidebar {
+  width: 200px;
+  background-color: #0F1E33;
+  color: white;
+  overflow-y: auto; /* Scrollable if content overflows */
+  padding: 15px;
+}
+
+.content {
+  flex: 1;
+  background-color: #051622;
+  padding: 20px;
+}
+
+.feedback-message {
+  background-color: #1BA098;
+  color: #DEB992;
+  padding: 15px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.message-header {
+  display: flex;
+  justify-content: space-between; /* This will push the children to either end */
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.doctor-info {
+  display: flex;
+  align-items: center;
+  background-color: #0c0c0c62; /* The background color from your image */
+  padding: 4px 8px; /* Adjust padding as needed */
+  border-radius: 8px; /* Adjust border-radius for roundness */
+  color: DEB992; /* Text color */
+  /* If you want the doctor info to not stretch, add: */
+  flex-shrink: 0;
+  font-weight: bold;
+}
+
+
+.doctor-icon {
+  margin-right: 5px; /* Space between icon and text */
+  /* Add styles for the icon if needed */
+}
+
+.message-details {
+  display: flex;
+  align-items: center;
+}
+
+.message-index {
+  background-color: #bfd5e4;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px; /* Adds space between index and date */
+  color: #444b4d;
+  font-weight: bold;
+}
+
+.message-date {
+  color: #DEB992;
+  background-color: #0c0c0c62; /* The background color of the badge */
+  padding: 2px 8px; /* Adjust padding to your liking */
+  border-radius: 8px; /* Fully rounded corners */
+  display: inline-block;
+  margin-left: 10px; /* Optional: adds space between the index and date */
+  font-weight: bold;
+}
+
+
+.message-body {
+  margin-top: 10px;
+  font-weight: 600;
+}
+
+form {
+  margin-top: 20px;
+}
+
+textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #bdc3c7;
+  margin-bottom: 10px;
+  height: 150px;
+  resize: vertical;
+  background: #DEB992;
+  font-weight: bold;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #1BA098;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0a4743;
+}
+
+.feedback-form-container {
+  background: #051622; /* Your chosen color for the feedback form */
+  padding: 20px;
+  /* Make sure this container is not flex or you need to set flex: none; */
+}
+
+.sidebar {
+  width: 200px; /* Adjust width as needed */
+  background-color: #0F1E33;
+  color: white;
+  padding-left: 0; /* Adjust or remove padding as needed */
+  padding-right: 0;
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  align-items: center; /* Center items */
+}
+
+.sidebar-logo {
+  margin-bottom: 50px; /* Space below the logo */
+}
+
+.sidebar-nav ul {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+}
+
+.sidebar-nav li {
+  margin: 10px 0; /* Add more space between nav items */
+}
+
+.sidebar-nav li a {
+  display: block;
+  padding: 12px 15px; /* Increase padding to make each link larger */
+  color: #DEB992;
+  text-decoration: none;
+  font-size: 18px; /* Increase font size for better visibility */
+  border-radius: 5px; /* Optional: rounded corners */
+  transition: background-color 0.3s; /* Smooth background color transition on hover */
+  font-weight: bold;
+}
+
+.sidebar-nav li a:hover,
+.sidebar-nav li a.active {
+  background-color: #1BA098; /* Color for hover and active state */
+}
+
+.sidebar-profile-pic {
+  width: 40px; /* Adjust width as needed */
+  height: 40px; /* Adjust height as needed */
+  border-radius: 50%; /* Make it round */
+  margin-right: 10px; /* Add space between the image and the name */
+}
+
+.sidebar-profile {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  background-color: #2c3e50; /* Use the color that fits your design */
+  padding: 10px;
+  width: 100%;
+  border-radius: 0; /* No rounded corners */
+  margin-top: auto; /* Push to the bottom of the sidebar */
+}
+
+.sidebar-profile-name {
+  /* Your existing styles */
+  margin-right: auto; /* This will push all elements to the right */
+}
+
+.signout-button {
+  background: none; /* Removes the default button background */
+  border: none; /* Removes the default button border */
+  color: white; /* Adjust the color to fit your design */
+  cursor: pointer; /* Changes the cursor to a pointer on hover */
+  font-size: 16px; /* Adjust the size as needed */
+  padding: 0 10px; /* Adjust the padding as needed */
+}
+
+.sidebar-logo img {
+  max-width: 100%;  /* This ensures the logo is not wider than the sidebar */
+  height: auto;     /* This maintains the aspect ratio of the image */
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%; /* Full width on small screens */
+    height: auto; /* Let the sidebar height be automatic to fit its content */
+    padding: 15px 0; /* Adjust padding as needed */
+  }
+
+  .main-container {
+    flex-direction: column; /* Ensure stacking on small screens */
+  }
+
+  .app {
+    flex-direction: column; /* Stack sidebar and main content on top of each other on small screens */
+  }
+
+  .content,
+  .feedback-form-container {
+    padding: 10px; /* Smaller padding on small screens */
+  }
+
+  .sidebar-nav li a {
+    padding: 10px; /* Smaller padding for nav items on small screens */
+    font-size: 16px; /* Smaller font size for nav items on small screens */
+  }
+
+  .sidebar-profile {
+    flex-direction: column; /* Stack profile elements on top of each other */
+    align-items: center; /* Center align items */
+    margin-top: 20px; /* Add space on top of the profile section */
+  }
+
+  .sidebar-profile-pic {
+    margin-bottom: 10px; /* Space between image and name when stacked */
+    margin-right: 0; /* Reset margin since it's now stacked */
+  }
+
+  .sidebar-profile-name {
+    margin-right: 0; /* Reset margin since it's now stacked */
+  }
+
+  .signout-button {
+    padding: 5px 10px; /* Adjust padding as needed */
+  }
+}
+
+/* You might also want to add media queries for even smaller screens */
+@media (max-width: 480px) {
+  /* Adjust font sizes, padding, and any other properties for very small screens */
+}
