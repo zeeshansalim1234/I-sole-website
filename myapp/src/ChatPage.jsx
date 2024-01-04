@@ -57,6 +57,9 @@ const ChatPage = ({ onBack, selectedMessages,threadIndex }) => {
 
   return (
     <div className="chat-page">
+      <div className="chat-page-header">
+        <h1> Dr. Hamdaan Younus</h1>
+      </div>
       <div className="top-right">
         <button className="back-button" onClick={onBack}>Exit</button>
       </div>

@@ -10,6 +10,16 @@
     font-weight: bold;
 }
 
+.chat-page-header {
+    text-align: center; /* Center the text */
+    width: 100%; /* Full width */
+    padding: 10px 0; /* Padding to ensure space around the text */
+    background-color: #051622; /* Background color */
+    color: #DEB992; /* Text color */
+    font-size: 2em; /* Adjust the font size as needed */
+    margin-bottom: 20px; /* Space between the header and the rest of the content */
+  }
+
 .top-right {
     position: absolute;
     top: 20px; /* Adjust the top position as needed */
@@ -35,7 +45,6 @@
     overflow-y: auto;
  
     display: flex;
-    margin-top: 70px;
     flex-direction: column; /* Ensure messages stack vertically */
 
     /* Custom scrollbar for Chrome, Safari and Opera */
