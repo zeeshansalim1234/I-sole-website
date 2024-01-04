@@ -15,6 +15,8 @@ function Settings() {
       { name: 'Emily Johnson', relationship: 'Caregiver', phoneNumber: '345-678-9012', email: 'emilyj@example.com' },
       { name: 'Michael Brown', relationship: 'Family', phoneNumber: '456-789-0123', email: 'michaelb@example.com' },
       { name: 'Emily Johnson', relationship: 'Caregiver', phoneNumber: '345-678-9012', email: 'emilyj@example.com' },
+      { name: 'Emily Johnson', relationship: 'Caregiver', phoneNumber: '345-678-9012', email: 'emilyj@example.com' },
+      { name: 'Emily Johnson', relationship: 'Caregiver', phoneNumber: '345-678-9012', email: 'emilyj@example.com' },
       { name: 'Sarah Davis', relationship: 'Family', phoneNumber: '567-890-1234', email: 'sarahd@example.com' }
     ];
 
@@ -98,28 +100,29 @@ function Settings() {
 
 
         <div className="contact-list">
-                <h1>Your Contact</h1>
-                <br></br>
-                {contacts.map((contact, index) => (
-                    <div key={index} className="contact-item">
-                      <div className="contact-info">
-                        <div className="contact-name">{contact.name}</div>
-                        <div className="contact-relationship">{contact.relationship}</div>
-                        {/* You can display other contact details here as well */}
-                      </div>
-                      <div className="contact-item-buttons">
-                        <button className="edit-contact-btn">Edit</button>
-                        <button 
-                          className="remove-contact-btn"
-                          onClick={() => removeContact(index)}
-                        >
-                          Remove
-                        </button>
-                      </div>
-                    </div>
-                  ))}
+            <h1>Your Contact</h1>
+            <br />
+            <div className="contact-list-scrollable">
+              {contacts.map((contact, index) => (
+                <div key={index} className="contact-item">
+                  <div className="contact-info">
+                    <div className="contact-name">{contact.name}</div>
+                    <div className="contact-relationship">{contact.relationship}</div>
+                    {/* You can display other contact details here as well */}
+                  </div>
+                  <div className="contact-item-buttons">
+                    <button className="edit-contact-btn">Edit</button>
+                    <button 
+                      className="remove-contact-btn"
+                      onClick={() => removeContact(index)}
+                    >
+                      Remove
+                    </button>
+                  </div>
                 </div>
-
+              ))}
+            </div>
+          </div>
 
 
         <form className="new-contact-form">
