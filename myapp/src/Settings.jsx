@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './Settings.css';
+import axios from 'axios';
 import logo from './images/logo.png'
 import zeeshan_profile from './images/zeeshan.png';
 
@@ -7,6 +8,36 @@ function Settings() {
     const [activity, setActivity] = useState(false);
     const [meals, setMeals] = useState(false);
     const [feedback, setFeedback] = useState(false);
+    const [contactName, setContactName] = useState('');
+    const [relationship, setRelationship] = useState('family');
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [email, setEmail] = useState('');
+    const [glucoseAlert, setGlucoseAlert] = useState(false);
+    const [medicationReminder, setMedicationReminder] = useState(false);
+
+    const handleSubmit = async (event) => {
+      event.preventDefault();
+      const newContact = {
+        contactName,
+        relationship,
+        phoneNumber,
+        email,
+        glucoseAlert,
+        medicationReminder,
+      };
+
+      try {
+        const response = await axios.post('http://127.0.0.1:5000/add_contact', {
+          newContact, // your contact fields
+          username: 'Zeeshan', // replace with the actual username
+        });
+        console.log(response.data);
+        // Reset form or give user feedback
+      } catch (error) {
+        console.error('Error submitting new contact:', error);
+        // Handle error here
+      }
+    };
 
       // Initial dummy contacts data
     const initialContacts = [
@@ -125,45 +156,76 @@ function Settings() {
           </div>
 
 
-        <form className="new-contact-form">
-          <h1>Add New Contact</h1>
-          <br></br>
-          <div className="field">
-            <label htmlFor="contactName">Contact Name</label>
-            <input type="text" id="contactName" />
-          </div>
-          <div className="field">
-            <label htmlFor="relationship">Relationship</label>
-            <select id="relationship">
-              <option value="family">Family</option>
-              <option value="doctor">Doctor</option>
-              <option value="caregiver">Caregiver</option>
-              {/* More options as needed */}
-            </select>
-          </div>
-          <div className="field">
-            <label htmlFor="phoneNumber">Phone Number</label>
-            <input type="tel" id="phoneNumber" />
-          </div>
-          <div className="field">
-            <label htmlFor="email">Email (optional)</label>
-            <input type="email" id="email" />
-          </div>
-          <div className="field">
-            <div className="checkbox-group">
-              <div className="checkbox-custom">
-                <input type="checkbox" id="glucoseAlert" className="checkbox-input" />
-                <label htmlFor="glucoseAlert" className="checkbox-label">Glucose Level Alert</label>
+          <form className="new-contact-form" onSubmit={handleSubmit}>
+              <h1>Add New Contact</h1>
+<br></br>
+              <div className="field">
+                <label htmlFor="contactName">Contact Name</label>
+                <input
+                  type="text"
+                  id="contactName"
+                  value={contactName}
+                  onChange={(e) => setContactName(e.target.value)}
+                />
               </div>
-              <div className="checkbox-custom">
-                <input type="checkbox" id="medicationReminder" className="checkbox-input" />
-                <label htmlFor="medicationReminder" className="checkbox-label">Medication Reminder</label>
+              <div className="field">
+                <label htmlFor="relationship">Relationship</label>
+                <select
+                  id="relationship"
+                  value={relationship}
+                  onChange={(e) => setRelationship(e.target.value)}
+                >
+                  <option value="family">Family</option>
+                  <option value="doctor">Doctor</option>
+                  <option value="caregiver">Caregiver</option>
+                  {/* More options as needed */}
+                </select>
               </div>
-            </div>
-          </div>
-         
-          <button type="submit" className="save-contact-btn">Save Contact</button>
-        </form>
+              <div className="field">
+                <label htmlFor="phoneNumber">Phone Number</label>
+                <input
+                  type="tel"
+                  id="phoneNumber"
+                  value={phoneNumber}
+                  onChange={(e) => setPhoneNumber(e.target.value)}
+                />
+              </div>
+              <div className="field">
+                <label htmlFor="email">Email (optional)</label>
+                <input
+                  type="email"
+                  id="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
+              <div className="field">
+                <div className="checkbox-group">
+                  <div className="checkbox-custom">
+                    <input
+                      type="checkbox"
+                      id="glucoseAlert"
+                      className="checkbox-input"
+                      checked={glucoseAlert}
+                      onChange={(e) => setGlucoseAlert(e.target.checked)}
+                    />
+                    <label htmlFor="glucoseAlert" className="checkbox-label">Glucose Level Alert</label>
+                  </div>
+                  <div className="checkbox-custom">
+                    <input
+                      type="checkbox"
+                      id="medicationReminder"
+                      className="checkbox-input"
+                      checked={medicationReminder}
+                      onChange={(e) => setMedicationReminder(e.target.checked)}
+                    />
+                    <label htmlFor="medicationReminder" className="checkbox-label">Medication Reminder</label>
+                  </div>
+                </div>
+              </div>
+              <button type="submit" className="save-contact-btn">Save Contact</button>
+            </form>
+
     
         </div>
 
