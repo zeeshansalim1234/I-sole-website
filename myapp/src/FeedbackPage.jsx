@@ -11,19 +11,17 @@ const FeedbackPage = () => {
  
   const [showChat, setShowChat] = useState(false);
   const [messages, setMessages] = useState([]);
+  const [selectedMessages, setselectedMessages] = useState(null);
 
   useEffect(() => {
     fetchFeedback();
   }, []);
 
-  // Function to handle message click
-  const handleFeedbackClick = () => {
-    setShowChat(true); // When a message box is clicked, show the chat
-  };
-
+  
   // Function to return back to the feedback message list
   const handleBackToFeedback = () => {
-    setShowChat(false); // Hide the chat and show the feedback list
+    setselectedMessages(null);
+    setShowChat(false);
   };
 
   const fetchFeedback = async () => {
@@ -47,6 +45,20 @@ const FeedbackPage = () => {
       console.log("Feedback Sent:", response.data);
     } catch (error) {
       console.error("Error sending feedback:", error);
+    }
+  };
+
+  // Function to handle message click
+  const handleFeedbackClick = async (index) => {
+    try {
+      const response = await axios.get(`http://127.0.0.1:5000/get_one_conversation/Zeeshan/${index+1}`);
+      setselectedMessages(response.data);
+      setShowChat(true);
+      fetchFeedback();
+      console.log("CLick Conversation:", response.data);
+    } catch (error) {
+      console.error("Error fetching conversation:", error);
+      // Handle error appropriately
     }
   };
 
@@ -83,7 +95,7 @@ const FeedbackPage = () => {
             <main className="content">
 
               {messages.map((msg, index) => (
-                <div key={index} onClick={handleFeedbackClick}>
+                <div key={index} onClick={() => handleFeedbackClick(index)}>
                   <FeedbackMessage
                     date={msg.date}
                     message={msg.message}
@@ -99,7 +111,7 @@ const FeedbackPage = () => {
             </div>
           </>
         ) : (
-          <ChatPage onBack={handleBackToFeedback} />
+          <ChatPage onBack={handleBackToFeedback} selectedMessages={selectedMessages}/>
         )}
       </div>
 

@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
-import FeedbackForm from './FeedbackForm'; // Make sure this path is correct
+import React, { useState, useEffect } from 'react';
+import FeedbackForm from './FeedbackForm';
 import './ChatPage.css';
 
-// Chat message component
 const Message = ({ text, isUser }) => {
   const messageClass = isUser ? 'user' : 'other';
   return (
@@ -12,14 +11,24 @@ const Message = ({ text, isUser }) => {
   );
 };
 
-// Main Chat Page component
-const ChatPage = ({ onBack }) => {
+const ChatPage = ({ onBack, selectedMessages }) => {
   const [messages, setMessages] = useState([]);
 
-  // Function to send message (to be passed to FeedbackForm)
+  useEffect(() => {
+    // Check if selectedMessages is an array and has elements
+    if (Array.isArray(selectedMessages) && selectedMessages.length > 0) {
+      // Map selectedMessages to the required format
+      const initialMessages = selectedMessages.map(msg => ({
+        text: msg.message,  // Assuming each message object has a 'message' property
+        isUser: true      // Set to false assuming these are not user-sent messages
+      }));
+      setMessages(initialMessages);
+    }
+  }, [selectedMessages]);
+
   const sendChat = (chatMessage) => {
     if (chatMessage.trim() !== '') {
-      setMessages([...messages, { text: chatMessage, isUser: true }]);
+      setMessages((prevMessages) => [...prevMessages, { text: chatMessage, isUser: true }]);
     }
   };
 
