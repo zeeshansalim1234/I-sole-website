@@ -1,19 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css'
 import FeedbackForm from './FeedbackForm';
 import ChatPage from './ChatPage'; 
 import FeedbackMessage from './FeedbackMessage';
 import logo from './images/logo.png'
 import zeeshan_profile from './images/zeeshan.png';
+import axios from 'axios';
 
 const FeedbackPage = () => {
-  const messages = [
-    { date: '17 May 2023', message: 'Your recent glucose trends show a consistent decline, indicating excellent management of your diet and medication. Keep up the good work, and continue maintaining a healthy lifestyle to support these positive changes.', index: 5 },
-    { date: '25 May 2023', message: 'Your glucose levels have displayed a slight upward trend in the past few weeks. It\'s essential to review your diet and medication regimen to identify any potential triggers and work towards stabilizing your glucose levels. Consider scheduling a follow-up to discuss adjustments.', index: 2 },
-    { date: '10 June 2023', message: 'Your glucose trends reflect remarkable stability, suggesting effective adherence to your treatment plan. Continue maintaining this balance and remember to communicate any significant changes or concerns during your next appointment for ongoing personalized care.', index: 1 },
-  ];
+  /*const messages = [
+    { date: '17 May 2023', message: 'Your recent glucose trends show a consistent decline, indicating excellent management of your diet and medication. Keep up the good work, and continue maintaining a healthy lifestyle to support these positive changes.', count: 5 },
+    { date: '25 May 2023', message: 'Your glucose levels have displayed a slight upward trend in the past few weeks. It\'s essential to review your diet and medication regimen to identify any potential triggers and work towards stabilizing your glucose levels. Consider scheduling a follow-up to discuss adjustments.', count: 2 },
+    { date: '10 June 2023', message: 'Your glucose trends reflect remarkable stability, suggesting effective adherence to your treatment plan. Continue maintaining this balance and remember to communicate any significant changes or concerns during your next appointment for ongoing personalized care.', count: 1 },
+  ];*/
 
   const [showChat, setShowChat] = useState(false);
+  const [messages, setMessages] = useState([]);
+
+  useEffect(() => {
+    const fetchFeedback = async () => {
+      try {
+        const response = await axios.get('http://127.0.0.1:5000/get_all_conversations/Zeeshan');
+        setMessages(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.error("Error fetching feedback data:", error);
+        // Handle error appropriately
+      }
+    };
+
+    fetchFeedback();
+  }, []);
 
   // Function to handle message click
   const handleFeedbackClick = () => {
@@ -62,8 +79,8 @@ const FeedbackPage = () => {
                   <FeedbackMessage
                     date={msg.date}
                     message={msg.message}
-                    index={msg.index}
-                    doctorName={'Dr. Z Chougle'}
+                    index={msg.count}
+                    doctorName={msg.sender}
                   />
                 </div>
               ))}        
