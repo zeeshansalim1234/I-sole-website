@@ -202,6 +202,17 @@ button:hover {
   /* Make sure this container is not flex or you need to set flex: none; */
 }
 
+.send-button {
+  width: 100%; /* Button takes up 100% of the form width */
+  padding: 10px;
+  border-radius: 4px;
+  border: none;
+  background-color: #1BA098; /* Adjust color as needed */
+  color: white;
+  cursor: pointer;
+  /* Other styles */
+}
+
 .sidebar {
   width: 200px; /* Adjust width as needed */
   background-color: #0F1E33;
