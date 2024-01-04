@@ -57,12 +57,40 @@ body, html {
 }
 
 .feedback-message {
-  background-color: #1BA098;
-  color: #DEB992;
+  background-color: #1BA098; /* Main color */
+  color: #DEB992; /* Contrast color */
   padding: 15px;
-  border-radius: 4px;
-  margin-bottom: 10px;
+  border-radius: 8px; /* Slightly more rounded */
+  margin-bottom: 15px; /* Increase space between messages */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Subtle shadow for depth */
+  border: 1px solid #0e7c7b; /* Slightly darker border for definition */
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth transition for hover effect */
 }
+
+.feedback-message:hover {
+  transform: translateY(-3px); /* Subtle lift effect on hover */
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25); /* Stronger shadow on hover */
+}
+
+/* Add a pseudo-element for a cool visual effect */
+.feedback-message::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: inherit; /* Match the border radius of the parent */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Light border for a glossy effect */
+  pointer-events: none; /* Ensure it doesn't interfere with clicking */
+}
+
+/* Make sure the feedback message container has position: relative; */
+.feedback-message {
+  position: relative;
+  overflow: hidden; /* Ensure pseudo-elements don't overflow */
+}
+
 
 .message-header {
   display: flex;

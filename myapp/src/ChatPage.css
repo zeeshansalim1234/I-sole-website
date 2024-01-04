@@ -33,7 +33,7 @@
 .messages-list {
     flex: 1;
     overflow-y: auto;
-    padding: 10px;
+ 
     display: flex;
     margin-top: 70px;
     flex-direction: column; /* Ensure messages stack vertically */
@@ -55,35 +55,48 @@
     border-radius: 10px; /* Rounded corners on the thumb */
     border: 3px solid #022b3a; /* Space between thumb and track */
   }
+  padding-right: 15px; /* Adjust the padding to make sure messages don't get under the scrollbar */
+  padding-bottom: 20px; /* Extra padding at the bottom */
 
 }
 
-/* Individual message style */
 .message {
     background-color: #E6F7EC;
-    border-radius: 5px;
+    border-radius: 8px;
     padding: 10px;
-    margin: 10px;
-    max-width: 50%; /* Set the maximum width to 50% */
-    word-wrap: break-word; /* Allow long words to break onto the next line */
-    align-self: flex-start; /* Align messages to the left by default */
+    margin: 10px 0;
+    max-width: 75%; /* Adjust width to your preference */
+    word-wrap: break-word;
+    align-self: flex-start;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* subtle shadow */
+    border: 1px solid #d1d1d1; /* light border */
+    position: relative;
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* smooth transition for hover effect */
+}
+
+.message:hover {
+    transform: translateY(-2px); /* subtle lift effect on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* stronger shadow on hover */
 }
 
 /* User message style */
 .message.user {
     background-color: #DEB992;
     color: black;
-    align-self: flex-end; /* Align user messages to the right */
+    align-self: flex-end;
     font-weight: bold;
+    /* You can add a different shadow color if you like */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
-/* User message style */
+/* Other user message style */
 .message.other {
     background-color: #1BA098;
     color: white;
-    align-self: flex-start; /* Align user messages to the right */
+    align-self: flex-start;
+    /* Consistent shadow with user messages */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
-
 
 /* Message form container */
 .message-form {
@@ -106,6 +119,7 @@
     display: flex;
     justify-content: space-between; /* Aligns date to left and time to right */
     margin-top: 8px; /* Space between text and footer */
+    padding: 4px 0; /* Add padding to the top and bottom */
   }
   
   /* Style for the time within the footer of a user message */
