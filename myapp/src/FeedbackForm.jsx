@@ -5,8 +5,10 @@ const FeedbackForm = ({ onSend }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    onSend(feedback); // Use the onSend prop to send the message
-    setFeedback(''); // Clear the textarea after sending the message
+    if(onSend) {
+      onSend(feedback);
+    }
+    setFeedback('');
   };
 
   return (
