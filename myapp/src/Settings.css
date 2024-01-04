@@ -25,6 +25,10 @@
   margin-right: auto; /* center the element horizontally */
 }
 
+/* Toggle hover effect */
+.toggle:hover {
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
+}
 
 .toggle label {
   cursor: pointer;
