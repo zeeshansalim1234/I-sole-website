@@ -12,6 +12,7 @@ const FeedbackPage = () => {
   const [showChat, setShowChat] = useState(false);
   const [messages, setMessages] = useState([]);
   const [selectedMessages, setselectedMessages] = useState(null);
+  const [currentThreadIndex, setCurrentThreadIndex] = useState(null);
 
   useEffect(() => {
     fetchFeedback();
@@ -22,6 +23,7 @@ const FeedbackPage = () => {
   const handleBackToFeedback = () => {
     setselectedMessages(null);
     setShowChat(false);
+    fetchFeedback(); // fetch feedback again to show new data
   };
 
   const fetchFeedback = async () => {
@@ -53,6 +55,7 @@ const FeedbackPage = () => {
     try {
       const response = await axios.get(`http://127.0.0.1:5000/get_one_conversation/Zeeshan/${index+1}`);
       setselectedMessages(response.data);
+      setCurrentThreadIndex(index + 1); // Set the current thread index
       setShowChat(true);
       fetchFeedback();
       console.log("CLick Conversation:", response.data);
@@ -111,7 +114,7 @@ const FeedbackPage = () => {
             </div>
           </>
         ) : (
-          <ChatPage onBack={handleBackToFeedback} selectedMessages={selectedMessages}/>
+          <ChatPage onBack={handleBackToFeedback} selectedMessages={selectedMessages} threadIndex={currentThreadIndex}/>
         )}
       </div>
 

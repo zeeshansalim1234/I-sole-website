@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import FeedbackForm from './FeedbackForm';
+import axios from 'axios';  // Import axios
 import './ChatPage.css';
 
 const Message = ({ text, isUser }) => {
@@ -11,24 +12,37 @@ const Message = ({ text, isUser }) => {
   );
 };
 
-const ChatPage = ({ onBack, selectedMessages }) => {
+const ChatPage = ({ onBack, selectedMessages,threadIndex }) => {
   const [messages, setMessages] = useState([]);
+  const username = 'Zeeshan'; // Set the username
 
   useEffect(() => {
-    // Check if selectedMessages is an array and has elements
     if (Array.isArray(selectedMessages) && selectedMessages.length > 0) {
-      // Map selectedMessages to the required format
       const initialMessages = selectedMessages.map(msg => ({
-        text: msg.message,  // Assuming each message object has a 'message' property
-        isUser: true      // Set to false assuming these are not user-sent messages
+        text: msg.message,
+        isUser: msg.sender === username
       }));
       setMessages(initialMessages);
     }
   }, [selectedMessages]);
 
-  const sendChat = (chatMessage) => {
+  const sendChat = async (chatMessage) => {
     if (chatMessage.trim() !== '') {
-      setMessages((prevMessages) => [...prevMessages, { text: chatMessage, isUser: true }]);
+      // Add message to UI
+      setMessages(prevMessages => [...prevMessages, { text: chatMessage, isUser: true }]);
+      
+      // Send message to server
+      try {
+        const response = await axios.post('http://127.0.0.1:5000/add_message', {
+          username: username,
+          index: threadIndex,
+          message: chatMessage
+        });
+
+        console.log('Message sent to server:', response.data);
+      } catch (error) {
+        console.error('Error sending message to server:', error);
+      }
     }
   };
 
@@ -42,10 +56,9 @@ const ChatPage = ({ onBack, selectedMessages }) => {
           <Message key={index} text={msg.text} isUser={msg.isUser} />
         ))}
       </div>
-      {/* Reusing FeedbackForm component for sending messages */}
-        <div className="feedback-form-container">
-            <FeedbackForm onSend={sendChat} />
-        </div>
+      <div className="feedback-form-container">
+        <FeedbackForm onSend={sendChat} />
+      </div>
     </div>
   );
 };
