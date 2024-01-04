@@ -339,12 +339,13 @@
 
 .contacts-section {
   display: flex;
-  justify-content: space-between;
-  margin-top: 20px; /* Adjust spacing as necessary */
+  justify-content: space-between; /* Distribute space between the two elements */
+  align-items: stretch; /* Make the items stretch to fill the container */
+  gap: 20px; /* Add a gap between the two elements */
 }
 
 .contact-list {
-  flex: 1; /* Takes up only necessary space */
+  flex: 1; /* Takes up only necessary space  */
   max-width: 60%; /* Adjust based on your design preference */
   /* Other styles remain unchanged */
   margin-right: 10px;
@@ -357,12 +358,19 @@
   background-color: #022b3a;
   padding: 25px;
   border-radius: 10px;
-  margin-top: 28px;
+  margin: 2rem auto; /* Centers the table on the page with margin top and bottom */
   /* Add styles for the form if needed */
 }
 
+
 .contacts-section > *:last-child {
   margin-right: 0;
+}
+
+/* This will make the last child of each section align to the bottom */
+.contact-list > :last-child, 
+.new-contact-form > :last-child {
+  margin-top: auto;
 }
 
 .settings .update-notifications {

@@ -53,11 +53,7 @@ function Settings() {
         </aside>
 
 
-        <main className="settings">
-
-       
-
-
+        <main className="settings">      
               <div className="update-notifications">
                 <h1>Notifications Settings</h1>
                 <div className="toggle">
