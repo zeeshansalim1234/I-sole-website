@@ -12,7 +12,7 @@ Current Progress:
 
 3. Feedback Page:
 
-![Alt text](image.png)
+![Alt text](image-10.png)
 
 4. Chat Page:
 
