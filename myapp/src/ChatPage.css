@@ -83,4 +83,29 @@
     /* Make sure this container is not flex or you need to set flex: none; */
   }
   
-
+  .message-footer {
+    display: flex;
+    justify-content: space-between; /* Aligns date to left and time to right */
+    margin-top: 8px; /* Space between text and footer */
+  }
+  
+  /* Style for the time within the footer of a user message */
+  .message.user .message-footer .message-time {
+    margin-left: auto; /* This will push the time to the right */
+    font-size: 0.8em;
+    color: #000000; /* Black color for user class */
+    background: rgba(0, 0, 0, 0.185); /* Remove any background styling */
+    padding: 3px 7px;
+    border-radius: 8px;
+  }
+  
+  /* Style for the time within the footer of an other message */
+  .message.other .message-footer .message-time {
+    margin-left: auto; /* This will push the time to the right */
+    font-size: 0.8em;
+    color: #FFFFFF; /* White color for other class */
+    background: rgba(0, 0, 0, 0.185); /* Remove any background styling */
+    padding: 3px 7px;
+    border-radius: 8px;
+  }
+  

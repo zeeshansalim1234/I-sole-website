@@ -139,6 +139,12 @@ textarea {
   font-weight: bold;
 }
 
+textarea::placeholder {
+  color: black; /* or #000000 for black */
+  font-weight: bolder;
+  opacity: 1; /* Optional: Firefox reduces the opacity by default */
+}
+
 button {
   padding: 10px 20px;
   background-color: #1BA098;
