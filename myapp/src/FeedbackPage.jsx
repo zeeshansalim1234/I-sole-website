@@ -16,12 +16,14 @@ const FeedbackPage = () => {
   const [currentThreadIndex, setCurrentThreadIndex] = useState(null);
   const [curr_username, setUsername] = useState('');
   const [patientUsername, setPatientUsername] = useState('');
+  const [userRole, setUserRole] = useState('');
   const navigate = useNavigate();  // Hook to access the history instance
 
   useEffect(() => {
     // Retrieve the current username from local storage
     const storedUsername = localStorage.getItem('curr_username');
     const storedPatientId = localStorage.getItem('patientID');
+    const storedUserRole = localStorage.getItem('userRole');
 
     if (storedUsername) {
       setUsername(storedUsername);
@@ -35,14 +37,21 @@ const FeedbackPage = () => {
     } else {
       console.error("Patient ID not found in local storage");
     }
+
+    if (storedUserRole) {
+      setUserRole(storedUserRole);
+    } else {
+      console.error("User Role not found in local storage");
+    }
   }, []); // Empty dependency array to run only on component mount
 
 
   useEffect(() => {
     console.log("Current username:", curr_username);
     console.log("Patient username:", patientUsername);
+    console.log("Current user Role:", userRole);
     fetchFeedback();
-  }, [curr_username, patientUsername]); // This useEffect runs when curr_username or patientUsername changes
+  }, [curr_username, patientUsername, userRole]); // This useEffect runs when curr_username or patientUsername changes
   
   
   const getPatientUsername = async (patientId) => {
@@ -128,7 +137,9 @@ const FeedbackPage = () => {
 
           <div className="sidebar-profile">
             <img src={zeeshan_profile} alt="currUsername" className="sidebar-profile-pic" />
-            <div className="sidebar-profile-name">{curr_username}</div>
+            <div className="sidebar-profile-name">
+              {userRole === 'Doctor' ? `Dr. ${curr_username}` : curr_username}
+            </div>
             <button
               className="signout-button"
               onClick={() => navigate('/login')}
@@ -136,6 +147,7 @@ const FeedbackPage = () => {
               ➜
             </button>
           </div>
+
 
       </aside>
 

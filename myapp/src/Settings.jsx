@@ -17,12 +17,14 @@ function Settings() {
     const [medicationReminder, setMedicationReminder] = useState(false);
     const [currUsername, setCurrUsername] = useState('');
     const [patientUsername, setpatientUsername] = useState('');
+    const [userRole, setUserRole] = useState('');
     const navigate = useNavigate();  // Hook to access the history instance
 
     useEffect(() => {
 
       const storedUsername = localStorage.getItem('curr_username');
       const patientUsername = localStorage.getItem('patientUsername');
+      const storedUserRole = localStorage.getItem('userRole');
 
       if (storedUsername) {
         setCurrUsername(storedUsername);
@@ -36,9 +38,15 @@ function Settings() {
         console.error("Username not found in local storage");
       }
 
+      if (storedUserRole) {
+        setUserRole(storedUserRole);
+      } else {
+        console.error("User Role not found in local storage");
+      }
+
       fetchContacts();
 
-    }, [currUsername, patientUsername]);
+    }, [currUsername, patientUsername, userRole]);
 
     const [contacts, setContacts] = useState([]);
 
@@ -144,7 +152,9 @@ function Settings() {
 
             <div className="sidebar-profile">
             <img src={zeeshan_profile} alt="currUsername" className="sidebar-profile-pic" />
-            <div className="sidebar-profile-name">{currUsername}</div>
+            <div className="sidebar-profile-name">
+              {userRole === 'Doctor' ? `Dr. ${currUsername}` : currUsername}
+            </div>
             <button
               className="signout-button"
               onClick={() => navigate('/login')}

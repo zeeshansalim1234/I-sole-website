@@ -23,11 +23,12 @@ const LoginPage = () => {
 
       if (response.data.success) {
         // Authentication successful
-        const { username, patientID } = response.data.user_data;
+        const { username, patientID, role } = response.data.user_data;
       
         // Store curr_username and patientID in local storage
         localStorage.setItem('curr_username', username);
         localStorage.setItem('patientID', patientID);
+        localStorage.setItem('userRole', role);
       
         // Log curr_username for debugging
         console.log('curr_username:', username);

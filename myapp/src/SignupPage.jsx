@@ -31,13 +31,12 @@ const SignupPage = () => {
         if (signupResponse.data.success) {
             console.log("Account created successfully");
 
+            const { patientID, role } = signupResponse.data.user_data;
+
             // Store the username in local storage
             localStorage.setItem('curr_username', username);
-
-            // Store the patientID in local storage
-            // Assuming the patientID is returned in the signup response
-            const patientIdFromResponse = signupResponse.data.patientID || ''; 
-            localStorage.setItem('patientID', patientIdFromResponse);
+            localStorage.setItem('patientID', patientID);
+            localStorage.setItem('userRole', role);
 
             // Call the initialize_counter endpoint only if role is 'Patient'
             if (role === 'Patient') {
