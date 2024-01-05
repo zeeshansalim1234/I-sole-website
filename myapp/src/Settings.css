@@ -458,3 +458,20 @@
     margin-right: 0;
   }
 }
+
+/* Targeting the autofill */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px #022b3a inset !important;
+    -webkit-text-fill-color: #DEB992 !important;
+}
+
+/* For Firefox */
+input:-moz-autofill,
+input:-moz-autofill:hover,
+input:-moz-autofill:focus {
+    box-shadow: 0 0 0 30px #022b3a inset !important;
+    text-fill-color: #DEB992 !important;
+}
