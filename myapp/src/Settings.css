@@ -266,16 +266,25 @@
 
 .contact-list {
   width: 100%;
-  max-width: 600px; /* Adjust based on your layout */
-  margin: 2rem auto; /* Centers the table on the page with margin top and bottom */
-  background: #022b3a; /* Background color for the contact list */
-  border-radius: 10px; /* Rounded corners */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
-  overflow: hidden; /* Ensures the child border radius does not exceed this element's border */
-  padding: 1rem; /* Padding inside the contact list */
+  max-width: 600px;
+  margin: 2rem auto;
+  background: #022b3a;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  padding: 1rem;
   max-height: 650px;
 
-  /* Hide scrollbar for Chrome, Safari and Opera */
+  flex-direction: column;
+  align-items: center;
+  flex: 1; /* Takes up only necessary space  */
+  max-width: 60%; /* Adjust based on your design preference */
+  /* Other styles remain unchanged */
+  margin-right: 10px;
+  padding: 25px;
+  overflow-y: auto; /* Enable vertical scrolling */
+
+  /* This will remove the scrollbar as mentioned */
   &::-webkit-scrollbar {
     display: none;
   }
@@ -319,8 +328,6 @@
   scrollbar-width: thin; /* For Firefox */
   scrollbar-color: #00a699 #022b3a; /* thumb and track color */
 }
-
-
 
 
 .contact-item {
@@ -394,15 +401,6 @@
   justify-content: space-between; /* Distribute space between the two elements */
   align-items: stretch; /* Make the items stretch to fill the container */
   gap: 20px; /* Add a gap between the two elements */
-}
-
-.contact-list {
-  flex: 1; /* Takes up only necessary space  */
-  max-width: 60%; /* Adjust based on your design preference */
-  /* Other styles remain unchanged */
-  margin-right: 10px;
-  padding: 25px;
-  overflow-y: auto; /* Enable vertical scrolling */
 }
 
 .new-contact-form {

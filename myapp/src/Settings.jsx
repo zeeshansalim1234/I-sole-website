@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Settings.css';
 import axios from 'axios';
 import logo from './images/logo.png'
@@ -14,6 +14,22 @@ function Settings() {
     const [email, setEmail] = useState('');
     const [glucoseAlert, setGlucoseAlert] = useState(false);
     const [medicationReminder, setMedicationReminder] = useState(false);
+
+    const [contacts, setContacts] = useState([]);
+
+    // Function to fetch contacts from the server
+    useEffect(() => {
+      fetchContacts();
+  }, []);
+
+    const fetchContacts = async () => {
+      try {
+          const response = await axios.get('http://127.0.0.1:5000/get_all_contacts/Zeeshan');
+          setContacts(response.data.contacts);
+      } catch (error) {
+          console.error('Error fetching contacts:', error);
+      }
+  };
 
     const handleSubmit = async (event) => {
       event.preventDefault();
@@ -32,6 +48,7 @@ function Settings() {
           username: 'Zeeshan', // replace with the actual username
         });
         console.log(response.data);
+        fetchContacts(); // update contacts to display in table
         // Reset form or give user feedback
       } catch (error) {
         console.error('Error submitting new contact:', error);
@@ -39,24 +56,22 @@ function Settings() {
       }
     };
 
-      // Initial dummy contacts data
-    const initialContacts = [
-      { name: 'John Doe', relationship: 'Family', phoneNumber: '123-456-7890', email: 'johndoe@example.com' },
-      { name: 'Jane Smith', relationship: 'Doctor', phoneNumber: '234-567-8901', email: 'janesmith@example.com' },
-      { name: 'Emily Johnson', relationship: 'Caregiver', phoneNumber: '345-678-9012', email: 'emilyj@example.com' },
-      { name: 'Michael Brown', relationship: 'Family', phoneNumber: '456-789-0123', email: 'michaelb@example.com' },
-      { name: 'Emily Johnson', relationship: 'Caregiver', phoneNumber: '345-678-9012', email: 'emilyj@example.com' },
-      { name: 'Emily Johnson', relationship: 'Caregiver', phoneNumber: '345-678-9012', email: 'emilyj@example.com' },
-      { name: 'Emily Johnson', relationship: 'Caregiver', phoneNumber: '345-678-9012', email: 'emilyj@example.com' },
-      { name: 'Sarah Davis', relationship: 'Family', phoneNumber: '567-890-1234', email: 'sarahd@example.com' }
-    ];
-
-    const [contacts, setContacts] = useState(initialContacts); // Use initialContacts as the initial state
-  
-    // Function to remove a contact by index
-    const removeContact = (index) => {
-      const newContacts = contacts.filter((_, i) => i !== index);
-      setContacts(newContacts);
+    // Function to remove a contact both from state and database
+    const removeContact = async (contactNameToRemove) => {
+      try {
+        // Make a POST request to delete the contact
+        await axios.post('http://127.0.0.1:5000/delete_contact', {
+            username: 'Zeeshan',
+            contactName: contactNameToRemove,
+        });
+    
+        // Use a functional update to ensure we have the latest state
+        setContacts(currentContacts =>
+          currentContacts.filter(contact => contact.name !== contactNameToRemove)
+        );
+      } catch (error) {
+        console.error('Error removing contact:', error);
+      }
     };
 
     return (
@@ -145,7 +160,7 @@ function Settings() {
                     <button className="edit-contact-btn">Edit</button>
                     <button 
                       className="remove-contact-btn"
-                      onClick={() => removeContact(index)}
+                      onClick={() => removeContact(contact.name)}
                     >
                       Remove
                     </button>
@@ -158,7 +173,7 @@ function Settings() {
 
           <form className="new-contact-form" onSubmit={handleSubmit}>
               <h1>Add New Contact</h1>
-<br></br>
+                  <br></br>
               <div className="field">
                 <label htmlFor="contactName">Contact Name</label>
                 <input
