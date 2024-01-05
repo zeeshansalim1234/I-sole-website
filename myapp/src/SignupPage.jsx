@@ -8,6 +8,7 @@ const SignupPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [fullName, setFullName] = useState('');
+  const [role, setRole] = useState(''); // Initialize role state
 
   const handleSignUp = (e) => {
     e.preventDefault();
@@ -60,6 +61,18 @@ const SignupPage = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+            <div className="dropdown-container">
+              <select
+                id="role"
+                value={role}
+                onChange={(e) => setRole(e.target.value)}
+              >
+                <option value="Family">Family</option>
+                <option value="Doctor">Doctor</option>
+                <option value="Patient">Patient</option>
+              </select> 
+              <span className="dropdown-arrow">&#9660;</span>
+            </div>
             <button type="submit" className="create-account-button">Create Account</button>
           </form>
           <div className="signup-footer">

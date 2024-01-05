@@ -198,3 +198,59 @@
   color: #00a699; /* Change the color on hover to a different color */
   text-decoration: none; /* Remove underline on hover */
 }
+
+/* Dropdown container */
+.dropdown-container {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+/* Label for the dropdown */
+.dropdown-container label {
+  color: #000000;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Custom select style */
+.dropdown-container select {
+  padding: 15px;
+  border: 2px solid #000000;
+  border-radius: 5px;
+  background-color: #DEB992;
+  color: black;
+  font-weight: bold;
+  width: 100%;
+  appearance: none;
+}
+
+/* Style for the dropdown arrow */
+.dropdown-container .dropdown-arrow {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+/* Add a custom arrow icon */
+.dropdown-container select::after {
+  content: '\25BC';
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+/* Hover styles for select element */
+.dropdown-container select:hover {
+  border-color: #00a699;
+}
+
+/* Focus styles for select element */
+.dropdown-container select:focus {
+  outline: none;
+  border-color: #00a699;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
