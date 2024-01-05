@@ -24,6 +24,7 @@
   margin-left: auto; /* These two margin properties will */
   margin-right: auto; /* center the element horizontally */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.65);
+  font-weight: bold;
 }
 
 /* Toggle hover effect */
