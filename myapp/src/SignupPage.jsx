@@ -31,6 +31,9 @@ const SignupPage = () => {
         if (signupResponse.data.success) {
             console.log("Account created successfully");
 
+            // Store the username in local storage
+            localStorage.setItem('username', username);
+
             // Call the initialize_counter endpoint
             const counterResponse = await axios.post('http://localhost:5000/initialize_counter', {
                 username: username,
