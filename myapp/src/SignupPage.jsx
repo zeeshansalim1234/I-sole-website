@@ -4,6 +4,7 @@ import './SignupPage.css'; // Make sure this is the correct path to your CSS fil
 import logoImage from './images/logo.png'; // Update with the correct path to your logo image
 import google from './images/google.png'; // Update with the correct path to your logo image
 import outlook from './images/outlook.png'; // Update with the correct path to your logo image
+import { useNavigate  } from 'react-router-dom';
 
 const SignupPage = () => {
   const [email, setEmail] = useState('');
@@ -12,6 +13,7 @@ const SignupPage = () => {
   const [role, setRole] = useState(''); // Initialize role state
   const [patientID, setPatientID] = useState(''); // Initialize patientNumber state
   const [username, setUsername] = useState(''); // State for username
+  const navigate = useNavigate();  // Hook to access the history instance
 
   const handleSignUp = async (e) => {
     e.preventDefault();
@@ -29,6 +31,7 @@ const SignupPage = () => {
       if (response.data.success) {
         // Handle success (e.g., redirect to login page or display a success message)
         console.log("Account created successfully");
+        navigate('/feedback');  // Redirect to '/feedback' route
       } else {
         // Handle failure (e.g., display an error message)
         console.log("Failed to create account");
