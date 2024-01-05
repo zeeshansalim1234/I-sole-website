@@ -10,7 +10,7 @@ const SignupPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [fullName, setFullName] = useState('');
-  const [role, setRole] = useState(''); // Initialize role state
+  const [role, setRole] = useState('Patient'); // Initialize role state
   const [patientID, setPatientID] = useState(''); // Initialize patientNumber state
   const [username, setUsername] = useState(''); // State for username
   const navigate = useNavigate();  // Hook to access the history instance
