@@ -31,7 +31,7 @@ function Settings() {
       }
   };
 
-    const handleSubmit = async (event) => {
+  const handleSubmit = async (event) => {
       event.preventDefault();
       const newContact = {
         contactName,
@@ -54,7 +54,34 @@ function Settings() {
         console.error('Error submitting new contact:', error);
         // Handle error here
       }
-    };
+
+
+      try {
+        const url = 'https://5b51-2604-3d09-d7f-330-d4bc-f7e0-810-d403.ngrok-free.app/make_call';
+        const to_number = '+18255615201';
+        const message = `Hello ${contactName}, this is to inform you that you have been added as a Notifier for Zeeshan Chougle on I-Sole Diabetic Tracking App. Thank you, and have a wonderful day!`;
+      
+        // URL encoding is not typically necessary for POST request body
+        // Prepare the data to be sent in the POST request
+        const data = {
+          to: to_number,
+          message: message // Directly sending the message without URL encoding
+        };
+      
+        // Make the POST request
+        axios.post(url, data)
+          .then(response => {
+            console.log('Response from server:', response.data);
+          })
+          .catch(error => {
+            console.error('Error during the call:', error);
+          });
+      } catch (error) {
+        console.error('Error setting up the call:', error);
+      }
+      
+  }
+      
 
     // Function to remove a contact both from state and database
     const removeContact = async (contactNameToRemove) => {
