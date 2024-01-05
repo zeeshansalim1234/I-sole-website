@@ -12,15 +12,15 @@
 .toggle {
   position: relative;
   display: flex;
-  justify-content: space-between; /* Align label to the left and toggle button to the right */
+  justify-content: space-between; /* Keep label to the left and toggle button to the right */
   align-items: center;
   background-color: #00a699; /* Toggle background */
   padding: 10px;
   border-radius: 15px; /* Rounded corners for the rectangle */
   margin-bottom: 2rem;
   margin-top: 2rem;
-  max-width: 650px;
-  width: 80%; /* Set the width to 60% of the parent container */
+  max-width: 700px;
+  width: 80%; /* Set the width to 80% of the parent container */
   margin-left: auto; /* These two margin properties will */
   margin-right: auto; /* center the element horizontally */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.65);
@@ -38,8 +38,8 @@
   user-select: none;
   flex-grow: 1; /* Ensure label takes up all available space */
   display: flex;
-  justify-content: space-between; /* Align text to the left and the invisible input to the right */
-  align-items: center;
+  justify-content: center; /* Center text horizontally */
+  align-items: center; /* Center text vertically */
   margin-bottom: 0; /* Reset the bottom margin */
 }
 
@@ -51,6 +51,7 @@
   cursor: pointer;
   height: 34px; /* Same as the height of the slider */
 }
+
 
 .slider {
   position: absolute; /* Absolute position to align properly */
