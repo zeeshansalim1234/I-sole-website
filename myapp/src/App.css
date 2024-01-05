@@ -23,7 +23,7 @@ body, html {
 }
 
 .sidebar {
-  width: 200px;
+  width: 250px;
   background-color: #0F1E33;
   color: white;
   overflow-y: auto; /* Scrollable if content overflows */
@@ -215,7 +215,7 @@ button:hover {
 }
 
 .sidebar {
-  width: 200px; /* Adjust width as needed */
+  width: 250px; /* Adjust width as needed */
   background-color: #0F1E33;
   color: white;
   padding-left: 0; /* Adjust or remove padding as needed */

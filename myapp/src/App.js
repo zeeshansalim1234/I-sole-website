@@ -5,6 +5,8 @@ import FeedbackPage from './FeedbackPage';
 import SignupPage from './SignupPage';
 import LoginPage from './LoginPage';
 import Settings from './Settings';
+import AnalyticsPage from './AnalyticsPage';
+
 
 const App = () => {
   return (
@@ -18,6 +20,8 @@ const App = () => {
         
         {/* Updated route for the feedback page */}
         <Route path="/feedback" element={<FeedbackPage />} />
+
+        <Route path="/analytics" element={<AnalyticsPage />} />
 
         {/* Updated route for the feedback page */}
         <Route path="/settings" element={<Settings />} />

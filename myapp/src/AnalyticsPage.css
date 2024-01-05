@@ -1,0 +1,146 @@
+/* Make sure the main container allows for wrapping */
+.analytics-content {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background: #051622; /* Dark background */
+    color: white; /* Light text for contrast */
+    overflow: hidden; /* Prevents any child from overflowing */
+    width: 100vw; /* Sets the width to the viewport width */
+    max-width: 100%; /* Ensures the width does not exceed the percentage value */
+  }
+
+  /* Flex container for the top row cards */
+  .top-row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; /* Allows items to wrap to the next line */
+    gap: 20px; /* Space between cards */
+    margin-bottom: 20px; /* Space below the row */
+  }
+
+  /* Main content area with charts and predictions */
+.main-content {
+    display: flex;
+    flex-grow: 1; /* Allow this row to take up all remaining space */
+    gap: 20px; /* Space between the charts column and the side column */
+  }
+
+  .charts-column {
+    flex: 7; /* 75% width */
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Adjust based on your design */
+  }
+
+  /* Column for the current glucose level and predictions */
+  .side-column {
+    display: flex;
+    flex: 3;
+    flex-direction: column;
+    gap: 20px;
+    height: 100%; /* Make the column fill the height */
+  }
+
+
+  .chart {
+    background-color: #022b3a;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.65);
+    /* Add your chart styling here */
+  }
+  
+  
+  
+  
+  
+  
+ /* Ensure predictions and current glucose level have equal height */
+.current-glucose-level, .predictions {
+    flex: 1; /* Distribute available space equally */
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    justify-content: center; /* Center content vertically for the donut chart */
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #022b3a;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.65);
+  }
+  
+  /* Style for charts */
+  .chart {
+    flex: 1 1 calc(50% - 10px); /* Takes half of the space, minus the gap */
+    padding: 20px;
+    background-color: #022b3a;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.65);
+  }
+  
+  .card, .predictions {
+    flex: 1; /* Distribute available space equally */
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    justify-content: center; /* Center content vertically for the donut chart */
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #022b3a;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.65);
+    
+  }
+
+  .card h2, .predictions h2 {
+    margin-bottom: 10px; /* Space below the title */
+  }
+
+  .predictions-list {
+    /* Style for the predictions list */
+    /* ... */
+    flex-grow: 1; /* Allow the list to fill the space in the predictions card */
+    overflow-y: auto; /* Add scroll if the content is too much */
+  }
+  
+  
+
+  .bar-chart {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    height: 150px; /* Set a fixed height for your bar chart */
+    background-color: #0c2d3d; /* Chart background */
+    border-radius: 8px; /* Optional: if you want rounded corners */
+    padding: 10px;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.5);
+    margin-top: 20px; /* Space from the title */
+  }
+  
+  .bar {
+    width: 20px; /* Width of individual bars */
+    background-color: #00a699; /* Bar color */
+    margin: 0 5px; /* Space between bars */
+    border-radius: 4px; /* Rounded corners for bars */
+    transition: height 0.3s ease; /* Smooth transition for hover effects */
+  }
+  
+  .bar:hover {
+    background-color: #017970; /* Darken bar color on hover */
+    height: 100%; /* Full height on hover */
+  }
+  
+  
+  @media (max-width: 768px) {
+    /* Adjust layout for smaller screens */
+    .top-row, .bottom-row {
+      flex-direction: column;
+    }
+  
+    .card, .chart {
+      width: 100%; /* Full width on smaller screens */
+    }
+  
+    .current-glucose-level {
+      width: 100%; /* Full width for the glucose level card on smaller screens */
+    }
+  }
+  
+
