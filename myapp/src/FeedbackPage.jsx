@@ -13,12 +13,50 @@ const FeedbackPage = () => {
   const [messages, setMessages] = useState([]);
   const [selectedMessages, setselectedMessages] = useState(null);
   const [currentThreadIndex, setCurrentThreadIndex] = useState(null);
+  const [curr_username, setUsername] = useState('');
+  const [patientUsername, setPatientUsername] = useState('');
 
   useEffect(() => {
-    fetchFeedback();
-  }, []);
+    // Retrieve the current username from local storage
+    const storedUsername = localStorage.getItem('curr_username');
+    const storedPatientId = localStorage.getItem('patientID');
 
+    if (storedUsername) {
+      setUsername(storedUsername);
+    } else {
+      // Handle the case where the username is not found in local storage
+      console.error("Username not found in local storage");
+    }
+
+    if (storedPatientId) {
+      getPatientUsername(storedPatientId);
+    } else {
+      console.error("Patient ID not found in local storage");
+    }
+  }, []); // Empty dependency array to run only on component mount
+
+
+  useEffect(() => {
+    console.log("Current username:", curr_username);
+    console.log("Patient username:", patientUsername);
+    fetchFeedback();
+  }, [curr_username, patientUsername]); // This useEffect runs when curr_username or patientUsername changes
   
+  
+  const getPatientUsername = async (patientId) => {
+    try {
+      const response = await axios.get(`http://127.0.0.1:5000/get_username_by_patient_id/${patientId}`);
+      if (response.data.success) {
+        setPatientUsername(response.data.username);
+        localStorage.setItem('patientUsername', response.data.username);
+      } else {
+        console.error("Failed to fetch patient username");
+      }
+    } catch (error) {
+      console.error("Error fetching patient username:", error);
+    }
+  };
+
   // Function to return back to the feedback message list
   const handleBackToFeedback = () => {
     setselectedMessages(null);
@@ -28,20 +66,22 @@ const FeedbackPage = () => {
 
   const fetchFeedback = async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:5000/get_all_conversations/Zeeshan');
-      setMessages(response.data);
-      console.log(response.data);
+      if (patientUsername) {
+        const response = await axios.get(`http://127.0.0.1:5000/get_all_conversations/${patientUsername}`);
+        setMessages(response.data);
+        console.log(response.data);
+      }
     } catch (error) {
       console.error("Error fetching feedback data:", error);
-      // Handle error appropriately
     }
   };
 
   const handleSendFeedback = async (feedbackMessage) => {
     try {
       const response = await axios.post('http://127.0.0.1:5000/start_new_thread', {
-        username: "Zeeshan",
-        message: feedbackMessage
+        username: patientUsername,
+        message: feedbackMessage,
+        sender: curr_username,
       });
       fetchFeedback(); // fetch feedback again to show new data
       console.log("Feedback Sent:", response.data);
@@ -53,7 +93,7 @@ const FeedbackPage = () => {
   // Function to handle message click
   const handleFeedbackClick = async (index) => {
     try {
-      const response = await axios.get(`http://127.0.0.1:5000/get_one_conversation/Zeeshan/${index+1}`);
+      const response = await axios.get(`http://127.0.0.1:5000/get_one_conversation/${patientUsername}/${index+1}`);
       setselectedMessages(response.data);
       setCurrentThreadIndex(index + 1); // Set the current thread index
       setShowChat(true);

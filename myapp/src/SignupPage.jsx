@@ -32,17 +32,24 @@ const SignupPage = () => {
             console.log("Account created successfully");
 
             // Store the username in local storage
-            localStorage.setItem('username', username);
+            localStorage.setItem('curr_username', username);
 
-            // Call the initialize_counter endpoint
-            const counterResponse = await axios.post('http://localhost:5000/initialize_counter', {
+            // Store the patientID in local storage
+            // Assuming the patientID is returned in the signup response
+            const patientIdFromResponse = signupResponse.data.patientID || ''; 
+            localStorage.setItem('patientID', patientIdFromResponse);
+
+            // Call the initialize_counter endpoint only if role is 'Patient'
+            if (role === 'Patient') {
+              const counterResponse = await axios.post('http://localhost:5000/initialize_counter', {
                 username: username,
-            });
+              });
 
-            if (counterResponse.data.success) {
+              if (counterResponse.data.success) {
                 console.log("Counter initialized successfully");
-            } else {
+              } else {
                 console.log("Failed to initialize counter");
+              }
             }
 
             navigate('/feedback');  // Redirect to '/feedback' route

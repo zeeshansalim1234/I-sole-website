@@ -19,19 +19,36 @@ const Message = ({ text, date, time, isUser }) => {
 
 const ChatPage = ({ onBack, selectedMessages,threadIndex }) => {
   const [messages, setMessages] = useState([]);
-  const username = 'Zeeshan'; // Set the username
+  const [currUsername, setCurrUsername] = useState('');
+  const [patientUsername, setpatientUsername] = useState('');
 
   useEffect(() => {
+
+    const storedUsername = localStorage.getItem('curr_username');
+    const patientUsername = localStorage.getItem('patientUsername');
+
+    if (storedUsername) {
+      setCurrUsername(storedUsername);
+    } else {
+      console.error("Username not found in local storage");
+    }
+
+    if (patientUsername) {
+      setpatientUsername(patientUsername);
+    } else {
+      console.error("Username not found in local storage");
+    }
+
     if (Array.isArray(selectedMessages) && selectedMessages.length > 0) {
       const initialMessages = selectedMessages.map(msg => ({
         text: msg.message,
-        date: msg.date, // Assuming the date is in the format 'DD-MM-YYYY'
-        time: msg.time, // Assuming the time is in the format 'HH:MM AM/PM'
-        isUser: msg.sender === username
+        date: msg.date,
+        time: msg.time,
+        isUser: msg.sender === currUsername // Check if the sender is the current user
       }));
       setMessages(initialMessages);
     }
-  }, [selectedMessages]);
+  }, [selectedMessages, currUsername]);
 
   const sendChat = async (chatMessage) => {
     if (chatMessage.trim() !== '') {
@@ -43,9 +60,10 @@ const ChatPage = ({ onBack, selectedMessages,threadIndex }) => {
       
       try {
         const response = await axios.post('http://127.0.0.1:5000/add_message', {
-          username: username,
+          username: patientUsername,
           index: threadIndex,
-          message: chatMessage
+          message: chatMessage,
+          sender: currUsername
         });
 
         console.log('Message sent to server:', response.data);
