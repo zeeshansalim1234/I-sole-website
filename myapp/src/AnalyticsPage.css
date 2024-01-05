@@ -2,12 +2,15 @@
 .analytics-content {
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    text-align: center;
+    flex: 1;
     background: #051622; /* Dark background */
-    color: white; /* Light text for contrast */
-    overflow: hidden; /* Prevents any child from overflowing */
-    width: 100vw; /* Sets the width to the viewport width */
-    max-width: 100%; /* Ensures the width does not exceed the percentage value */
+    padding: 20px;
+    color: #DEB992; /* Light text for better contrast */
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 500;
+    overflow: auto;
+      
   }
 
   /* Flex container for the top row cards */
