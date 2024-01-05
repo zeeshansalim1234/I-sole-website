@@ -3,15 +3,46 @@ import './LoginPage.css'; // Make sure this is the correct path to your CSS file
 import logoImage from './images/logo.png'; // Update with the correct path to your logo image
 import google from './images/google.png'; // Update with the correct path to your logo image
 import outlook from './images/outlook.png'; // Update with the correct path to your logo image
+import axios from 'axios'; // Import axios for making API requests
+import { useNavigate  } from 'react-router-dom';
 
 const LoginPage = () => {
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState(''); // Change to username
   const [password, setPassword] = useState('');
-  const [fullName, setFullName] = useState('');
+  const navigate = useNavigate();  // Hook to access the history instance
 
-  const handleSignUp = (e) => {
+  const handleSignIn = async (e) => { // Change the function name to handleSignIn
     e.preventDefault();
-    // Handle the sign-up logic here
+
+    try {
+      // Make a POST request to your backend sign-in endpoint
+      const response = await axios.post('http://127.0.0.1:5000/signin', {
+        username: username, // Use the username state variable
+        password: password,
+      });
+
+      if (response.data.success) {
+        // Authentication successful
+        const { username, patientID } = response.data.user_data;
+      
+        // Store curr_username and patientID in local storage
+        localStorage.setItem('curr_username', username);
+        localStorage.setItem('patientID', patientID);
+      
+        // Log curr_username for debugging
+        console.log('curr_username:', username);
+      
+        // Redirect to your main application page or dashboard
+        navigate('/feedback');  // Redirect to '/feedback' route
+      } else {
+        // Authentication failed, handle the error (e.g., show an error message)
+        console.error('Sign-in failed:', response.data.message);
+      }
+      
+    } catch (error) {
+      // Handle API request errors
+      console.error('Error signing in:', error);
+    }
   };
 
   return (
@@ -37,12 +68,12 @@ const LoginPage = () => {
           <div className="divider">
             <span>OR</span>
           </div>
-          <form onSubmit={handleSignUp}>
+          <form onSubmit={handleSignIn}>
             <input
-              type="email"
-              placeholder="Email Address"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              type="text" 
+              placeholder="Username" 
+              value={username} 
+              onChange={(e) => setUsername(e.target.value)}
             />
             <input
               type="password"
