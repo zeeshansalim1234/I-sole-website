@@ -168,6 +168,7 @@ textarea {
   color: black; /* Darker font color for contrast */
   box-shadow: 0 4px 8px rgba(112, 111, 111, 0.15);
   transition: border-color 0.3s, box-shadow 0.3s; /* Smooth transitions for interactive states */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.65);
 }
 
 /* Focus state */
