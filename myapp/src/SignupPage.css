@@ -203,6 +203,7 @@
 .dropdown-container {
   margin-bottom: 20px;
   position: relative;
+  margin-bottom: 2rem;
 }
 
 /* Label for the dropdown */
@@ -222,6 +223,9 @@
   font-weight: bold;
   width: 100%;
   appearance: none;
+  transition: all 0.2s ease-in-out; /* Adjust the timing as needed */
+  background-repeat: no-repeat;
+  background-position: right center;
 }
 
 /* Style for the dropdown arrow */
@@ -243,14 +247,10 @@
   pointer-events: none;
 }
 
-/* Hover styles for select element */
-.dropdown-container select:hover {
-  border-color: #00a699;
-}
 
 /* Focus styles for select element */
 .dropdown-container select:focus {
   outline: none;
-  border-color: #00a699;
+  transition: color 0.3s ease-in-out; /* Add a smooth color transition on hover */
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }

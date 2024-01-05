@@ -9,10 +9,26 @@ const SignupPage = () => {
   const [password, setPassword] = useState('');
   const [fullName, setFullName] = useState('');
   const [role, setRole] = useState(''); // Initialize role state
+  const [patientID, setPatientID] = useState(''); // Initialize patientNumber state
 
   const handleSignUp = (e) => {
     e.preventDefault();
     // Handle the sign-up logic here
+  };
+
+  // Function to render the patient number input when role is Doctor or Family
+  const renderPatientNumberInput = () => {
+    if (role === 'Doctor' || role === 'Family') {
+      return (
+        <input
+          type="text"
+          placeholder="Patient ID"
+          value={patientID}
+          onChange={(e) => setPatientID(e.target.value)}
+        />
+      );
+    }
+    return null;
   };
 
   return (
@@ -67,12 +83,16 @@ const SignupPage = () => {
                 value={role}
                 onChange={(e) => setRole(e.target.value)}
               >
+                <option value="Patient">Patient</option>
                 <option value="Family">Family</option>
                 <option value="Doctor">Doctor</option>
-                <option value="Patient">Patient</option>
               </select> 
               <span className="dropdown-arrow">&#9660;</span>
             </div>
+
+            {/* Render the patient number input based on the selected role */}
+           {renderPatientNumberInput()}
+
             <button type="submit" className="create-account-button">Create Account</button>
           </form>
           <div className="signup-footer">
