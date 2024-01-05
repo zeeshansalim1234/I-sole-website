@@ -3,6 +3,7 @@ import './Settings.css';
 import axios from 'axios';
 import logo from './images/logo.png'
 import zeeshan_profile from './images/zeeshan.png';
+import { useNavigate  } from 'react-router-dom';
 
 function Settings() {
     const [activity, setActivity] = useState(false);
@@ -14,17 +15,36 @@ function Settings() {
     const [email, setEmail] = useState('');
     const [glucoseAlert, setGlucoseAlert] = useState(false);
     const [medicationReminder, setMedicationReminder] = useState(false);
+    const [currUsername, setCurrUsername] = useState('');
+    const [patientUsername, setpatientUsername] = useState('');
+    const navigate = useNavigate();  // Hook to access the history instance
+
+    useEffect(() => {
+
+      const storedUsername = localStorage.getItem('curr_username');
+      const patientUsername = localStorage.getItem('patientUsername');
+
+      if (storedUsername) {
+        setCurrUsername(storedUsername);
+      } else {
+        console.error("Username not found in local storage");
+      }
+
+      if (patientUsername) {
+        setpatientUsername(patientUsername);
+      } else {
+        console.error("Username not found in local storage");
+      }
+
+      fetchContacts();
+
+    }, [currUsername, patientUsername]);
 
     const [contacts, setContacts] = useState([]);
 
-    // Function to fetch contacts from the server
-    useEffect(() => {
-      fetchContacts();
-  }, []);
-
     const fetchContacts = async () => {
       try {
-          const response = await axios.get('http://127.0.0.1:5000/get_all_contacts/Zeeshan');
+          const response = await axios.get(`http://127.0.0.1:5000/get_all_contacts/${patientUsername}`);
           setContacts(response.data.contacts);
       } catch (error) {
           console.error('Error fetching contacts:', error);
@@ -45,7 +65,7 @@ function Settings() {
       try {
         const response = await axios.post('http://127.0.0.1:5000/add_contact', {
           newContact, // your contact fields
-          username: 'Zeeshan', // replace with the actual username
+          username: patientUsername, // replace with the actual username
         });
         console.log(response.data);
         fetchContacts(); // update contacts to display in table
@@ -91,7 +111,7 @@ function Settings() {
       try {
         // Make a POST request to delete the contact
         await axios.post('http://127.0.0.1:5000/delete_contact', {
-            username: 'Zeeshan',
+            username: patientUsername,
             contactName: contactNameToRemove,
         });
     
@@ -123,10 +143,15 @@ function Settings() {
             </nav>
 
             <div className="sidebar-profile">
-            <img src={zeeshan_profile} alt="Dr. Z Chougle" className="sidebar-profile-pic" />
-            <div className="sidebar-profile-name">Dr. Z Chougle</div>
-            <button className="signout-button">➜</button> {/* This is a placeholder icon */}
-            </div>
+            <img src={zeeshan_profile} alt="currUsername" className="sidebar-profile-pic" />
+            <div className="sidebar-profile-name">{currUsername}</div>
+            <button
+              className="signout-button"
+              onClick={() => navigate('/login')}
+            >
+              ➜
+            </button>
+          </div>
 
         </aside>
 

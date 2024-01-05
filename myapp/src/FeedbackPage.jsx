@@ -6,6 +6,7 @@ import FeedbackMessage from './FeedbackMessage';
 import logo from './images/logo.png'
 import zeeshan_profile from './images/zeeshan.png';
 import axios from 'axios';
+import { useNavigate  } from 'react-router-dom';
 
 const FeedbackPage = () => {
  
@@ -15,6 +16,7 @@ const FeedbackPage = () => {
   const [currentThreadIndex, setCurrentThreadIndex] = useState(null);
   const [curr_username, setUsername] = useState('');
   const [patientUsername, setPatientUsername] = useState('');
+  const navigate = useNavigate();  // Hook to access the history instance
 
   useEffect(() => {
     // Retrieve the current username from local storage
@@ -125,9 +127,14 @@ const FeedbackPage = () => {
           </nav>
 
           <div className="sidebar-profile">
-            <img src={zeeshan_profile} alt="Dr. Z Chougle" className="sidebar-profile-pic" />
-            <div className="sidebar-profile-name">Dr. Z Chougle</div>
-            <button className="signout-button">➜</button> {/* This is a placeholder icon */}
+            <img src={zeeshan_profile} alt="currUsername" className="sidebar-profile-pic" />
+            <div className="sidebar-profile-name">{curr_username}</div>
+            <button
+              className="signout-button"
+              onClick={() => navigate('/login')}
+            >
+              ➜
+            </button>
           </div>
 
       </aside>
