@@ -259,7 +259,10 @@ button:hover {
   height: 40px; /* Adjust height as needed */
   border-radius: 50%; /* Make it round */
   margin-left: auto; /* Add space between the image and the name */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Add a subtle box shadow */
+  border: 2px solid #ffffff; /* Add a white border */
 }
+
 
 .sidebar-profile {
   display: flex;
