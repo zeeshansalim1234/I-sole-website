@@ -258,7 +258,7 @@ button:hover {
   width: 40px; /* Adjust width as needed */
   height: 40px; /* Adjust height as needed */
   border-radius: 50%; /* Make it round */
-  margin-right: 10px; /* Add space between the image and the name */
+  margin-left: auto; /* Add space between the image and the name */
 }
 
 .sidebar-profile {
@@ -277,6 +277,7 @@ button:hover {
   margin-right: auto; /* This will push all elements to the right */
   font-weight: bold;
   color: #DEB992;
+  margin-left: auto;
 }
 
 .signout-button {
