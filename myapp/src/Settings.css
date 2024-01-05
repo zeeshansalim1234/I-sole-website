@@ -16,13 +16,14 @@
   align-items: center;
   background-color: #00a699; /* Toggle background */
   padding: 10px;
-  border-radius: 12px; /* Rounded corners for the rectangle */
+  border-radius: 15px; /* Rounded corners for the rectangle */
   margin-bottom: 2rem;
   margin-top: 2rem;
   max-width: 650px;
   width: 80%; /* Set the width to 60% of the parent container */
   margin-left: auto; /* These two margin properties will */
   margin-right: auto; /* center the element horizontally */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.65);
 }
 
 /* Toggle hover effect */
@@ -269,11 +270,12 @@
   max-width: 600px;
   margin: 2rem auto;
   background: #022b3a;
-  border-radius: 10px;
+  border-radius: 15px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   overflow: hidden;
   padding: 1rem;
   max-height: 650px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.65);
 
   flex-direction: column;
   align-items: center;
@@ -408,8 +410,9 @@
   max-width: 100%; /* Adjust based on your design preference */
   background-color: #022b3a;
   padding: 25px;
-  border-radius: 10px;
+  border-radius: 15px;
   margin: 2rem auto; /* Centers the table on the page with margin top and bottom */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.65);
   /* Add styles for the form if needed */
 }
 
@@ -429,9 +432,48 @@
   max-width: 100%; /* Adjust based on your design preference */
   background-color: #022b3a;
   padding: 10px;
-  border-radius: 10px;
+  border-radius: 15px;
+  margin-top: 2rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.65);
   /* Add styles for the form if needed */
 }
+
+
+/* Add these CSS styles to your existing CSS file */
+
+/* Style for the "Patient ID" section */
+.patient-id {
+  background-color: #022b3a; /* Background color */
+  border-radius: 15px; /* Rounded corners */
+  padding: 20px; /* Padding inside the section */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.65); /* Stronger box shadow for more depth */ /* Box shadow for a subtle elevation effect */
+  text-align: center; /* Center-align text inside the section */
+  display: flex; /* Use flexbox to center align items vertically and horizontally */
+  flex-direction: column; /* Stack items vertically */
+}
+
+
+
+.patient-id h1 {
+  font-size: 24px; /* Heading font size */
+  color: #DEB992; /* Heading text color */
+}
+
+/* Style for the patientID container */
+.patient-id-container {
+  background-color: #00a699; /* Background color for patientID container */
+  padding: 10px; /* Padding inside the container */
+  border-radius: 10px; /* Rounded corners for the container */
+  text-align: center; /* Center-align text inside the container */
+  margin-top: 20px; /* Spacing from the "Patient ID" heading */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.65);
+}
+
+.patient-id-container h1 {
+  font-size: 24px; /* Font size for the patientID */
+  color: #DEB992; /* Text color for the patientID */
+}
+
 
 
 @media (max-width: 768px) {

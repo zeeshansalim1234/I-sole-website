@@ -18,6 +18,7 @@ function Settings() {
     const [currUsername, setCurrUsername] = useState('');
     const [patientUsername, setpatientUsername] = useState('');
     const [userRole, setUserRole] = useState('');
+    const [patientID, setPatientID] = useState(''); // Add patientID state
     const navigate = useNavigate();  // Hook to access the history instance
 
     useEffect(() => {
@@ -25,6 +26,7 @@ function Settings() {
       const storedUsername = localStorage.getItem('curr_username');
       const patientUsername = localStorage.getItem('patientUsername');
       const storedUserRole = localStorage.getItem('userRole');
+      const storedPatientID = localStorage.getItem('patientID'); // Get patientID from storage
 
       if (storedUsername) {
         setCurrUsername(storedUsername);
@@ -42,6 +44,12 @@ function Settings() {
         setUserRole(storedUserRole);
       } else {
         console.error("User Role not found in local storage");
+      }
+
+      if (storedPatientID) {
+        setPatientID(storedPatientID); // Set patientID state
+      } else {
+        console.error("Patient ID not found in local storage");
       }
 
       fetchContacts();
@@ -166,7 +174,16 @@ function Settings() {
         </aside>
 
 
-        <main className="settings">      
+        <main className="settings">    
+
+        <div className="patient-id">
+          <h1>Patient ID</h1> {/* "Patient ID" without patientID */}
+          <div className="patient-id-container">
+            <h1>{patientID}</h1> {/* Display patientID in a new div */}
+          </div>
+        </div>
+
+
               <div className="update-notifications">
                 <h1>Notifications Settings</h1>
                 <div className="toggle">
@@ -203,6 +220,7 @@ function Settings() {
                   </label>
                 </div>
             </div>
+           
 
 
 

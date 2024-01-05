@@ -164,8 +164,8 @@ textarea {
   resize: vertical; /* Allow only vertical resizing */
   border: 2px solid black;
   background: #DEB992; /* Light background */
-  font-weight: normal; /* Normal font weight for better readability */
-  color: #333; /* Darker font color for contrast */
+  font-weight: bold; /* Normal font weight for better readability */
+  color: black; /* Darker font color for contrast */
   box-shadow: 0 4px 8px rgba(112, 111, 111, 0.15);
   transition: border-color 0.3s, box-shadow 0.3s; /* Smooth transitions for interactive states */
 }
