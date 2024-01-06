@@ -9,6 +9,7 @@ import linechart from './images/linechart.png';
 import blood from './images/blood.png'
 import sweat from './images/sweat.png'
 import feet from './images/feet.png'
+import piechart from './images/piechart.png'
 import ToggleSwitch from './ToggleSwitch';
 
 function Analytics() {
@@ -103,9 +104,10 @@ function Analytics() {
                   </div>
 
                   <div className="card current-glucose-level">
-                    <h1>Current Glucose Level</h1>
+                    <h1>Meal Distribution</h1>
                     <div className="donut-chart-dummy">
-                      <p>95 mg/dL</p> {/* Dummy donut chart data */}
+                    <img src={piechart}  alt="Retina Pressure Icon" />
+                    <ToggleSwitch />
                     </div>
                   </div>
                   
