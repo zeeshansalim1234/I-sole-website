@@ -5,6 +5,7 @@ import logo from './images/logo.png';
 import profilePic from './images/zeeshan.png'; // Replace with the logged-in user's profile picture
 import { useNavigate } from 'react-router-dom';
 import barchart from './images/barchart.png';
+import ToggleSwitch from './ToggleSwitch';
 
 function Analytics() {
   const navigate = useNavigate(); // Hook to access the history instance
@@ -35,56 +36,70 @@ function Analytics() {
       </aside>
 
 
-      <main className="analytics-content">
-  <div className="top-row">
-    <div className="card blood-glucose">
-      <h2>Blood Glucose Level</h2>
-      <p>95 mg/dL</p>
-      <span>+10</span>
-    </div>
-    <div className="card retina-pressure">
-      <h2>Retina Pressure</h2>
-      <p>81 kPa</p>
-      <span>+10</span>
-    </div>
-    <div className="card blood-glucose">
-      <h2>Blood Glucose Level</h2>
-      <p>95 mg/dL</p>
-      <span>+10</span>
-    </div>
-  </div>
-  <div className="main-content">
-  <div className="charts-column">
-    <div className="chart pressure-sensor-analytics">
-      <h2>Pressure Sensor Analytics</h2>
-      <img src={barchart} alt="Pressure Sensor Analytics Chart" />
-    </div>
-    <div className="chart glucose-sensor-analytics">
-      <h2>Glucose Sensor Analytics</h2>
-      <img src={barchart}  alt="Glucose Sensor Analytics Chart" />
-    </div>
-  </div>
-    
-    <div className="side-column">
-  <div className="card current-glucose-level">
-    <h2>Current Glucose Level</h2>
-    <div className="donut-chart-dummy">
-      <p>95 mg/dL</p> {/* Dummy donut chart data */}
-    </div>
-  </div>
-  <div className="predictions">
-    <h2>Predictions</h2>
-    <ul className="predictions-list">
-      <li>Next Hypoglycemia: <strong>9:00 PM, May 12</strong></li>
-      <li>Next Hyperglycemia: <strong>1:00 PM, May 13</strong></li>
-      <li>Diabetic Ulceration Risk: <strong>Low</strong></li>
-    </ul>
-  </div>
-</div>
+  <main className="analytics-content">
+          <div className="top-row">
+            <div className="card blood-glucose">
+              <h2>Blood Glucose Level</h2>
+              <p>95 mg/dL</p>
+              <span>+10</span>
+            </div>
+            <div className="card retina-pressure">
+              <h2>Retina Pressure</h2>
+              <p>81 kPa</p>
+              <span>+10</span>
+            </div>
+            <div className="card blood-glucose">
+              <h2>Blood Glucose Level</h2>
+              <p>95 mg/dL</p>
+              <span>+10</span>
+            </div>
+          </div>
+
+          <div className="main-content">
+              
+          <div className="charts-column">
+            <div className="chart pressure-sensor-analytics">
+              <div className="chart-header">
+                <h1>Pressure Sensor Analytics</h1>
+                <ToggleSwitch /> {/* Include the toggle switch */}
+              </div>
+              <img src={barchart} alt="Pressure Sensor Analytics Chart" />
+            </div>
+            <div className="chart glucose-sensor-analytics">
+              <div className="chart-header">
+                <h1>Glucose Sensor Analytics</h1>
+                <ToggleSwitch /> {/* Include the toggle switch */}
+              </div>
+              <img src={barchart} alt="Glucose Sensor Analytics Chart" />
+            </div>
+          </div>
 
 
-  </div>
-</main>
+
+            
+              <div className="side-column">
+
+                <div className="card predictions">
+                    <h2>Predictions</h2>
+                    <ul className="predictions-list">
+                      <li>Next Hypoglycemia: <strong>9:00 PM, May 12</strong></li>
+                      <li>Next Hyperglycemia: <strong>1:00 PM, May 13</strong></li>
+                      <li>Diabetic Ulceration Risk: <strong>Low</strong></li>
+                    </ul>
+                  </div>
+
+                  <div className="card current-glucose-level">
+                    <h2>Current Glucose Level</h2>
+                    <div className="donut-chart-dummy">
+                      <p>95 mg/dL</p> {/* Dummy donut chart data */}
+                    </div>
+                  </div>
+                  
+              </div>
+
+
+          </div>
+  </main>
 
 
 
