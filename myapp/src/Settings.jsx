@@ -154,7 +154,7 @@ function Settings() {
                 <li><a href="/homepage">🏠 Homepage</a></li>
                 <li><a href="/feedback">💬 Feedback</a></li>
                 <li><a href="/analytics">📊 Analytics</a></li>
-                <li><a href="/settings" className="active">⚙️ Settings</a></li>
+                <li><a href="/settings" className="active">🔔 Notifications</a></li>
             </ul>
             </nav>
 
