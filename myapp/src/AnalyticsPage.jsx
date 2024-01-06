@@ -1,4 +1,5 @@
 import React from 'react';
+import { useEffect, useState } from 'react';
 import './AnalyticsPage.css'; // Make sure to create a corresponding Analytics.css file
 import axios from 'axios';
 import logo from './images/logo.png';
@@ -14,8 +15,20 @@ import ToggleSwitch from './ToggleSwitch';
 
 function Analytics() {
   const navigate = useNavigate(); // Hook to access the history instance
+  const [currUsername, setCurrUsername] = useState('');
 
-  // Add state and useEffect logic here for fetching analytics data
+  // Add useEffect to retrieve currUsername from local storage
+  useEffect(() => {
+    // Retrieve the current username from local storage
+    const storedUsername = localStorage.getItem('curr_username');
+
+    if (storedUsername) {
+      setCurrUsername(storedUsername);
+    } else {
+      // Handle the case where the username is not found in local storage
+      console.error("Username not found in local storage");
+    }
+  }, []);
 
   return (
     <div className="app">
@@ -33,7 +46,7 @@ function Analytics() {
         </nav>
         <div className="sidebar-profile">
           <img src={profilePic} alt="currUsername" className="sidebar-profile-pic" />
-          <div className="sidebar-profile-name">Zeeshan</div>
+          <div className="sidebar-profile-name">{currUsername}</div>
           <button className="signout-button" onClick={() => navigate('/login')}>
             ➜
           </button>
