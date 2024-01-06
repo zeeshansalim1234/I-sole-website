@@ -21,11 +21,15 @@ const ChatPage = ({ onBack, selectedMessages,threadIndex }) => {
   const [messages, setMessages] = useState([]);
   const [currUsername, setCurrUsername] = useState('');
   const [patientUsername, setpatientUsername] = useState('');
+  const [userRole, setUserRole] = useState('');
+  const [doctorUsername, setDoctorUsername] = useState(''); 
+  
 
   useEffect(() => {
 
     const storedUsername = localStorage.getItem('curr_username');
     const patientUsername = localStorage.getItem('patientUsername');
+    const storedUserRole = localStorage.getItem('userRole');
 
     if (storedUsername) {
       setCurrUsername(storedUsername);
@@ -39,6 +43,14 @@ const ChatPage = ({ onBack, selectedMessages,threadIndex }) => {
       console.error("Username not found in local storage");
     }
 
+    if (storedUserRole) {
+      setUserRole(storedUserRole);
+    } else {
+      console.error("User Role not found in local storage");
+    }
+
+    getDoctorUsername();
+
     if (Array.isArray(selectedMessages) && selectedMessages.length > 0) {
       const initialMessages = selectedMessages.map(msg => ({
         text: msg.message,
@@ -48,7 +60,23 @@ const ChatPage = ({ onBack, selectedMessages,threadIndex }) => {
       }));
       setMessages(initialMessages);
     }
-  }, [selectedMessages, currUsername]);
+  }, [selectedMessages, currUsername, patientUsername]);
+
+  // Function to retrieve the doctorUsername
+  const getDoctorUsername = async () => {
+    try {
+      const response = await axios.get(`http://127.0.0.1:5000/get_my_doctor/${patientUsername}`);
+      if (response.data.success) {
+        const doctor = response.data.myDoctor;
+        // Set the doctorUsername state variable
+        setDoctorUsername(doctor);
+      } else {
+        console.error("Failed to fetch doctor username");
+      }
+    } catch (error) {
+      console.error("Error fetching doctor username:", error);
+    }
+  };
 
   const sendChat = async (chatMessage) => {
     if (chatMessage.trim() !== '') {
@@ -76,7 +104,9 @@ const ChatPage = ({ onBack, selectedMessages,threadIndex }) => {
   return (
     <div className="chat-page">
       <div className="chat-page-header">
-        <h1> Dr. Hamdaan Younus</h1>
+      <h1>
+        {userRole === 'Doctor' ? `${patientUsername}` : (doctorUsername ? `Dr. ${doctorUsername}` : doctorUsername)}
+      </h1>
       </div>
       <div className="top-right">
         <button className="back-button" onClick={onBack}>Exit</button>
