@@ -10,14 +10,18 @@ Current Progress:
 
 ![Alt text](image-4.png)
 
-3. Feedback Page:
+3. Analytics Page:
+
+![Alt text](image-14.png)
+
+4. Feedback Page:
 
 ![Alt text](image-11.png)
 
-4. Chat Page:
+5. Chat Page:
 
 ![Alt text](image-12.png)
 
-5. Settings:
+6. Settings:
 
 ![Alt text](image-13.png)
