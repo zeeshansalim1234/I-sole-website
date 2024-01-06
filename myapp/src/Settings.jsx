@@ -96,7 +96,7 @@ function Settings() {
         const url = 'https://5b51-2604-3d09-d7f-330-d4bc-f7e0-810-d403.ngrok-free.app/make_call';
         const to_number = phoneNumber;
         const message = `Hello ${contactName}, 
-          We are pleased to inform you that you have been added as a ${relationship} notifier for Zeeshan Chougle in the I-Sole Diabetic Tracking App. Your role is crucial in supporting and monitoring their health journey.
+          We are pleased to inform you that you have been added as a ${relationship} notifier for ${patientUsername} in the I-Sole Diabetic Tracking App. Your role is crucial in supporting and monitoring their health journey.
           Thank you for being part of our community. We wish you a wonderful day!`;
 
       

@@ -4,6 +4,7 @@ import axios from 'axios';
 import logo from './images/logo.png';
 import profilePic from './images/zeeshan.png'; // Replace with the logged-in user's profile picture
 import { useNavigate } from 'react-router-dom';
+import barchart from './images/barchart.png';
 
 function Analytics() {
   const navigate = useNavigate(); // Hook to access the history instance
@@ -26,7 +27,7 @@ function Analytics() {
         </nav>
         <div className="sidebar-profile">
           <img src={profilePic} alt="currUsername" className="sidebar-profile-pic" />
-          <div className="sidebar-profile-name">Mohamed Numan</div>
+          <div className="sidebar-profile-name">Zeeshan</div>
           <button className="signout-button" onClick={() => navigate('/login')}>
             ➜
           </button>
@@ -53,28 +54,16 @@ function Analytics() {
     </div>
   </div>
   <div className="main-content">
-    <div className="charts-column">
-      <div className="chart pressure-sensor-analytics">
-        <h2>Pressure Sensor Analytics</h2>
-        <div className="bar-chart">
-          <div className="bar" style={{ height: '50%' }}></div>
-          <div className="bar" style={{ height: '80%' }}></div>
-          <div className="bar" style={{ height: '30%' }}></div>
-          <div className="bar" style={{ height: '70%' }}></div>
-          <div className="bar" style={{ height: '60%' }}></div>
-        </div>
-      </div>
-      <div className="chart glucose-sensor-analytics">
-        <h2>Glucose Sensor Analytics</h2>
-        <div className="bar-chart">
-          <div className="bar" style={{ height: '40%' }}></div>
-          <div className="bar" style={{ height: '60%' }}></div>
-          <div className="bar" style={{ height: '70%' }}></div>
-          <div className="bar" style={{ height: '85%' }}></div>
-          <div className="bar" style={{ height: '75%' }}></div>
-        </div>
-      </div>
+  <div className="charts-column">
+    <div className="chart pressure-sensor-analytics">
+      <h2>Pressure Sensor Analytics</h2>
+      <img src={barchart} alt="Pressure Sensor Analytics Chart" />
     </div>
+    <div className="chart glucose-sensor-analytics">
+      <h2>Glucose Sensor Analytics</h2>
+      <img src={barchart}  alt="Glucose Sensor Analytics Chart" />
+    </div>
+  </div>
     
     <div className="side-column">
   <div className="card current-glucose-level">

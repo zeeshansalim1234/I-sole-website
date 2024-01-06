@@ -20,6 +20,7 @@
     flex-wrap: wrap; /* Allows items to wrap to the next line */
     gap: 20px; /* Space between cards */
     margin-bottom: 20px; /* Space below the row */
+    height: 13%;
   }
 
   /* Main content area with charts and predictions */
@@ -51,31 +52,21 @@
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.65);
-    /* Add your chart styling here */
-  }
-  
-  
-  
-  
-  
-  
- /* Ensure predictions and current glucose level have equal height */
-.current-glucose-level, .predictions {
-    flex: 1; /* Distribute available space equally */
     display: flex;
-    flex-direction: column; /* Stack children vertically */
-    justify-content: center; /* Center content vertically for the donut chart */
-    padding: 20px;
-    border-radius: 10px;
-    background-color: #022b3a;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.65);
+    flex-direction: column;
+    justify-content: center; /* Centers content vertically */
+    align-items: center; /* Centers content horizontally */
   }
+  
+  
+  
+
   
   /* Style for charts */
   .chart {
     flex: 1 1 calc(50% - 10px); /* Takes half of the space, minus the gap */
     padding: 20px;
-    background-color: #022b3a;
+    background-color: #1B2130;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.65);
   }
@@ -87,22 +78,28 @@
     justify-content: center; /* Center content vertically for the donut chart */
     padding: 20px;
     border-radius: 10px;
-    background-color: #022b3a;
+    background-color: #1B2130;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.65);
     
   }
+  
 
   .card h2, .predictions h2 {
     margin-bottom: 10px; /* Space below the title */
   }
 
   .predictions-list {
-    /* Style for the predictions list */
-    /* ... */
-    flex-grow: 1; /* Allow the list to fill the space in the predictions card */
-    overflow-y: auto; /* Add scroll if the content is too much */
+    width: 100%; /* Ensures the list takes up the full width of the parent */
+    list-style-type: none; /* Removes bullet points */
+    padding: 0; /* Removes default padding */
+    margin: 0; /* Removes default margin */
   }
-  
+
+  .predictions-list li {
+    /* Styles for list items */
+    background: transparent; /* No background to individual list items */
+    margin-bottom: 10px; /* Space between list items */
+  }
   
 
   .bar-chart {
@@ -147,3 +144,8 @@
   }
   
 
+  .chart img {
+    width: 100%; /* Ensures the image fills the container */
+    height: auto; /* Maintains the aspect ratio of the image */
+    border-radius: 10px; /* Matches your .chart border-radius */
+  }
