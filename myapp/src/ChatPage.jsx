@@ -105,7 +105,7 @@ const ChatPage = ({ onBack, selectedMessages,threadIndex }) => {
     <div className="chat-page">
       <div className="chat-page-header">
       <h1>
-        {userRole === 'Doctor' ? `${patientUsername}` : (doctorUsername ? `Dr. ${doctorUsername}` : doctorUsername)}
+        {userRole === 'Doctor' ? `${patientUsername}` : (doctorUsername ? `Dr. ${doctorUsername}` : <br/>)}
       </h1>
       </div>
       <div className="top-right">
