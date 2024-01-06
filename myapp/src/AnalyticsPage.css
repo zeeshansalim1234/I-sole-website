@@ -136,12 +136,12 @@
     position: relative;
   }
 
-  .chart-header {
+  .card-header {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px; /* Adjust padding as necessary */
+    align-items: center; /* Vertically centers items within the container */
+    justify-content: center; /* Horizontally centers items within the container */
   }
+  
 
   .chart h1 {
     position: absolute; /* Position the title absolutely within the .chart container */
@@ -151,18 +151,25 @@
     color: #DEB992; /* Adjust the color if needed */
   }
 
+  .icon {
+    height: 30px; /* Adjust as needed */
+    width: 30px; /* Adjust as needed */
+    margin-right: 5px; /* To give some space between the icon and the text */
+  }
+  
+
   .toggle-switch {
     position: absolute; /* Absolute position within the .chart container */
     top: 1.5rem;  /* Align to the top of the container */
     right: 20px; /* Align to the right of the container */
   }
 
-  .side-column .card h2 {
+  .side-column .card h1 {
     position: absolute;
     top: 2rem; /* Adjust the top position as needed */
     left: 50%; /* Center the element by setting left to 50% of the parent's width */
     transform: translateX(-50%); /* Shift the element to the left by half its width */
-    width: 100%; /* Set the width to 100% of the parent container */
+    width: 90%; /* Set the width to 100% of the parent container */
     margin: 0;
     color: #DEB992;
     text-align: center; /* This will ensure the text itself is centered */
