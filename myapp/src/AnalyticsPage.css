@@ -81,6 +81,57 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.65);
   }
 
+  .top-row .card p {
+    margin: 0;
+    margin-bottom: 5px; /* Space below the paragraph */
+    color: gray; /* Example color, adjust as needed */
+    font-size: 1.1em; /* Adjust size as needed */
+    font-weight: 600;
+  }
+
+  .card span {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center the text and arrow horizontally */
+    font-size: 0.9em;
+    margin: 0;
+  }
+
+  .card span::before {
+    content: '';
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-right: 4px; /* Space between arrow and text */
+  }
+
+  .card span.positive {
+    color: #4CAF50;
+  }
+
+  .card span.negative {
+    color: #F44336;
+  }
+  
+  .card span.positive::before {
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 10px solid #4CAF50; /* Green arrow pointing up */
+  }
+  
+  .card span.negative::before {
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 10px solid #F44336; /* Red arrow pointing down */
+  }
+  
+  .card p, .card h1, .card span {
+    margin: 0;
+    margin-bottom: 8px; /* Add space below each element */
+  }
+  
+  
+  
   .side-column .card {
     position: relative;
   }
@@ -96,7 +147,7 @@
     position: absolute; /* Position the title absolutely within the .chart container */
     top: 2rem; /* Position from the top of the container */
     left: 20px; /* Position from the left of the container */
-    margin: 0; /* Remove any default margin */
+    margin-bottom: 5px; /* Space below the heading */
     color: #DEB992; /* Adjust the color if needed */
   }
 

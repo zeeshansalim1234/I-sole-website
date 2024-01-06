@@ -40,19 +40,19 @@ function Analytics() {
   <main className="analytics-content">
           <div className="top-row">
             <div className="card blood-glucose">
-              <h2>Blood Glucose Level</h2>
+              <p>Blood Glucose Level</p>
               <h1>95 mg/dL</h1>
-              <span>+10</span>
+              <span className="positive">+10%</span>
             </div>
             <div className="card retina-pressure">
-              <h2>Retina Pressure</h2>
+            <p>Plantar Pressure Level</p>
               <h1>81 kPa</h1>
-              <span>-10</span>
+              <span className="negative">-15%</span>
             </div>
             <div className="card blood-glucose">
-              <h2>Blood Glucose Level</h2>
+            <p>Sweat Glucose Level</p>
               <h1>95 mg/dL</h1>
-              <span>+10</span>
+              <span className="positive">+10%</span>
             </div>
           </div>
 
