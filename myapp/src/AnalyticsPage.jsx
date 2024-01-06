@@ -63,7 +63,7 @@ function Analytics() {
                 <img src={sweat}  alt="Sweat Glucose Icon" className="icon" />
                 <p>Sweat Glucose Level</p>
               </div>
-              <h1>95 mg/dL</h1>
+              <h1>45 mg/dL</h1>
               <span className="positive">+10%</span>
             </div>
       </div>
@@ -96,9 +96,9 @@ function Analytics() {
                 <div className="card predictions">
                     <h1>Predictions</h1>
                     <ul className="predictions-list">
-                      <li>Next Hypoglycemia: <strong>9:00 PM, May 12</strong></li>
-                      <li>Next Hyperglycemia: <strong>1:00 PM, May 13</strong></li>
-                      <li>Diabetic Ulceration Risk: <strong>Low</strong></li>
+                      <li>Next Hypoglycemia <strong>9:00 PM, May 12</strong></li>
+                      <li>Next Hyperglycemia <strong>1:00 PM, May 13</strong></li>
+                      <li>Diabetic Ulceration Risk <strong>Low</strong></li>
                     </ul>
                   </div>
 

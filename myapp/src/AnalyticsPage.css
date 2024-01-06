@@ -176,17 +176,58 @@
   }  
   
   .predictions-list {
-    width: 100%; /* Ensures the list takes up the full width of the parent */
-    list-style-type: none; /* Removes bullet points */
-    padding: 0; /* Removes default padding */
-    margin: 0; /* Removes default margin */
-  }
+    width: 100%;
+    list-style-type: none;
+    padding-left: 0;
+    margin-top: 0;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 
-  .predictions-list li {
-    /* Styles for list items */
-    background: transparent; /* No background to individual list items */
-    margin-bottom: 10px; /* Space between list items */
-  }
+.predictions-list li {
+  padding: 15px 20px;
+  margin: 10px 0;
+  border-radius: 10px;
+  color: #DEB992;
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle light border */
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25), 0 6px 12px rgba(0, 0, 0, 0.35); /* Refined box-shadow */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  font-weight: bold;
+  font-size: 1.1em; /* Increased font size for better readability */
+}
+
+.predictions-list li:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3), 0 10px 20px rgba(0, 0, 0, 0.45); /* Enhanced shadow on hover for more depth */
+}
+
+
+.predictions-list li strong {
+    display: block;
+    color: #bd482a;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.card.predictions {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+    color: #DEB992;
+    height: 100%;
+}
+
+.card.predictions h1 {
+    color: #DEB992;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
   
   .bar-chart {
     display: flex;
