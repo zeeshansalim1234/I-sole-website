@@ -5,6 +5,7 @@ import logo from './images/logo.png';
 import profilePic from './images/zeeshan.png'; // Replace with the logged-in user's profile picture
 import { useNavigate } from 'react-router-dom';
 import barchart from './images/barchart.png';
+import linechart from './images/linechart.png';
 import ToggleSwitch from './ToggleSwitch';
 
 function Analytics() {
@@ -40,17 +41,17 @@ function Analytics() {
           <div className="top-row">
             <div className="card blood-glucose">
               <h2>Blood Glucose Level</h2>
-              <p>95 mg/dL</p>
+              <h1>95 mg/dL</h1>
               <span>+10</span>
             </div>
             <div className="card retina-pressure">
               <h2>Retina Pressure</h2>
-              <p>81 kPa</p>
-              <span>+10</span>
+              <h1>81 kPa</h1>
+              <span>-10</span>
             </div>
             <div className="card blood-glucose">
               <h2>Blood Glucose Level</h2>
-              <p>95 mg/dL</p>
+              <h1>95 mg/dL</h1>
               <span>+10</span>
             </div>
           </div>
@@ -70,7 +71,7 @@ function Analytics() {
                 <h1>Glucose Sensor Analytics</h1>
                 <ToggleSwitch /> {/* Include the toggle switch */}
               </div>
-              <img src={barchart} alt="Glucose Sensor Analytics Chart" />
+              <img src={linechart} alt="Glucose Sensor Analytics Chart" />
             </div>
           </div>
 
