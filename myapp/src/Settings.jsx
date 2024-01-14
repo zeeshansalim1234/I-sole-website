@@ -60,7 +60,7 @@ function Settings() {
 
     const fetchContacts = async () => {
       try {
-          const response = await axios.get(`http://127.0.0.1:5000/get_all_contacts/${patientUsername}`);
+          const response = await axios.get(`http://35.182.46.235/get_all_contacts/${patientUsername}`);
           setContacts(response.data.contacts);
       } catch (error) {
           console.error('Error fetching contacts:', error);
@@ -79,7 +79,7 @@ function Settings() {
       };
 
       try {
-        const response = await axios.post('http://127.0.0.1:5000/add_contact', {
+        const response = await axios.post('http://35.182.46.235/add_contact', {
           newContact, // your contact fields
           username: patientUsername, // replace with the actual username
         });
@@ -93,7 +93,7 @@ function Settings() {
 
 
       try {
-        const url = 'https://4f71-2604-3d09-d7f-330-a015-7412-2c62-56ab.ngrok-free.ap/make_call';
+        const url = 'http://35.182.46.235/make_call';
         const to_number = phoneNumber;
         const message = `Hello ${contactName}, 
           We are pleased to inform you that you have been added as a ${relationship} notifier for ${patientUsername} in the I-Sole Diabetic Tracking App. Your role is crucial in supporting and monitoring their health journey.
@@ -126,7 +126,7 @@ function Settings() {
     const removeContact = async (contactNameToRemove) => {
       try {
         // Make a POST request to delete the contact
-        await axios.post('http://127.0.0.1:5000/delete_contact', {
+        await axios.post('http://35.182.46.235/delete_contact', {
             username: patientUsername,
             contactName: contactNameToRemove,
         });

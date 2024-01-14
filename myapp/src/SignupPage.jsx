@@ -19,7 +19,7 @@ const SignupPage = () => {
     e.preventDefault();
 
     try {
-        const signupResponse = await axios.post('http://localhost:5000/signup', {
+        const signupResponse = await axios.post('http://35.182.46.235/signup', {
             username: username,
             email: email,
             password: password,
@@ -40,7 +40,7 @@ const SignupPage = () => {
 
             // Call the initialize_counter endpoint only if role is 'Patient'
             if (role === 'Patient') {
-              const counterResponse = await axios.post('http://localhost:5000/initialize_counter', {
+              const counterResponse = await axios.post('http://35.182.46.235/initialize_counter', {
                 username: username,
               });
 

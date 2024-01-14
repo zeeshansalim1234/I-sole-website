@@ -65,7 +65,7 @@ const ChatPage = ({ onBack, selectedMessages,threadIndex }) => {
   // Function to retrieve the doctorUsername
   const getDoctorUsername = async () => {
     try {
-      const response = await axios.get(`http://127.0.0.1:5000/get_my_doctor/${patientUsername}`);
+      const response = await axios.get(`http://35.182.46.235/get_my_doctor/${patientUsername}`);
       if (response.data.success) {
         const doctor = response.data.myDoctor;
         // Set the doctorUsername state variable
@@ -87,7 +87,7 @@ const ChatPage = ({ onBack, selectedMessages,threadIndex }) => {
       setMessages(prevMessages => [...prevMessages, { text: chatMessage, date: formattedDate, time: formattedTime, isUser: true }]);
       
       try {
-        const response = await axios.post('http://127.0.0.1:5000/add_message', {
+        const response = await axios.post('http://35.182.46.235/add_message', {
           username: patientUsername,
           index: threadIndex,
           message: chatMessage,
