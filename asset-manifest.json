@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/I-sole-website/static/css/main.5f45eae6.css",
-    "main.js": "/I-sole-website/static/js/main.70596cb7.js",
+    "main.js": "/I-sole-website/static/js/main.7c49b891.js",
     "static/js/787.1937f22b.chunk.js": "/I-sole-website/static/js/787.1937f22b.chunk.js",
     "static/media/blood.png": "/I-sole-website/static/media/blood.f4f003e052449a8ead17.png",
     "static/media/sweat.png": "/I-sole-website/static/media/sweat.1ab40a68325173584acb.png",
@@ -15,11 +15,11 @@
     "static/media/google.png": "/I-sole-website/static/media/google.fd874bd47b1270467697.png",
     "index.html": "/I-sole-website/index.html",
     "main.5f45eae6.css.map": "/I-sole-website/static/css/main.5f45eae6.css.map",
-    "main.70596cb7.js.map": "/I-sole-website/static/js/main.70596cb7.js.map",
+    "main.7c49b891.js.map": "/I-sole-website/static/js/main.7c49b891.js.map",
     "787.1937f22b.chunk.js.map": "/I-sole-website/static/js/787.1937f22b.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.5f45eae6.css",
-    "static/js/main.70596cb7.js"
+    "static/js/main.7c49b891.js"
   ]
 }
