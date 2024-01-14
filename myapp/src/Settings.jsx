@@ -93,7 +93,7 @@ function Settings() {
 
 
       try {
-        const url = 'https://4f71-2604-3d09-d7f-330-a015-7412-2c62-56ab.ngrok-free.app';
+        const url = 'https://4f71-2604-3d09-d7f-330-a015-7412-2c62-56ab.ngrok-free.ap/make_call';
         const to_number = phoneNumber;
         const message = `Hello ${contactName}, 
           We are pleased to inform you that you have been added as a ${relationship} notifier for ${patientUsername} in the I-Sole Diabetic Tracking App. Your role is crucial in supporting and monitoring their health journey.
