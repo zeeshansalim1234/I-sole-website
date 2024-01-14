@@ -86,7 +86,7 @@ const LoginPage = () => {
           </form>
           <div className="signup-footer">
             <p>
-              <a href="http://localhost:3000/signup">Don't have an account?</a>
+              <a href="#signup">Don't have an account?</a>
             </p>
           </div>
 

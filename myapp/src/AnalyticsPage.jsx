@@ -38,10 +38,10 @@ function Analytics() {
         </div>
         <nav className="sidebar-nav">
           <ul>
-            <li><a href="/homepage">🏠 Homepage</a></li>
-            <li><a href="/feedback">💬 Feedback</a></li>
-            <li><a href="/analytics" className="active">📊 Analytics</a></li>
-            <li><a href="/settings">🔔 Notifications</a></li>
+            <li><a href="#/homepage">🏠 Homepage</a></li>
+            <li><a href="#/feedback">💬 Feedback</a></li>
+            <li><a href="#/analytics" className="active">📊 Analytics</a></li>
+            <li><a href="#/settings">🔔 Notifications</a></li>
           </ul>
         </nav>
         <div className="sidebar-profile">
