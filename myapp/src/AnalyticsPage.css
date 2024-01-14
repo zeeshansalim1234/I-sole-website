@@ -305,12 +305,12 @@
 
   
   .chart img {
-    width: 100%; /* Ensures the image fills the container */
+    width: 92%; /* Ensures the image fills the container */
     max-width: 900px; /* Maximum width the image can have */
     height: auto; /* Maintains the aspect ratio of the image */
     border-radius: 10px; /* Matches your .chart border-radius */
     flex: 1;
-    margin-top: 30px;
+    margin-top: 60px;  /* Remove later Zeeshan */
   }
 
   .main-content img {
