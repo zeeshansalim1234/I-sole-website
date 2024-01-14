@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/I-sole-website/static/css/main.5bb2f44c.css",
+    "main.css": "/I-sole-website/static/css/main.9ffaaab3.css",
     "main.js": "/I-sole-website/static/js/main.9f9e30d6.js",
     "static/js/787.1937f22b.chunk.js": "/I-sole-website/static/js/787.1937f22b.chunk.js",
     "static/media/blood.png": "/I-sole-website/static/media/blood.f4f003e052449a8ead17.png",
@@ -14,12 +14,12 @@
     "static/media/piechart.png": "/I-sole-website/static/media/piechart.cc7a30a46e9e109b601e.png",
     "static/media/google.png": "/I-sole-website/static/media/google.fd874bd47b1270467697.png",
     "index.html": "/I-sole-website/index.html",
-    "main.5bb2f44c.css.map": "/I-sole-website/static/css/main.5bb2f44c.css.map",
+    "main.9ffaaab3.css.map": "/I-sole-website/static/css/main.9ffaaab3.css.map",
     "main.9f9e30d6.js.map": "/I-sole-website/static/js/main.9f9e30d6.js.map",
     "787.1937f22b.chunk.js.map": "/I-sole-website/static/js/787.1937f22b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.5bb2f44c.css",
+    "static/css/main.9ffaaab3.css",
     "static/js/main.9f9e30d6.js"
   ]
 }
