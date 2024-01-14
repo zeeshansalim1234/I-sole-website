@@ -56,7 +56,7 @@ const FeedbackPage = () => {
   
   const getPatientUsername = async (patientId) => {
     try {
-      const response = await axios.get(`http://35.182.46.235/get_username_by_patient_id/${patientId}`);
+      const response = await axios.get(`https://i-sole-backend.com/get_username_by_patient_id/${patientId}`);
       if (response.data.success) {
         setPatientUsername(response.data.username);
         localStorage.setItem('patientUsername', response.data.username);
@@ -78,7 +78,7 @@ const FeedbackPage = () => {
   const fetchFeedback = async () => {
     try {
       if (patientUsername) {
-        const response = await axios.get(`http://35.182.46.235/get_all_conversations/${patientUsername}`);
+        const response = await axios.get(`https://i-sole-backend.com/get_all_conversations/${patientUsername}`);
         setMessages(response.data);
         console.log(response.data);
       }
@@ -89,7 +89,7 @@ const FeedbackPage = () => {
 
   const handleSendFeedback = async (feedbackMessage) => {
     try {
-      const response = await axios.post('http://35.182.46.235/start_new_thread', {
+      const response = await axios.post('https://i-sole-backend.com/start_new_thread', {
         username: patientUsername,
         message: feedbackMessage,
         sender: curr_username,
@@ -104,7 +104,7 @@ const FeedbackPage = () => {
   // Function to handle message click
   const handleFeedbackClick = async (index) => {
     try {
-      const response = await axios.get(`http://35.182.46.235/get_one_conversation/${patientUsername}/${index+1}`);
+      const response = await axios.get(`https://i-sole-backend.com/get_one_conversation/${patientUsername}/${index+1}`);
       setselectedMessages(response.data);
       setCurrentThreadIndex(index + 1); // Set the current thread index
       setShowChat(true);

@@ -16,7 +16,7 @@ const LoginPage = () => {
 
     try {
       // Make a POST request to your backend sign-in endpoint
-      const response = await axios.post('http://35.182.46.235/signin', {
+      const response = await axios.post('https://i-sole-backend.com/signin', {
         username: username, // Use the username state variable
         password: password,
       });
