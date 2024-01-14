@@ -97,7 +97,7 @@ function Analytics() {
               <div className="chart-header">
                 <h1>Glucose Sensor Analytics</h1>
                 <ToggleSwitch /> {/* Include the toggle switch */}
-              </div>
+              </div>             
               <img src={linechart} alt="Glucose Sensor Analytics Chart" />
             </div>
           </div>

@@ -13,15 +13,22 @@
       
   }
 
-  /* Flex container for the top row cards */
-  .top-row {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap; /* Allows items to wrap to the next line */
-    gap: 20px; /* Space between cards */
-    margin-bottom: 20px; /* Space below the row */
-    height: 13%;
-  }
+ /* Flex container for the top row cards */
+.top-row {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap; /* Allows items to wrap to the next line */
+  gap: 20px; /* Space between cards */
+  margin-bottom: 20px; /* Space below the row */
+  min-height: 150px; /* Minimum height to accommodate content */
+}
+
+/* Cards within the top row */
+.top-row .card {
+  flex: 1; /* Allow the cards to grow and shrink with the container */
+  margin-bottom: 5px; /* Space below each card if they wrap */
+}
+  
 
   /* Main content area with charts and predictions */
 .main-content {
@@ -54,8 +61,9 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.65);
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centers content vertically */
+    justify-content: space-between; /* Centers content vertically */
     align-items: center; /* Centers content horizontally */
+    
   }
   
 
@@ -156,7 +164,7 @@
   
 
   .chart h1 {
-    position: absolute; /* Position the title absolutely within the .chart container */
+    
     top: 2rem; /* Position from the top of the container */
     left: 20px; /* Position from the left of the container */
     margin-bottom: 5px; /* Space below the heading */
@@ -171,7 +179,7 @@
   
 
   .charts-column .toggle-switch {
-    position: absolute; /* Absolute position within the .chart container */
+
     top: 1.5rem;  /* Align to the top of the container */
     right: 20px; /* Align to the right of the container */
   }
@@ -191,7 +199,7 @@
     width: 100%;
     list-style-type: none;
     padding-left: 0;
-    margin-top: 0;
+    margin-top: 30px;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
@@ -270,7 +278,43 @@
   { 
     position: absolute; /* Absolute position within the .chart container */
     bottom: 1.5rem;  /* Align to the top of the container */
-    
+    display: flex;
+  }
+
+  .chart-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between; /* This separates the h1 and ToggleSwitch */
+    align-items: center; /* This vertically centers them if they are of different heights */
+    min-width: 0; /* Allows children to shrink if necessary */
+    flex-wrap: wrap;
+    padding-bottom: 20px;
+  }
+
+  .chart-header h1 {
+    flex-shrink: 1; /* Allows the h1 to shrink if necessary */
+    margin-right: 10px; /* Minimum gap between h1 and ToggleSwitch */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Ensures the text is truncated with an ellipsis if it overflows */
+  }
+  
+  .chart-header .toggle-switch {
+    flex-shrink: 0; /* Prevents the ToggleSwitch from shrinking */
+  }
+
+  
+  .chart img {
+    width: 100%; /* Ensures the image fills the container */
+    max-width: 900px; /* Maximum width the image can have */
+    height: auto; /* Maintains the aspect ratio of the image */
+    border-radius: 10px; /* Matches your .chart border-radius */
+    flex: 1;
+    margin-top: 30px;
+  }
+
+  .main-content img {
+   
   }
   
   
@@ -287,11 +331,4 @@
     .current-glucose-level {
       width: 100%; /* Full width for the glucose level card on smaller screens */
     }
-  }
-  
-
-  .chart img {
-    width: 100%; /* Ensures the image fills the container */
-    height: auto; /* Maintains the aspect ratio of the image */
-    border-radius: 10px; /* Matches your .chart border-radius */
   }
