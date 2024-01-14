@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/I-sole-website/static/css/main.5f45eae6.css",
+    "main.js": "/I-sole-website/static/js/main.c819ef1d.js",
+    "static/js/787.1937f22b.chunk.js": "/I-sole-website/static/js/787.1937f22b.chunk.js",
+    "static/media/blood.png": "/I-sole-website/static/media/blood.f4f003e052449a8ead17.png",
+    "static/media/sweat.png": "/I-sole-website/static/media/sweat.1ab40a68325173584acb.png",
+    "static/media/outlook.png": "/I-sole-website/static/media/outlook.0f10e2393be8a846a1b4.png",
+    "static/media/logo.png": "/I-sole-website/static/media/logo.4973287f1efe1c220761.png",
+    "static/media/feet.png": "/I-sole-website/static/media/feet.d3314afbd8164188338b.png",
+    "static/media/zeeshan.png": "/I-sole-website/static/media/zeeshan.709c5f63b66d31aab8c4.png",
+    "static/media/barchart.png": "/I-sole-website/static/media/barchart.f44c588b7633dc1e281b.png",
+    "static/media/linechart.png": "/I-sole-website/static/media/linechart.71bd15b9a7f98e1a3df0.png",
+    "static/media/piechart.png": "/I-sole-website/static/media/piechart.cc7a30a46e9e109b601e.png",
+    "static/media/google.png": "/I-sole-website/static/media/google.fd874bd47b1270467697.png",
+    "index.html": "/I-sole-website/index.html",
+    "main.5f45eae6.css.map": "/I-sole-website/static/css/main.5f45eae6.css.map",
+    "main.c819ef1d.js.map": "/I-sole-website/static/js/main.c819ef1d.js.map",
+    "787.1937f22b.chunk.js.map": "/I-sole-website/static/js/787.1937f22b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5f45eae6.css",
+    "static/js/main.c819ef1d.js"
+  ]
+}
