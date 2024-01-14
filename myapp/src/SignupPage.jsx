@@ -148,7 +148,7 @@ const SignupPage = () => {
           </form>
           <div className="signup-footer">
             <p>
-              <a href="http://localhost:3000/login">Already have an account?</a>
+              <a href="#/login">Already have an account?</a>
             </p>
           </div>
 
