@@ -5,10 +5,17 @@ const FeedbackForm = ({ onSend }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if(onSend) {
+    if (onSend) {
       onSend(feedback);
     }
     setFeedback('');
+  };
+
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter' && !event.shiftKey) {
+      // Submit the form when Enter key is pressed (without Shift key)
+      handleSubmit(event);
+    }
   };
 
   return (
@@ -16,6 +23,7 @@ const FeedbackForm = ({ onSend }) => {
       <textarea
         value={feedback}
         onChange={(e) => setFeedback(e.target.value)}
+        onKeyPress={handleKeyPress} // Listen for Enter key press
         placeholder="Enter your message..."
         className="feedback-textarea"
       />
