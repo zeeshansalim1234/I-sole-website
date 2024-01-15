@@ -63,16 +63,9 @@ const FeedbackPage = () => {
 
       // Set up a listener for changes in the 'feedback' subcollection
       const unsubscribe = onSnapshot(feedbackCollectionRef, (querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          if (doc.exists()) {
-            console.log("New Update to Threads Made:", doc.data());
-            fetchFeedback(); // Call fetchFeedback on any update in the 'feedback' subcollection
-            fetchSelectedMessages(); // Update the chat inside the selected thread
-          } else {
-            // doc.data() will be undefined in this case
-            console.log("No such document!");
-          }
-        });
+        fetchFeedback(); // Call fetchFeedback on any update in the 'feedback' subcollection
+        fetchSelectedMessages(); // Update the chat inside the selected thread
+        console.log("New Message Discovered, Threads Updated")
       });
 
       // Clean up the listener when the component unmounts
@@ -108,7 +101,7 @@ const FeedbackPage = () => {
       if (patientUsername) {
         const response = await axios.get(`https://i-sole-backend.com/get_all_conversations/${patientUsername}`);
         setMessages(response.data);
-        console.log("Zeeshan: ",response.data);
+        console.log("Fetched feedback response: ",response.data);
       }
     } catch (error) {
       console.error("Error fetching feedback data:", error);
@@ -151,7 +144,6 @@ const FeedbackPage = () => {
       setselectedMessages(response.data);
       const tempIndex = index+1;
       setCurrentThreadIndex(tempIndex); // Set the current thread index
-      console.log("actual current thread index is: ", index);
       console.log("setting current thread index to: ", tempIndex);
       setShowChat(true);
       fetchFeedback();
