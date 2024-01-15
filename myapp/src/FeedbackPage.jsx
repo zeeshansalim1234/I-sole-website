@@ -117,6 +117,7 @@ const FeedbackPage = () => {
 
   // Dunction to update selectedMessages onSnapshot change
   const fetchSelectedMessages = async () => {
+    console.log("current Thread Index:", currentThreadIndex);
     try {
       if (patientUsername && currentThreadIndex) {
         const response = await axios.get(`https://i-sole-backend.com/get_one_conversation/${patientUsername}/${currentThreadIndex}`);
