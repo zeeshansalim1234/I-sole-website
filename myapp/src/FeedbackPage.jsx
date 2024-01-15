@@ -54,18 +54,24 @@ const FeedbackPage = () => {
     console.log("Current user Role:", userRole);
     fetchFeedback();
 
-    // Assuming `patientUsername` is the document ID within the 'users' collection
+    // Create a reference to the patient's document
     if (patientUsername) {
       const docRef = doc(firestore, 'users', patientUsername);
 
-      const unsubscribe = onSnapshot(docRef, (doc) => {
-        if (doc.exists()) {
-          console.log("Document data:", doc.data());
-          fetchFeedback(); // Call fetchFeedback on any update in the document
-        } else {
-          // doc.data() will be undefined in this case
-          console.log("No such document!");
-        }
+      // Create a reference to the 'feedback' subcollection
+      const feedbackCollectionRef = collection(docRef, 'feedback');
+
+      // Set up a listener for changes in the 'feedback' subcollection
+      const unsubscribe = onSnapshot(feedbackCollectionRef, (querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          if (doc.exists()) {
+            console.log("New Update to Threads Made:", doc.data());
+            fetchFeedback(); // Call fetchFeedback on any update in the 'feedback' subcollection
+          } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+          }
+        });
       });
 
       // Clean up the listener when the component unmounts
