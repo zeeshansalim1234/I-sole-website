@@ -8,7 +8,7 @@ import zeeshan_profile from './images/zeeshan.png';
 import axios from 'axios';
 import { useNavigate  } from 'react-router-dom';
 import { firestore } from './firebase';
-import { doc, onSnapshot } from 'firebase/firestore';
+import { doc, collection, onSnapshot } from 'firebase/firestore';
 
 const FeedbackPage = () => {
  
