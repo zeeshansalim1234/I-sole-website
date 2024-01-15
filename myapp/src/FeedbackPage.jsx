@@ -7,6 +7,8 @@ import logo from './images/logo.png'
 import zeeshan_profile from './images/zeeshan.png';
 import axios from 'axios';
 import { useNavigate  } from 'react-router-dom';
+import { firestore } from './firebaseConfig';
+import { doc, onSnapshot } from 'firebase/firestore';
 
 const FeedbackPage = () => {
  
@@ -51,6 +53,25 @@ const FeedbackPage = () => {
     console.log("Patient username:", patientUsername);
     console.log("Current user Role:", userRole);
     fetchFeedback();
+
+    // Assuming `patientUsername` is the document ID within the 'users' collection
+    if (patientUsername) {
+      const docRef = doc(firestore, 'users', patientUsername);
+
+      const unsubscribe = onSnapshot(docRef, (doc) => {
+        if (doc.exists()) {
+          console.log("Document data:", doc.data());
+          fetchFeedback(); // Call fetchFeedback on any update in the document
+        } else {
+          // doc.data() will be undefined in this case
+          console.log("No such document!");
+        }
+      });
+
+      // Clean up the listener when the component unmounts
+      return () => unsubscribe();
+    }
+
   }, [curr_username, patientUsername, userRole]); // This useEffect runs when curr_username or patientUsername changes
   
   
