@@ -149,7 +149,9 @@ const FeedbackPage = () => {
     try {
       const response = await axios.get(`https://i-sole-backend.com/get_one_conversation/${patientUsername}/${index+1}`);
       setselectedMessages(response.data);
-      setCurrentThreadIndex(index + 1); // Set the current thread index
+      const tempIndex = index+1;
+      setCurrentThreadIndex(tempIndex); // Set the current thread index
+      console.log("actual current thread index is: ", index);
       console.log("setting current thread index to: ", currentThreadIndex);
       setShowChat(true);
       fetchFeedback();
