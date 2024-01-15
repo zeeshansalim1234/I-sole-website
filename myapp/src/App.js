@@ -8,6 +8,9 @@ import Settings from './Settings';
 import AnalyticsPage from './AnalyticsPage';
 
 const App = () => {
+
+  console.log(process.env)
+
   return (
     <Router>
       <Routes>
