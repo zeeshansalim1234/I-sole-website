@@ -79,7 +79,7 @@ const FeedbackPage = () => {
       return () => unsubscribe();
     }
 
-  }, [curr_username, patientUsername, userRole]); // This useEffect runs when curr_username or patientUsername changes
+  }, [curr_username, patientUsername, userRole, currentThreadIndex]); // This useEffect runs when curr_username or patientUsername changes
   
   
   const getPatientUsername = async (patientId) => {
@@ -152,7 +152,7 @@ const FeedbackPage = () => {
       const tempIndex = index+1;
       setCurrentThreadIndex(tempIndex); // Set the current thread index
       console.log("actual current thread index is: ", index);
-      console.log("setting current thread index to: ", currentThreadIndex);
+      console.log("setting current thread index to: ", tempIndex);
       setShowChat(true);
       fetchFeedback();
       console.log("CLick Conversation:", response.data);
