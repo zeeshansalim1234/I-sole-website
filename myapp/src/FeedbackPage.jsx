@@ -67,6 +67,7 @@ const FeedbackPage = () => {
           if (doc.exists()) {
             console.log("New Update to Threads Made:", doc.data());
             fetchFeedback(); // Call fetchFeedback on any update in the 'feedback' subcollection
+            fetchSelectedMessages(); // Update the chat inside the selected thread
           } else {
             // doc.data() will be undefined in this case
             console.log("No such document!");
@@ -113,6 +114,20 @@ const FeedbackPage = () => {
       console.error("Error fetching feedback data:", error);
     }
   };
+
+  // Dunction to update selectedMessages onSnapshot change
+  const fetchSelectedMessages = async () => {
+    try {
+      if (patientUsername && currentThreadIndex) {
+        const response = await axios.get(`https://i-sole-backend.com/get_one_conversation/${patientUsername}/${currentThreadIndex}`);
+        setselectedMessages(response.data);
+        console.log("Current Selected Chat updated: ", response.data);
+      }
+    } catch (error) {
+      console.error("Error fetching feedback data:", error);
+    }
+  };
+
 
   const handleSendFeedback = async (feedbackMessage) => {
     try {
