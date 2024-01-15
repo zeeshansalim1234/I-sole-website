@@ -15,7 +15,7 @@ const FeedbackPage = () => {
   const [showChat, setShowChat] = useState(false);
   const [messages, setMessages] = useState([]);
   const [selectedMessages, setselectedMessages] = useState(null);
-  const [currentThreadIndex, setCurrentThreadIndex] = useState(null);
+  const [currentThreadIndex, setCurrentThreadIndex] = useState(-1);
   const [curr_username, setUsername] = useState('');
   const [patientUsername, setPatientUsername] = useState('');
   const [userRole, setUserRole] = useState('');
@@ -119,7 +119,7 @@ const FeedbackPage = () => {
   const fetchSelectedMessages = async () => {
     console.log("current Thread Index:", currentThreadIndex);
     try {
-      if (patientUsername && currentThreadIndex) {
+      if (patientUsername && currentThreadIndex>0) {
         const response = await axios.get(`https://i-sole-backend.com/get_one_conversation/${patientUsername}/${currentThreadIndex}`);
         setselectedMessages(response.data);
         console.log("Current Selected Chat updated: ", response.data);
