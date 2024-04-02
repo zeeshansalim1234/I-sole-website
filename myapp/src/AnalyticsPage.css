@@ -225,11 +225,19 @@
 
 
 .predictions-list li strong {
-    display: block;
-    color: #bd482a;
-    font-weight: bold;
-    margin-top: 5px;
+  display: block;
+  font-weight: bold;
+  margin-top: 5px;
 }
+
+.high-risk {
+  color: #D32F2F; /* red color for high risk */
+}
+
+.low-risk {
+  color: #388E3C; /* green color for low risk */
+}
+
 
 .card.predictions {
     display: flex;
@@ -312,25 +320,28 @@
     margin-bottom: 40px; /* Increased bottom margin to include space between the image and the button */
 }
 
-  .make-prediction-button {
-    padding: 10px 0;
-    width: 100%;
-    font-size: 16px;
-    font-weight: bold;
-    color: #DEB992; /* Text color */
-    background-color: #1BA098; /* Button background color */
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-    margin-top: auto; /* This ensures the button stays at the bottom */
+.buttons-container {
+  display: flex; /* Aligns children (buttons) in a row */
+  justify-content: center; /* Optionally centers the buttons horizontally */
+  gap: 10px; /* Adds space between the buttons */
 }
-  
-  .make-prediction-button:hover {
-    background-color: #13877A; /* Slightly darker shade for hover */
-    color: #fff; /* White text on hover for better contrast */
-  }
-  
+
+.make-prediction-button, .reset-button {
+  padding: 8px 15px; /* Reduced padding to make buttons smaller */
+  font-size: 14px; /* Slightly smaller font size */
+  font-weight: bold; /* Makes the font bold */
+  cursor: pointer; /* Changes the cursor to a pointer to indicate it's clickable */
+  border: none; /* Removes the border */
+  border-radius: 10px; /* Adds rounded corners */
+  color: #DEB992; /* Text color */
+  min-width: 120px; /* Reduced minimum width to make buttons smaller */
+  height: 40px; /* Reduced height to make buttons smaller */
+  display: flex; /* Use flexbox to center text inside the button */
+  align-items: center; /* Centers text vertically */
+  justify-content: center; /* Centers text horizontally */
+  /* Add more styling here as needed */
+}
+
   
   
   @media (max-width: 768px) {

@@ -21,6 +21,12 @@ function Analytics() {
   const [currUsername, setCurrUsername] = useState('');
   const [userRole, setUserRole] = useState('');
   const [selectedTimeframe, setSelectedTimeframe] = useState('Day');
+  const [predictionState, setPredictionState] = useState('');
+  const [predictionTime, setPredictionTime] = useState('');
+  const [predictionImage, setPredictionImage] = useState('');
+  // State to control if the prediction image should be shown
+  const [showGlucosePrediction, setshowGlucosePrediction] = useState(false);
+  const [showPressurePrediction, setshowPressurePrediction] = useState(false);
 
 
   // Add useEffect to retrieve currUsername from local storage
@@ -42,6 +48,61 @@ function Analytics() {
       console.error("User Role not found in local storage");
     }
   }, []);
+
+
+  const makePrediction = async () => {
+    const data = {
+      "input_data": {
+        "glucose_level_value": 180.16666666666666, 
+        "finger_stick_value": 101.0, 
+        "basal_value": 1.5, 
+        "basis_gsr_value": 0.0724993103448275, 
+        "basis_skin_temperature_value": 87.46172413793103, 
+        "bolus_dose": 0.0
+      }, 
+      "hyperglycemia_threshold": 180, 
+      "hypoglycemia_threshold": 100
+    };
+  
+    try {
+      // Note: responseType is not needed here since the default is JSON
+      const response = await axios.post('https://2232-2604-3d09-3472-7800-1da4-da3b-2ce9-4dea.ngrok-free.app/plot-prediction', data);
+      
+      // Extract the data from the response
+      const { image, prediction_state, prediction_time } = response.data;
+  
+      // Log the prediction state and time
+      console.log("Prediction State:", prediction_state);
+      console.log("Prediction Time:", prediction_time);
+  
+      // Update state with the prediction state and time
+      setPredictionState(prediction_state);
+      setPredictionTime(prediction_time);
+  
+      // Convert base64 string to a URL for the image and update state
+      const imageUrl = `data:image/png;base64,${image}`;
+      setPredictionImage(imageUrl);
+      setshowGlucosePrediction(true); // Indicate that the prediction image should now be displayed
+  
+      // Log the image URL for debugging
+      console.log("Generated Image URL:", imageUrl);
+  
+    } catch (error) {
+      // Log any error that occurs during the Axios request
+      console.error('Error making the prediction:', error);
+      if (error.response) {
+        // Log the response error for debugging
+        console.error("Error Response:", error.response);
+      }
+    }
+  };
+  
+  const resetPrediction = () => {
+    // Reset to show the default day chart and hide the prediction image
+    setshowGlucosePrediction(false);
+    setPredictionImage(glucoseDayChart); // Revert to the default day chart image
+  };
+  
 
   return (
     <div className="app">
@@ -116,7 +177,7 @@ function Analytics() {
                 <ToggleSwitch onToggle={setSelectedTimeframe} />
               </div>
               {selectedTimeframe === 'Day' && (
-                <img src={glucoseDayChart} alt="Glucose Sensor Analytics Chart - Day" />
+                <img src={showGlucosePrediction ? predictionImage : glucoseDayChart} alt="Glucose Sensor Analytics Chart - Day" />
               )}
               {selectedTimeframe === 'Week' && (
                 <img src={glucoseWeekChart} alt="Glucose Sensor Analytics Chart - Week" />
@@ -124,8 +185,12 @@ function Analytics() {
               {selectedTimeframe === 'Month' && (
                 <img src={glucoseMonthChart} alt="Glucose Sensor Analytics Chart - Month" />
               )}
-              <button className="make-prediction-button">Make Prediction</button>
+              <div className="buttons-container">
+                <button className="reset-button" onClick={resetPrediction}>Reset</button> 
+                <button className="make-prediction-button" onClick={makePrediction}>Make Prediction</button>
+              </div>
             </div>
+
 
           </div>
 
@@ -133,21 +198,52 @@ function Analytics() {
             
               <div className="side-column">
 
-                <div className="card predictions">
-                    <h1>Predictions</h1>
-                    <ul className="predictions-list">
-                      <li>Next Hypoglycemia <strong>9:00 PM, May 12</strong></li>
-                      <li>Next Hyperglycemia <strong>1:00 PM, May 13</strong></li>
-                      <li>Diabetic Ulceration Risk <strong>Low</strong></li>
-                    </ul>
-                  </div>
+              <div className="card predictions">
+                <h1>Predictions</h1>
+                <ul className="predictions-list">
+                  <li>Hypoglycemia <strong className={
+                    showGlucosePrediction && predictionState === 'hypoglycemia' ? 
+                    "high-risk" : 
+                    (showGlucosePrediction ? 'low-risk' : '')
+                  }>
+                  {
+                    showGlucosePrediction && predictionState === 'hypoglycemia' ? 
+                    `High Risk - ${predictionTime}` : 
+                    (showGlucosePrediction ? 'Low Risk' : '-')
+                  }
+                  </strong></li>
+                  <li>Hyperglycemia <strong className={
+                    showGlucosePrediction && predictionState === 'hyperglycemia' ? 
+                    "high-risk" : 
+                    (showGlucosePrediction ? 'low-risk' : '')
+                  }>
+                  {
+                    showGlucosePrediction && predictionState === 'hyperglycemia' ? 
+                    `High Risk - ${predictionTime}` : 
+                    (showGlucosePrediction ? 'Low Risk' : '-')
+                  }
+                  </strong></li>
+                  <li>Diabetic Ulceration<strong className={
+                      showPressurePrediction ? 'low-risk' : ''
+                    }>{
+                      showPressurePrediction ? 'Low Risk' : '-'
+                    }</strong></li>
+                </ul>
+              </div>
 
-                  <div className="card current-glucose-level">
-                    <h1>Meal Distribution</h1>
-                    <div className="donut-chart-dummy">
-                    <img src={piechart}  alt="Retina Pressure Icon" />
-                    <ToggleSwitch />
-                    </div>
+
+
+
+                  
+                  <div className="card predictions">
+                    <h1>Personal Metrics</h1>
+                    <ul className="predictions-list">
+                      <li>Basal Dosage<strong>9:00 PM, May 12</strong></li>
+                      <li>Bolus Dosage <strong>1:00 PM, May 13</strong></li>
+                      <li>Basis GSR<strong>Low</strong></li>
+                      <li>Basis Skin Temprature<strong>Low</strong></li>
+                      <li>Finger Stick Value<strong>Low</strong></li>
+                    </ul>
                   </div>
                   
               </div>
