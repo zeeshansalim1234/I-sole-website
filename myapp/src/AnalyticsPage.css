@@ -238,7 +238,6 @@
   color: #388E3C; /* green color for low risk */
 }
 
-
 .card.predictions {
     display: flex;
     flex-direction: column;

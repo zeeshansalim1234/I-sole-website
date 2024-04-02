@@ -27,6 +27,11 @@ function Analytics() {
   // State to control if the prediction image should be shown
   const [showGlucosePrediction, setshowGlucosePrediction] = useState(false);
   const [showPressurePrediction, setshowPressurePrediction] = useState(false);
+  const [basalValue, setBasalValue] = useState('-');
+  const [bolusDose, setBolusDose] = useState('-');
+  const [basisGsrValue, setBasisGsrValue] = useState('-');
+  const [basisSkinTemperatureValue, setBasisSkinTemperatureValue] = useState('-');
+  const [fingerStickValue, setFingerStickValue] = useState('-');
 
 
   // Add useEffect to retrieve currUsername from local storage
@@ -65,6 +70,7 @@ function Analytics() {
     };
   
     try {
+
       // Note: responseType is not needed here since the default is JSON
       const response = await axios.post('https://2232-2604-3d09-3472-7800-1da4-da3b-2ce9-4dea.ngrok-free.app/plot-prediction', data);
       
@@ -83,9 +89,9 @@ function Analytics() {
       const imageUrl = `data:image/png;base64,${image}`;
       setPredictionImage(imageUrl);
       setshowGlucosePrediction(true); // Indicate that the prediction image should now be displayed
-  
-      // Log the image URL for debugging
-      console.log("Generated Image URL:", imageUrl);
+
+
+      fetchPersonalMetrics();
   
     } catch (error) {
       // Log any error that occurs during the Axios request
@@ -94,6 +100,7 @@ function Analytics() {
         // Log the response error for debugging
         console.error("Error Response:", error.response);
       }
+
     }
   };
   
@@ -101,7 +108,41 @@ function Analytics() {
     // Reset to show the default day chart and hide the prediction image
     setshowGlucosePrediction(false);
     setPredictionImage(glucoseDayChart); // Revert to the default day chart image
+    setBasalValue('-');
+    setBolusDose('-');
+    setBasisGsrValue('-');
+    setBasisSkinTemperatureValue('-');
+    setFingerStickValue('-');
   };
+
+  const fetchPersonalMetrics = async () => {
+    const username = 'Lubaba'; // Define the username
+    const endpoint = `https://2232-2604-3d09-3472-7800-1da4-da3b-2ce9-4dea.ngrok-free.app/get_personal_metrics/${username}`;
+
+    try {
+      const response = await axios.post(endpoint);
+      console.log(response.data)
+      
+      // Extract and store only the values of the specified fields
+      const {
+        basal_value,
+        bolus_dose,
+        basis_gsr_value,
+        basis_skin_temperature_value,
+        finger_stick_value
+      } = response.data.data;
+
+      // Update state variables with the extracted values
+      setBasalValue(basal_value);
+      setBolusDose(bolus_dose);
+      setBasisGsrValue(basis_gsr_value);
+      setBasisSkinTemperatureValue(basis_skin_temperature_value);
+      setFingerStickValue(finger_stick_value);
+    } catch (error) {
+      console.error('Error fetching personal metrics:', error);
+    }
+  };
+  
   
 
   return (
@@ -235,17 +276,17 @@ function Analytics() {
 
 
                   
-                  <div className="card predictions">
-                    <h1>Personal Metrics</h1>
-                    <ul className="predictions-list">
-                      <li>Basal Dosage<strong>9:00 PM, May 12</strong></li>
-                      <li>Bolus Dosage <strong>1:00 PM, May 13</strong></li>
-                      <li>Basis GSR<strong>Low</strong></li>
-                      <li>Basis Skin Temprature<strong>Low</strong></li>
-                      <li>Finger Stick Value<strong>Low</strong></li>
-                    </ul>
-                  </div>
-                  
+              <div className="card predictions">
+                <h1>Personal Metrics</h1>
+                <ul className="predictions-list">
+                  <li>Basal Dosage <strong className={basalValue !== '-' ? "low-risk" : "golden"}>{basalValue !== '-' ? `${basalValue} units` : basalValue}</strong></li>
+                  <li>Bolus Dosage <strong className={bolusDose !== '-' ? "low-risk" : "golden"}>{bolusDose !== '-' ? `${bolusDose} units` : bolusDose}</strong></li>
+                  <li>Basis GSR <strong className={basisGsrValue !== '-' ? "low-risk" : "golden"}>{basisGsrValue !== '-' ? `${basisGsrValue} mg/dL` : basisGsrValue}</strong></li>
+                  <li>Basis Skin Temperature <strong className={basisSkinTemperatureValue !== '-' ? "low-risk" : "golden"}>{basisSkinTemperatureValue !== '-' ? `${basisSkinTemperatureValue} °F` : basisSkinTemperatureValue}</strong></li>
+                  <li>Finger Stick Value <strong className={fingerStickValue !== '-' ? "low-risk" : "golden"}>{fingerStickValue !== '-' ? `${fingerStickValue} units` : fingerStickValue}</strong></li>
+                </ul>
+              </div>
+                            
               </div>
 
 
