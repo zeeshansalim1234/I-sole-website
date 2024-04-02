@@ -51,7 +51,7 @@ function Analytics() {
         </div>
         <nav className="sidebar-nav">
           <ul>
-            <li><a href="#/homepage">🏠 Homepage</a></li>
+            
             <li><a href="#/feedback">💬 Feedback</a></li>
             <li><a href="#/analytics" className="active">📊 Analytics</a></li>
             <li><a href="#/settings">🔔 Notifications</a></li>
@@ -107,7 +107,7 @@ function Analytics() {
                 <h1>Pressure Sensor Analytics</h1>
                 {/* <ToggleSwitch /> Include the toggle switch */}
               </div>
-              <img src={barchart} alt="Pressure Sensor Analytics Chart" />
+              <img src={glucoseWeekChart} alt="Pressure Sensor Analytics Chart" />
             </div>
 
             <div className="chart glucose-sensor-analytics">
@@ -124,6 +124,7 @@ function Analytics() {
               {selectedTimeframe === 'Month' && (
                 <img src={glucoseMonthChart} alt="Glucose Sensor Analytics Chart - Month" />
               )}
+              <button className="make-prediction-button">Make Prediction</button>
             </div>
 
           </div>
