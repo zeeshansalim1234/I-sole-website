@@ -311,7 +311,7 @@
   }
 
   
-  .chart img {
+  .glucose-sensor-analytics img {
     width: auto; /* Adjusts width automatically */
     max-width: calc(100% - 40px); /* Reduces the maximum width to account for horizontal margin */
     max-height: calc(100% - 100px); /* Adjusts the max height to leave space for the button and additional vertical margin */
@@ -339,6 +339,77 @@
   align-items: center; /* Centers text vertically */
   justify-content: center; /* Centers text horizontally */
   /* Add more styling here as needed */
+}
+
+.footBox {
+  background-color: #1B2130;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  position: relative; /* Ensures absolute positioning for children */
+}
+
+.cardTitleText {
+  color: #DEB992;
+  font-size: 25px;
+  margin-top: 10px;
+  margin-bottom: 0;
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+
+.footContainer {
+  position: relative; /* Use relative positioning here */
+  width: 300px; /* Adjust based on your image size */
+  height: 300px; /* Set a height for your container */
+  margin: 0 auto; /* Center container */
+  display: flex; /* Use flexbox to center the image */
+  align-items: center; /* Align image vertically */
+  justify-content: center; /* Align image horizontally */
+}
+
+.footIcon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(80deg); /* Adjusts position and rotation */
+  width: auto; /* Adjust to not exceed the container width */
+  height: 160%; /* Adjust to not exceed the container height */
+ 
+}
+
+.regionContainer {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  margin-top: -180px;
+}
+
+.regionButton {
+  background-color: #1A1A1A;
+  color: #DEB992;
+  padding: 5px 6px;
+  border-radius: 60px;
+  margin: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.regionButton1 { margin-top: 230px; margin-left: 0px; margin-right: 300px; }
+.regionButton2 { margin-right: 190px; margin-top: -50px; }
+.regionButton3 { margin-right: 80px; margin-top: -55px; }
+.regionButton4 { margin-top: -60px; margin-left: 25px;}
+.regionButton5 { margin-left: 94px; }
+.regionButton6 { margin-left: 125px; }
+
+.selectedToggle {
+  background-color: #1BA098;
 }
 
   

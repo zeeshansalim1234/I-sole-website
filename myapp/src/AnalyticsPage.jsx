@@ -15,6 +15,7 @@ import ToggleSwitch from './ToggleSwitch';
 import glucoseDayChart from './images/day.png';
 import glucoseWeekChart from './images/week.png';
 import glucoseMonthChart from './images/month.png';
+import footImage from './images/foot.png'
 
 function Analytics() {
   const navigate = useNavigate(); // Hook to access the history instance
@@ -34,6 +35,7 @@ function Analytics() {
   const [fingerStickValue, setFingerStickValue] = useState('-');
   const [sweatGlucose, setSweatGlucose] = useState(null);
   const [bloodGlucose, setBloodGlucose] = useState(null);
+  const [footRegion, setFootRegion] = useState('p1');
 
 
   // Add useEffect to retrieve currUsername from local storage
@@ -60,15 +62,16 @@ function Analytics() {
   const makePrediction = async () => {
     try {
       await getLatestGlucose(); // Wait for getLatestGlucose to complete before proceeding
+      await fetchPersonalMetrics();
   
       const data = {
         "input_data": {
-          "glucose_level_value": sweatGlucose, 
-          "finger_stick_value": 101.0, 
-          "basal_value": 1.5, 
-          "basis_gsr_value": 0.0724993103448275, 
-          "basis_skin_temperature_value": 87.46172413793103, 
-          "bolus_dose": 0.0
+          "glucose_level_value": sweatGlucose+140, 
+          "finger_stick_value": fingerStickValue, 
+          "basal_value": basalValue, 
+          "basis_gsr_value": basisGsrValue, 
+          "basis_skin_temperature_value": basisSkinTemperatureValue, 
+          "bolus_dose": bolusDose
         }, 
         "hyperglycemia_threshold": 180, 
         "hypoglycemia_threshold": 100
@@ -96,8 +99,6 @@ function Analytics() {
       const imageUrl = `data:image/png;base64,${image}`;
       setPredictionImage(imageUrl);
       setshowGlucosePrediction(true); // Indicate that the prediction image should now be displayed
-  
-      fetchPersonalMetrics();
   
     } catch (error) {
       // Log any error that occurs during the Axios request
@@ -247,7 +248,57 @@ function Analytics() {
                 <h1>Pressure Sensor Analytics</h1>
                 {/* <ToggleSwitch /> Include the toggle switch */}
               </div>
-              <img src={glucoseWeekChart} alt="Pressure Sensor Analytics Chart" />
+
+
+              {/* <img src={glucoseWeekChart} alt="Pressure Sensor Analytics Chart" /> */}
+              <div className="footBox">
+                {/* <p className="cardTitleText">Select Region to View Data</p> */}
+                <div className="footContainer">
+                  <img src={footImage} alt="Foot" className="footIcon" /> {/* Use the image here */}
+                  <div className="regionContainer">
+                    {/* Buttons for selecting foot regions */}
+                    <button
+                      className={`regionButton regionButton1 ${footRegion === 'p1' ? 'selectedToggle' : ''}`}
+                      onClick={() => setFootRegion('p1')}>
+                      P1
+                    </button>
+
+                    <button
+                      className={`regionButton regionButton2 ${footRegion === 'p2' ? 'selectedToggle' : ''}`}
+                      onClick={() => setFootRegion('p2')}>
+                      P2
+                    </button>
+
+                    <button
+                      className={`regionButton regionButton3 ${footRegion === 'p3' ? 'selectedToggle' : ''}`}
+                      onClick={() => setFootRegion('p3')}>
+                      P3
+                    </button>
+
+                    <button
+                      className={`regionButton regionButton4 ${footRegion === 'p4' ? 'selectedToggle' : ''}`}
+                      onClick={() => setFootRegion('p4')}>
+                      P4
+                    </button>
+
+                    <button
+                      className={`regionButton regionButton5 ${footRegion === 'p5' ? 'selectedToggle' : ''}`}
+                      onClick={() => setFootRegion('p5')}>
+                      P5
+                    </button>
+
+                    <button
+                      className={`regionButton regionButton6 ${footRegion === 'p6' ? 'selectedToggle' : ''}`}
+                      onClick={() => setFootRegion('p6')}>
+                      P6
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <button className="reset-button" onClick={resetPrediction}>Reset</button> 
+
+
             </div>
 
             <div className="chart glucose-sensor-analytics">
