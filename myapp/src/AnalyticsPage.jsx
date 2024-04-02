@@ -12,11 +12,16 @@ import sweat from './images/sweat.png'
 import feet from './images/feet.png'
 import piechart from './images/piechart.png'
 import ToggleSwitch from './ToggleSwitch';
+import glucoseDayChart from './images/day.png';
+import glucoseWeekChart from './images/week.png';
+import glucoseMonthChart from './images/month.png';
 
 function Analytics() {
   const navigate = useNavigate(); // Hook to access the history instance
   const [currUsername, setCurrUsername] = useState('');
   const [userRole, setUserRole] = useState('');
+  const [selectedTimeframe, setSelectedTimeframe] = useState('Day');
+
 
   // Add useEffect to retrieve currUsername from local storage
   useEffect(() => {
@@ -96,22 +101,32 @@ function Analytics() {
           <div className="main-content">
               
           <div className="charts-column">
+
             <div className="chart pressure-sensor-analytics">
               <div className="chart-header">
                 <h1>Pressure Sensor Analytics</h1>
-                <ToggleSwitch /> {/* Include the toggle switch */}
+                {/* <ToggleSwitch /> Include the toggle switch */}
               </div>
               <img src={barchart} alt="Pressure Sensor Analytics Chart" />
             </div>
+
             <div className="chart glucose-sensor-analytics">
               <div className="chart-header">
                 <h1>Glucose Sensor Analytics</h1>
-                <ToggleSwitch /> {/* Include the toggle switch */}
-              </div>             
-              <img src={linechart} alt="Glucose Sensor Analytics Chart" />
+                <ToggleSwitch onToggle={setSelectedTimeframe} />
+              </div>
+              {selectedTimeframe === 'Day' && (
+                <img src={glucoseDayChart} alt="Glucose Sensor Analytics Chart - Day" />
+              )}
+              {selectedTimeframe === 'Week' && (
+                <img src={glucoseWeekChart} alt="Glucose Sensor Analytics Chart - Week" />
+              )}
+              {selectedTimeframe === 'Month' && (
+                <img src={glucoseMonthChart} alt="Glucose Sensor Analytics Chart - Month" />
+              )}
             </div>
-          </div>
 
+          </div>
 
 
             
