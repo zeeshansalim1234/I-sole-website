@@ -32,6 +32,8 @@ function Analytics() {
   const [basisGsrValue, setBasisGsrValue] = useState('-');
   const [basisSkinTemperatureValue, setBasisSkinTemperatureValue] = useState('-');
   const [fingerStickValue, setFingerStickValue] = useState('-');
+  const [sweatGlucose, setSweatGlucose] = useState(null);
+  const [bloodGlucose, setBloodGlucose] = useState(null);
 
 
   // Add useEffect to retrieve currUsername from local storage
@@ -56,21 +58,22 @@ function Analytics() {
 
 
   const makePrediction = async () => {
-    const data = {
-      "input_data": {
-        "glucose_level_value": 180.16666666666666, 
-        "finger_stick_value": 101.0, 
-        "basal_value": 1.5, 
-        "basis_gsr_value": 0.0724993103448275, 
-        "basis_skin_temperature_value": 87.46172413793103, 
-        "bolus_dose": 0.0
-      }, 
-      "hyperglycemia_threshold": 180, 
-      "hypoglycemia_threshold": 100
-    };
-  
     try {
-
+      await getLatestGlucose(); // Wait for getLatestGlucose to complete before proceeding
+  
+      const data = {
+        "input_data": {
+          "glucose_level_value": sweatGlucose, 
+          "finger_stick_value": 101.0, 
+          "basal_value": 1.5, 
+          "basis_gsr_value": 0.0724993103448275, 
+          "basis_skin_temperature_value": 87.46172413793103, 
+          "bolus_dose": 0.0
+        }, 
+        "hyperglycemia_threshold": 180, 
+        "hypoglycemia_threshold": 100
+      };
+  
       // Note: responseType is not needed here since the default is JSON
       const response = await axios.post('https://2232-2604-3d09-3472-7800-1da4-da3b-2ce9-4dea.ngrok-free.app/plot-prediction', data);
       
@@ -85,12 +88,15 @@ function Analytics() {
       setPredictionState(prediction_state);
       setPredictionTime(prediction_time);
   
+      if (prediction_state === 'hyperglycemia' || prediction_state === 'hypoglycemia') {
+        makeCall();
+      }
+  
       // Convert base64 string to a URL for the image and update state
       const imageUrl = `data:image/png;base64,${image}`;
       setPredictionImage(imageUrl);
       setshowGlucosePrediction(true); // Indicate that the prediction image should now be displayed
-
-
+  
       fetchPersonalMetrics();
   
     } catch (error) {
@@ -100,7 +106,26 @@ function Analytics() {
         // Log the response error for debugging
         console.error("Error Response:", error.response);
       }
+    }
+  };
+  
 
+  const getLatestGlucose = async () => {
+    try {
+      const username = 'Lubaba';
+      const response = await axios.post(`https://2232-2604-3d09-3472-7800-1da4-da3b-2ce9-4dea.ngrok-free.app/get_latest_glucose/${username}`);
+      if (response.data.success) {
+        const { sweat_glucose, blood_glucose } = response.data;
+        setSweatGlucose(sweat_glucose);
+        setBloodGlucose(blood_glucose);
+        console.log(sweat_glucose);
+      } else {
+        console.error('Failed to fetch latest glucose data:', response.data.message);
+        // Handle the case where fetching the data was unsuccessful
+      }
+    } catch (error) {
+      console.error('Error fetching latest glucose data:', error);
+      // Handle any errors that occur during the request
     }
   };
   
@@ -143,7 +168,20 @@ function Analytics() {
     }
   };
   
-  
+  const makeCall = async () => {
+    const data = {
+      to: '+18255615201', // Replace with the recipient phone number
+      message: `This is an alert from the I-sole diabetic app, there is a high risk of ${predictionState} for Zeeshan within the next hour` // Replace with your message
+    };
+
+    try {
+      const response = await axios.post('https://i-sole-backend.com/make_call', data);
+      console.log('Call initiated. SID:', response.data);
+    } catch (error) {
+      console.error('Error making the call:', error);
+    }
+  };
+
 
   return (
     <div className="app">
@@ -234,8 +272,6 @@ function Analytics() {
 
 
           </div>
-
-
             
               <div className="side-column">
 
