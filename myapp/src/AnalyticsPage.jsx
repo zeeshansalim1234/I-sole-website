@@ -203,7 +203,7 @@ function Analytics() {
   const makeCall = async () => {
     const data = {
       to: '+18255615201', // Replace with the recipient phone number
-      message: `This is an alert from the I-sole diabetic app, there is a high risk of ${predictionState} for Zeeshan within the next hour` // Replace with your message
+      message: `This is an alert from the I-sole diabetic app, there is a high risk of ${predictionState} for Lubaba within the next hour` // Replace with your message
     };
 
     try {
@@ -236,7 +236,7 @@ function Analytics() {
     const startTimestampEdmonton = '2024-04-02T04:30:21'
     const endTimestampEdmonton = '2024-04-15T12:30:21'
 
-    const url = `http://i-sole-backend.com/plot_pressure?username=${username}&start_timestamp=${startTimestampEdmonton}&end_timestamp=${endTimestampEdmonton}&region=${region}`;
+    const url = `http://127.0.0.1:5000/plot_pressure?username=${username}&start_timestamp=${startTimestampEdmonton}&end_timestamp=${endTimestampEdmonton}&region=${region}`;
 
     console.log('start time: ', startTimestampEdmonton)
     console.log('end time: ', endTimestampEdmonton)
