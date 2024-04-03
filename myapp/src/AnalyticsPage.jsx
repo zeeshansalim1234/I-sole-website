@@ -68,7 +68,7 @@ function Analytics() {
 
   useEffect(() => {
 
-    const username='Lubaba';
+    const username='Abhay';
     const docRef = doc(firestore, 'users', username);
 
     // Create a reference to the 'pressureData' subcollection
@@ -139,7 +139,7 @@ function Analytics() {
 
   const getLatestGlucose = async () => {
     try {
-      const username = 'Lubaba';
+      const username = 'Abhay';
       const response = await axios.post(`https://i-sole-backend.com/get_latest_glucose/${username}`);
       if (response.data.success) {
         const { sweat_glucose, blood_glucose } = response.data;
@@ -168,7 +168,7 @@ function Analytics() {
   };
 
   const fetchPersonalMetrics = async () => {
-    const username = 'Lubaba'; // Define the username
+    const username = 'Abhay'; // Define the username
     const endpoint = `https://i-sole-backend.com/get_personal_metrics/${username}`;
 
     try {
@@ -223,7 +223,7 @@ function Analytics() {
 
   const fetchPressurePlotImage = (region) => {
 
-    const username = 'Lubaba';
+    const username = 'Abhay';
     console.log('footRegion: ', region)
 
     console.log('fetchPressurePlotImage called')
