@@ -16,6 +16,8 @@ import glucoseDayChart from './images/day.png';
 import glucoseWeekChart from './images/week.png';
 import glucoseMonthChart from './images/month.png';
 import footImage from './images/foot.png'
+import { firestore } from './firebase';
+import { doc, collection, onSnapshot } from 'firebase/firestore';
 
 function Analytics() {
   const navigate = useNavigate(); // Hook to access the history instance
@@ -36,6 +38,7 @@ function Analytics() {
   const [sweatGlucose, setSweatGlucose] = useState(null);
   const [bloodGlucose, setBloodGlucose] = useState(null);
   const [footRegion, setFootRegion] = useState('p1');
+  const [pressurePlotImage, setPressurePlotImage] = useState('');
 
   // Add state for controlling overlay visibility
   const [isOverlayVisible, setIsOverlayVisible] = useState(false);
@@ -63,6 +66,25 @@ function Analytics() {
     }
   }, []);
 
+  useEffect(() => {
+
+    const username='Lubaba';
+    const docRef = doc(firestore, 'users', username);
+
+    // Create a reference to the 'pressureData' subcollection
+    const pressureDataCollectionRef = collection(docRef, 'pressureData');
+
+    // Set up a listener for changes in the 'pressureData' subcollection
+    const unsubscribe = onSnapshot(pressureDataCollectionRef, (querySnapshot) => {
+      // Handle changes in the pressure data
+      console.log("Pressure data updated:", querySnapshot.docs);
+      fetchPressurePlotImage(footRegion); // Call fetchPressurePlotImage when pressure data is updated
+    });
+
+    // Clean up the listener when the component unmounts
+    return () => unsubscribe();
+  }, [footRegion]); // This useEffect runs when username changes
+
 
   const makePrediction = async () => {
     try {
@@ -83,7 +105,7 @@ function Analytics() {
       };
   
       // Note: responseType is not needed here since the default is JSON
-      const response = await axios.post('https://2232-2604-3d09-3472-7800-1da4-da3b-2ce9-4dea.ngrok-free.app/plot-prediction', data);
+      const response = await axios.post('http://127.0.0.1:5000/plot-prediction', data);
       
       // Extract the data from the response
       const { image, prediction_state, prediction_time } = response.data;
@@ -188,18 +210,46 @@ function Analytics() {
     }
   };
 
-  // Function to handle region button clicks
-  const handleRegionButtonClick = (region) => {
-    // Example logic to determine which plot to show based on the region clicked
-    setFootRegion(region);
-    const plotUrl = glucoseMonthChart; // Adjust with actual logic
-    setCurrentPlot(plotUrl);
-    setIsOverlayVisible(true);
-  };
-
   const closeModal = () => {
     setIsOverlayVisible(false);
     setFootRegion(''); // Reset the foot region to indicate no selection
+  };
+
+  // Function to handle region button clicks
+  const handleRegionButtonClick = (region) => {
+    setFootRegion(region);
+    fetchPressurePlotImage(region); // This will handle setting the current plot and showing overlay once fetch completes
+    setIsOverlayVisible(true); // Show overlay here to ensure it happens after image is ready
+  };
+
+  const fetchPressurePlotImage = (region) => {
+
+    const username = 'Lubaba';
+    console.log('footRegion: ', region)
+
+    console.log('fetchPressurePlotImage called')
+
+    const startTimestampEdmonton = '2024-04-03T04:30:21'
+    const endTimestampEdmonton = '2024-04-03T12:30:21'
+
+    const url = `https://i-sole-backend.com/plot_pressure?username=${username}&start_timestamp=${startTimestampEdmonton}&end_timestamp=${endTimestampEdmonton}&region=${region}`;
+
+    console.log('start time: ', startTimestampEdmonton)
+    console.log('end time: ', endTimestampEdmonton)
+
+    // Make the GET request with the constructed URL
+    axios.get(url, {
+      responseType: 'blob' // Indicates that the response data should be treated as a Blob
+    })
+    .then(response => {
+      // Create a local URL for the blob object
+      const imageUrl = URL.createObjectURL(response.data);
+      setPressurePlotImage(imageUrl); // Use this URL for displaying the image
+      setCurrentPlot(imageUrl); // Now update currentPlot with the new imageUrl
+    })
+    .catch(error => {
+      console.error('There was an error fetching the plot image:', error);
+    });
   };
 
 
