@@ -90,6 +90,9 @@ function Analytics() {
 
   const makePrediction = async () => {
     try {
+
+      console.log("We reached make Pred");
+
       await getLatestGlucose(); // Wait for getLatestGlucose to complete before proceeding
       await fetchPersonalMetrics();
   
