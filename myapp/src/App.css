@@ -397,6 +397,36 @@ button:hover {
   }
 }
 
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay-content {
+  margin: auto;
+  background: #1B2130; /* Updated background color */
+  border-radius: 10px;
+  padding: 20px;
+  /* Ensure text is visible with a light color if your background is dark */
+  color: #ffffff; 
+}
+
+.overlay img {
+  max-width: 80%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+
 /* You might also want to add media queries for even smaller screens */
 @media (max-width: 480px) {
   /* Adjust font sizes, padding, and any other properties for very small screens */

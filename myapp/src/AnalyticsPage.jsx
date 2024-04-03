@@ -37,6 +37,11 @@ function Analytics() {
   const [bloodGlucose, setBloodGlucose] = useState(null);
   const [footRegion, setFootRegion] = useState('p1');
 
+  // Add state for controlling overlay visibility
+  const [isOverlayVisible, setIsOverlayVisible] = useState(false);
+  // State for the current plot to display
+  const [currentPlot, setCurrentPlot] = useState('');
+
 
   // Add useEffect to retrieve currUsername from local storage
   useEffect(() => {
@@ -183,6 +188,20 @@ function Analytics() {
     }
   };
 
+  // Function to handle region button clicks
+  const handleRegionButtonClick = (region) => {
+    // Example logic to determine which plot to show based on the region clicked
+    setFootRegion(region);
+    const plotUrl = glucoseMonthChart; // Adjust with actual logic
+    setCurrentPlot(plotUrl);
+    setIsOverlayVisible(true);
+  };
+
+  const closeModal = () => {
+    setIsOverlayVisible(false);
+    setFootRegion(''); // Reset the foot region to indicate no selection
+  };
+
 
   return (
     <div className="app">
@@ -259,39 +278,35 @@ function Analytics() {
                     {/* Buttons for selecting foot regions */}
                     <button
                       className={`regionButton regionButton1 ${footRegion === 'p1' ? 'selectedToggle' : ''}`}
-                      onClick={() => setFootRegion('p1')}>
+                      onClick={() => handleRegionButtonClick('p1')}>
                       P1
                     </button>
-
                     <button
                       className={`regionButton regionButton2 ${footRegion === 'p2' ? 'selectedToggle' : ''}`}
-                      onClick={() => setFootRegion('p2')}>
+                      onClick={() => handleRegionButtonClick('p2')}>
                       P2
                     </button>
-
                     <button
                       className={`regionButton regionButton3 ${footRegion === 'p3' ? 'selectedToggle' : ''}`}
-                      onClick={() => setFootRegion('p3')}>
+                      onClick={() => handleRegionButtonClick('p3')}>
                       P3
                     </button>
-
                     <button
                       className={`regionButton regionButton4 ${footRegion === 'p4' ? 'selectedToggle' : ''}`}
-                      onClick={() => setFootRegion('p4')}>
+                      onClick={() => handleRegionButtonClick('p4')}>
                       P4
                     </button>
-
                     <button
                       className={`regionButton regionButton5 ${footRegion === 'p5' ? 'selectedToggle' : ''}`}
-                      onClick={() => setFootRegion('p5')}>
+                      onClick={() => handleRegionButtonClick('p5')}>
                       P5
                     </button>
-
                     <button
                       className={`regionButton regionButton6 ${footRegion === 'p6' ? 'selectedToggle' : ''}`}
-                      onClick={() => setFootRegion('p6')}>
+                      onClick={() => handleRegionButtonClick('p6')}>
                       P6
                     </button>
+
                   </div>
                 </div>
               </div>
@@ -381,6 +396,14 @@ function Analytics() {
   </main>
 
 
+  {isOverlayVisible && (
+      <div className="overlay" onClick={closeModal}>
+        <div className="overlay-content" onClick={(e) => e.stopPropagation()}>
+          <img src={currentPlot} alt="Plot" />
+          <button onClick={closeModal}>Close</button>
+        </div>
+      </div>
+    )}
 
 
     </div>
