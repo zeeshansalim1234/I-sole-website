@@ -94,11 +94,14 @@ function Analytics() {
       console.log("We reached make Pred");
 
       await getLatestGlucose(); // Wait for getLatestGlucose to complete before proceeding
+
+      console.log("After await latest glucose value: ", sweatGlucose);
+
       await fetchPersonalMetrics();
   
       const data = {
         "input_data": {
-          "glucose_level_value": sweatGlucose+140, 
+          "glucose_level_value": sweatGlucose, 
           "finger_stick_value": fingerStickValue, 
           "basal_value": basalValue, 
           "basis_gsr_value": basisGsrValue, 
@@ -150,7 +153,7 @@ function Analytics() {
         const { sweat_glucose, blood_glucose } = response.data;
         setSweatGlucose(sweat_glucose);
         setBloodGlucose(blood_glucose);
-        console.log(sweat_glucose);
+        console.log("sweat glucose: ", sweat_glucose);
       } else {
         console.error('Failed to fetch latest glucose data:', response.data.message);
         // Handle the case where fetching the data was unsuccessful
