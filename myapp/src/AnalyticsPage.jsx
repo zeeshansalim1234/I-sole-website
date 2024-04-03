@@ -233,8 +233,8 @@ function Analytics() {
 
     console.log('fetchPressurePlotImage called')
 
-    const startTimestampEdmonton = '2024-04-03T04:30:21'
-    const endTimestampEdmonton = '2024-04-03T12:30:21'
+    const startTimestampEdmonton = '2024-04-02T04:30:21'
+    const endTimestampEdmonton = '2024-04-15T12:30:21'
 
     const url = `http://localhost:5000/plot_pressure?username=${username}&start_timestamp=${startTimestampEdmonton}&end_timestamp=${endTimestampEdmonton}&region=${region}`;
 
