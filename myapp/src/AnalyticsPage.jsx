@@ -71,6 +71,8 @@ function Analytics() {
     const username='Abhay';
     const docRef = doc(firestore, 'users', username);
 
+    console.log("User inside listner: ", username)
+
     // Create a reference to the 'pressureData' subcollection
     const pressureDataCollectionRef = collection(docRef, 'pressureData');
 
@@ -231,7 +233,7 @@ function Analytics() {
     const startTimestampEdmonton = '2024-04-03T04:30:21'
     const endTimestampEdmonton = '2024-04-03T12:30:21'
 
-    const url = `https://i-sole-backend.com/plot_pressure?username=${username}&start_timestamp=${startTimestampEdmonton}&end_timestamp=${endTimestampEdmonton}&region=${region}`;
+    const url = `http://localhost:5000/plot_pressure?username=${username}&start_timestamp=${startTimestampEdmonton}&end_timestamp=${endTimestampEdmonton}&region=${region}`;
 
     console.log('start time: ', startTimestampEdmonton)
     console.log('end time: ', endTimestampEdmonton)
