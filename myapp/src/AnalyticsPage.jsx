@@ -136,12 +136,11 @@ function Analytics() {
       }
     }
   };
-  
 
   const getLatestGlucose = async () => {
     try {
       const username = 'Lubaba';
-      const response = await axios.post(`https://2232-2604-3d09-3472-7800-1da4-da3b-2ce9-4dea.ngrok-free.app/get_latest_glucose/${username}`);
+      const response = await axios.post(`https://i-sole-backend.com/get_latest_glucose/${username}`);
       if (response.data.success) {
         const { sweat_glucose, blood_glucose } = response.data;
         setSweatGlucose(sweat_glucose);
@@ -170,7 +169,7 @@ function Analytics() {
 
   const fetchPersonalMetrics = async () => {
     const username = 'Lubaba'; // Define the username
-    const endpoint = `https://2232-2604-3d09-3472-7800-1da4-da3b-2ce9-4dea.ngrok-free.app/get_personal_metrics/${username}`;
+    const endpoint = `https://i-sole-backend.com/get_personal_metrics/${username}`;
 
     try {
       const response = await axios.post(endpoint);
