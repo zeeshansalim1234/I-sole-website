@@ -164,6 +164,8 @@ const getLatestGlucose = async () => {
 
           console.log("Latest sweat glucose value: ", sweatGlucose);
           console.log("Estimated blood glucose value: ", bloodGlucose);
+
+          return { sweatGlucose, bloodGlucose }; // Return these values
       } else {
           // Log or handle the case where fetching the data was unsuccessful
           console.error('Failed to fetch latest glucose data:', response.data.message);
