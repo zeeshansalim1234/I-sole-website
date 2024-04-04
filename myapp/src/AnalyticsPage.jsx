@@ -286,11 +286,9 @@ const getLatestGlucose = async () => {
         setMaxPressure(response.data.maxPressure);
       } else {
         console.error("Failed to fetch pressure risk data:", response.data.message);
-        setError(response.data.message || 'Failed to fetch data');
       }
     } catch (err) {
       console.error("Error fetching pressure risk data:", err.message);
-      setError(err.message);
     }
   };
   
@@ -341,7 +339,6 @@ const getLatestGlucose = async () => {
                 <p>Plantar Pressure Level</p>
               </div>
               <h1>{maxPressure ? `${maxPressure} kPa` : '-'}</h1>
-              <span className="negative">-15%</span>
             </div>
             <div className="card blood-glucose">
               <div className="card-header">
