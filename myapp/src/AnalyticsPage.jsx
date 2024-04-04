@@ -462,12 +462,12 @@ const getLatestGlucose = async () => {
                   }
                   </strong></li>
                   <li>
-                    
+                    Diabetic Ulceration
                     <ul>
                     {Object.entries(riskData || {}).map(([key, risk]) => (
                       <li key={key}>
-                        {key.toUpperCase()}: <strong className={showPressurePrediction ? (risk.toLowerCase() + '-risk') : ''}>
-                          {showPressurePrediction ? risk : '-'}
+                        {key.replace("_RISK", "").toUpperCase()}: <strong className={risk ? (risk.toLowerCase() + '-risk') : ''}>
+                          {risk || '-'}
                         </strong>
                       </li>
                     ))}
