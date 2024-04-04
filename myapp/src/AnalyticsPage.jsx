@@ -305,8 +305,11 @@ const getLatestGlucose = async () => {
                 <img src={blood} alt="Blood Glucose Icon" className="icon" />
                 <p>Blood Glucose Level</p>
               </div>
-              <h1>95 mg/dL</h1>
-              <span className="positive">+10%</span>
+              <h1>{bloodGlucose ? `${bloodGlucose} mg/dL` : '-'}</h1>
+              <span className={bloodGlucose > 165 ? "positive" : "negative"}>
+                {bloodGlucose > 165 ? '+6%' : '-6%'}
+              </span>
+
             </div>
             <div className="card retina-pressure">
               <div className="card-header">
@@ -321,8 +324,10 @@ const getLatestGlucose = async () => {
                 <img src={sweat}  alt="Sweat Glucose Icon" className="icon" />
                 <p>Sweat Glucose Level</p>
               </div>
-              <h1>45 mg/dL</h1>
-              <span className="positive">+10%</span>
+              <h1>{sweatGlucose ? `${sweatGlucose} μmol/L` : '-'}</h1>
+              <span className={sweatGlucose > 165 ? "positive" : "negative"}>
+                {sweatGlucose > 145 ? '+4%' : '-4%'}
+              </span>
             </div>
       </div>
 
