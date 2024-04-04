@@ -39,6 +39,8 @@ function Analytics() {
   const [bloodGlucose, setBloodGlucose] = useState(null);
   const [footRegion, setFootRegion] = useState('p1');
   const [pressurePlotImage, setPressurePlotImage] = useState('');
+  const [riskData, setRiskData] = useState(null);
+  const [maxPressure, setMaxPressure] = useState(0);
 
   // Add state for controlling overlay visibility
   const [isOverlayVisible, setIsOverlayVisible] = useState(false);
@@ -81,6 +83,7 @@ function Analytics() {
       // Handle changes in the pressure data
       console.log("Pressure data updated:", querySnapshot.docs);
       fetchPressurePlotImage(footRegion); // Call fetchPressurePlotImage when pressure data is updated
+      fetchPressureRiskData();
     });
 
     // Clean up the listener when the component unmounts
@@ -218,7 +221,7 @@ const getLatestGlucose = async () => {
   const makeCall = async () => {
     const data = {
       to: '+18255615201', // Replace with the recipient phone number
-      message: `This is an alert from the I-sole diabetic app, there is a high risk of ${predictionState} for Lubaba within the next hour` // Replace with your message
+      message: `Hello, this is an alert from the I-Sole Diabetes Care Team. Our monitoring system has detected a high risk of ${predictionState} for Lubaba within the next hour. We recommend taking any necessary precautions and monitoring your condition closely. GoodBye!` // Replace with your message
     };
 
     try {
@@ -272,6 +275,27 @@ const getLatestGlucose = async () => {
   };
 
 
+  const fetchPressureRiskData = async () => {
+    try {
+      console.log("Fetching pressure risk data for Lubaba...");
+      const response = await axios.get(`/get_average_pressure_and_risk/Lubaba`);
+      
+      if (response.data.success) {
+        console.log("Pressure risk data fetched successfully:", response.data);
+        setRiskData(response.data.data);
+        setMaxPressure(response.data.maxPressure);
+      } else {
+        console.error("Failed to fetch pressure risk data:", response.data.message);
+        setError(response.data.message || 'Failed to fetch data');
+      }
+    } catch (err) {
+      console.error("Error fetching pressure risk data:", err.message);
+      setError(err.message);
+    }
+  };
+  
+
+
   return (
     <div className="app">
       <aside className="sidebar">
@@ -316,7 +340,7 @@ const getLatestGlucose = async () => {
                 <img src={feet}  alt="Retina Pressure Icon" className="icon" />
                 <p>Plantar Pressure Level</p>
               </div>
-              <h1>81 kPa</h1>
+              <h1>{maxPressure ? `${maxPressure} kPa` : '-'}</h1>
               <span className="negative">-15%</span>
             </div>
             <div className="card blood-glucose">
