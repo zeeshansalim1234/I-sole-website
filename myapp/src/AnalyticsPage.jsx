@@ -339,29 +339,29 @@ function Analytics() {
                       P1
                     </button>
                     <button
-                      className={`regionButton regionButton2 ${footRegion === 'p5' ? 'selectedToggle' : ''}`}
+                      className={`regionButton regionButton2 ${footRegion === 'p2' ? 'selectedToggle' : ''}`}
+                      onClick={() => handleRegionButtonClick('p2')}>
+                      P5
+                    </button>
+                    <button
+                      className={`regionButton regionButton3 ${footRegion === 'p3' ? 'selectedToggle' : ''}`}
+                      onClick={() => handleRegionButtonClick('p3')}>
+                      P6
+                    </button>
+                    <button
+                      className={`regionButton regionButton4 ${footRegion === 'p4' ? 'selectedToggle' : ''}`}
+                      onClick={() => handleRegionButtonClick('p4')}>
+                      P3
+                    </button>
+                    <button
+                      className={`regionButton regionButton5 ${footRegion === 'p5' ? 'selectedToggle' : ''}`}
                       onClick={() => handleRegionButtonClick('p5')}>
                       P2
                     </button>
                     <button
-                      className={`regionButton regionButton3 ${footRegion === 'p6' ? 'selectedToggle' : ''}`}
+                      className={`regionButton regionButton6 ${footRegion === 'p6' ? 'selectedToggle' : ''}`}
                       onClick={() => handleRegionButtonClick('p6')}>
-                      P3
-                    </button>
-                    <button
-                      className={`regionButton regionButton4 ${footRegion === 'p2' ? 'selectedToggle' : ''}`}
-                      onClick={() => handleRegionButtonClick('p2')}>
                       P4
-                    </button>
-                    <button
-                      className={`regionButton regionButton5 ${footRegion === 'p3' ? 'selectedToggle' : ''}`}
-                      onClick={() => handleRegionButtonClick('p3')}>
-                      P5
-                    </button>
-                    <button
-                      className={`regionButton regionButton6 ${footRegion === 'p4' ? 'selectedToggle' : ''}`}
-                      onClick={() => handleRegionButtonClick('p4')}>
-                      P6
                     </button>
 
                   </div>
