@@ -111,6 +111,8 @@ function Analytics() {
         "hyperglycemia_threshold": 180, 
         "hypoglycemia_threshold": 100
       };
+
+      console.log("Data sent to plot prediction: ", data)
   
       // Note: responseType is not needed here since the default is JSON
       const response = await axios.post('http://127.0.0.1:5000/plot-prediction', data);
@@ -145,24 +147,34 @@ function Analytics() {
     }
   };
 
-  const getLatestGlucose = async () => {
-    try {
+  // This function fetches the latest glucose data for a given user.
+  // Assuming setSweatGlucose and setBloodGlucose are React state setter functions
+const getLatestGlucose = async () => {
+  try {
       const username = 'Lubaba';
-      const response = await axios.get(`https://i-sole-backend.com/get_latest_glucose_value_new/Lubaba`);
+      // Make the GET request using the specified username
+      const response = await axios.get(`https://i-sole-backend.com/get_latest_glucose_value_new/${username}`);
+
+      // Check if the request was successful
       if (response.data.success) {
-        const { sweat_glucose } = response.data;
-        setSweatGlucose(sweat_glucose);
-        //setBloodGlucose(blood_glucose);
-        console.log("sweat glucose: ", sweat_glucose);
+          // Extract both sweatGlucose and bloodGlucose from the latestGlucoseValue object in the response
+          const { sweatGlucose, bloodGlucose } = response.data.latestGlucoseValue;
+
+          // Assuming you have setter functions for both sweat and blood glucose values
+          setSweatGlucose(sweatGlucose);
+          setBloodGlucose(bloodGlucose);
+
+          console.log("Latest sweat glucose value: ", sweatGlucose);
+          console.log("Estimated blood glucose value: ", bloodGlucose);
       } else {
-        console.error('Failed to fetch latest glucose data:', response.data.message);
-        // Handle the case where fetching the data was unsuccessful
+          // Log or handle the case where fetching the data was unsuccessful
+          console.error('Failed to fetch latest glucose data:', response.data.message);
       }
-    } catch (error) {
-      console.error('Error fetching latest glucose data:', error);
+  } catch (error) {
       // Handle any errors that occur during the request
-    }
-  };
+      console.error('Error fetching latest glucose data:', error);
+  }
+};
   
   const resetPrediction = () => {
     // Reset to show the default day chart and hide the prediction image
