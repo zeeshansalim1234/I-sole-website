@@ -461,11 +461,15 @@ const getLatestGlucose = async () => {
                     (showGlucosePrediction ? 'Low Risk' : '-')
                   }
                   </strong></li>
-                  <li>Diabetic Ulceration<strong className={
-                      showPressurePrediction ? 'low-risk' : ''
-                    }>{
-                      showPressurePrediction ? 'Low Risk' : '-'
-                    }</strong></li>
+                  <li><ul>
+                    {Object.entries(riskData).map(([key, risk]) => (
+                      <li key={key}>
+                        {key.toUpperCase()}: <strong className={showPressurePrediction ? (risk.toLowerCase() + '-risk') : ''}>
+                          {showPressurePrediction ? risk : '-'}
+                        </strong>
+                      </li>
+                    ))}
+                  </ul></li>
                 </ul>
               </div>
 
