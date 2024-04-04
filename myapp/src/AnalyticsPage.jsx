@@ -254,7 +254,7 @@ const getLatestGlucose = async () => {
     const startTimestampEdmonton = '2024-04-02T04:30:21'
     const endTimestampEdmonton = '2024-04-15T12:30:21'
 
-    const url = `http://i-sole-backend.com/plot_pressure?username=${username}&start_timestamp=${startTimestampEdmonton}&end_timestamp=${endTimestampEdmonton}&region=${region}`;
+    const url = `http://127.0.0.1:5000/plot_pressure?username=${username}&start_timestamp=${startTimestampEdmonton}&end_timestamp=${endTimestampEdmonton}&region=${region}`;
 
     console.log('start time: ', startTimestampEdmonton)
     console.log('end time: ', endTimestampEdmonton)
