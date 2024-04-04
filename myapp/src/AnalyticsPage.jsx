@@ -453,7 +453,7 @@ const getLatestGlucose = async () => {
                         return (
                           <li key={key}>
                             {formattedKey} <strong className={risk ? risk.toLowerCase() + '-risk' : ''}>
-                              {formattedRisk + 'Risk' || '-'}
+                              {formattedRisk + ' Risk' || '-'}
                             </strong>
                           </li>
                         );
