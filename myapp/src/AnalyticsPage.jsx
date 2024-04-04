@@ -307,7 +307,7 @@ const getLatestGlucose = async () => {
               </div>
               <h1>{bloodGlucose ? `${bloodGlucose} mg/dL` : '-'}</h1>
               <span className={bloodGlucose > 165 ? "positive" : "negative"}>
-                {bloodGlucose > 165 ? '+6%' : '-6%'}
+              {bloodGlucose !== null ? (bloodGlucose > 165 ? '+4%' : '-4%') : ''}
               </span>
 
             </div>
@@ -326,7 +326,7 @@ const getLatestGlucose = async () => {
               </div>
               <h1>{sweatGlucose ? `${sweatGlucose} μmol/L` : '-'}</h1>
               <span className={sweatGlucose > 165 ? "positive" : "negative"}>
-                {sweatGlucose > 145 ? '+4%' : '-4%'}
+                {sweatGlucose !== null ? (sweatGlucose > 100 ? '+4%' : '-4%') : ''}
               </span>
             </div>
       </div>
