@@ -68,7 +68,7 @@ function Analytics() {
 
   useEffect(() => {
 
-    const username='Lubaba1';
+    const username='Lubaba';
     const docRef = doc(firestore, 'users', username);
 
     console.log("User inside listner: ", username)
@@ -147,7 +147,7 @@ function Analytics() {
 
   const getLatestGlucose = async () => {
     try {
-      const username = 'Lubaba1';
+      const username = 'Lubaba';
       const response = await axios.get(`https://i-sole-backend.com/get_latest_glucose_value_new/${username}`);
       if (response.data.success) {
         const { sweat_glucose, blood_glucose } = response.data;
@@ -176,7 +176,7 @@ function Analytics() {
   };
 
   const fetchPersonalMetrics = async () => {
-    const username = 'Lubaba1'; // Define the username
+    const username = 'Lubaba'; // Define the username
     const endpoint = `https://i-sole-backend.com/get_personal_metrics/${username}`;
 
     try {
@@ -231,7 +231,7 @@ function Analytics() {
 
   const fetchPressurePlotImage = (region) => {
 
-    const username = 'Lubaba1';
+    const username = 'Lubaba';
     console.log('footRegion: ', region)
 
     console.log('fetchPressurePlotImage called')
