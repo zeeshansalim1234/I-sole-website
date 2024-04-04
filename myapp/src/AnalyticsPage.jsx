@@ -93,7 +93,7 @@ function Analytics() {
 
       console.log("We reached make Pred");
 
-      await getLatestGlucose(); // Wait for getLatestGlucose to complete before proceeding
+      await getLatestGlucose(); // Wait for getLatestGlucose to complete before proceedinga
 
       console.log("After await latest glucose value: ", sweatGlucose);
 
