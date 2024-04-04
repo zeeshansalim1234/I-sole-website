@@ -439,6 +439,30 @@ const getLatestGlucose = async () => {
               <div className="card predictions">
                 <h1>Predictions</h1>
                 <ul className="predictions-list">
+
+                <li>
+                    Diabetic Ulceration
+                    <ul>
+                    {Object.entries(riskData || {}).map(([key, risk]) => {
+                        // Transform "P1_RISK" to "P1"
+                        const formattedKey = key.replace("_RISK", "").toUpperCase();
+
+                        // Capitalize the first letter of each word in the risk string
+                        const formattedRisk = risk ? risk.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ') : '-';
+
+                        return (
+                          <li key={key}>
+                            {formattedKey} <strong className={risk ? risk.toLowerCase() + '-risk' : ''}>
+                              {formattedRisk + 'Risk' || '-'}
+                            </strong>
+                          </li>
+                        );
+                      })}
+                  </ul>
+
+
+                  </li>
+
                   <li>Hypoglycemia <strong className={
                     showGlucosePrediction && predictionState === 'hypoglycemia' ? 
                     "high-risk" : 
@@ -461,28 +485,7 @@ const getLatestGlucose = async () => {
                     (showGlucosePrediction ? 'Low Risk' : '-')
                   }
                   </strong></li>
-                  <li>
-                    Diabetic Ulceration
-                    <ul>
-                    {Object.entries(riskData || {}).map(([key, risk]) => {
-                        // Transform "P1_RISK" to "P1"
-                        const formattedKey = key.replace("_RISK", "").toUpperCase();
-
-                        // Capitalize the first letter of each word in the risk string
-                        const formattedRisk = risk ? risk.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ') : '-';
-
-                        return (
-                          <li key={key}>
-                            {formattedKey}: <strong className={risk ? risk.toLowerCase() + '-risk' : ''}>
-                              {formattedRisk || '-'}
-                            </strong>
-                          </li>
-                        );
-                      })}
-                  </ul>
-
-
-                  </li>
+                  
                 </ul>
               </div>
 
