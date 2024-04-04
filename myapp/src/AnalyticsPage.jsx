@@ -461,8 +461,10 @@ const getLatestGlucose = async () => {
                     (showGlucosePrediction ? 'Low Risk' : '-')
                   }
                   </strong></li>
-                  <li><ul>
-                    {Object.entries(riskData).map(([key, risk]) => (
+                  <li>
+                    
+                    <ul>
+                    {Object.entries(riskData || {}).map(([key, risk]) => (
                       <li key={key}>
                         {key.toUpperCase()}: <strong className={showPressurePrediction ? (risk.toLowerCase() + '-risk') : ''}>
                           {showPressurePrediction ? risk : '-'}
@@ -470,6 +472,8 @@ const getLatestGlucose = async () => {
                       </li>
                     ))}
                   </ul>
+
+
                   </li>
                 </ul>
               </div>
