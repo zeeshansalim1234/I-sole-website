@@ -278,7 +278,7 @@ const getLatestGlucose = async () => {
   const fetchPressureRiskData = async () => {
     try {
       console.log("Fetching pressure risk data for Lubaba...");
-      const response = await axios.get(`/get_average_pressure_and_risk/Lubaba`);
+      const response = await axios.get(`https://i-sole-backend.com/get_average_pressure_and_risk/Lubaba`);
       
       if (response.data.success) {
         console.log("Pressure risk data fetched successfully:", response.data);
@@ -329,7 +329,7 @@ const getLatestGlucose = async () => {
               </div>
               <h1>{bloodGlucose ? `${bloodGlucose} mg/dL` : '-'}</h1>
               <span className={bloodGlucose > 165 ? "positive" : "negative"}>
-              {bloodGlucose !== null ? (bloodGlucose > 165 ? '+4%' : '-4%') : ''}
+              {bloodGlucose !== null ? (bloodGlucose > 165 ? '+6%' : '-6%') : ''}
               </span>
 
             </div>
@@ -346,7 +346,7 @@ const getLatestGlucose = async () => {
                 <p>Sweat Glucose Level</p>
               </div>
               <h1>{sweatGlucose ? `${sweatGlucose} μmol/L` : '-'}</h1>
-              <span className={sweatGlucose > 165 ? "positive" : "negative"}>
+              <span className={sweatGlucose > 100 ? "positive" : "negative"}>
                 {sweatGlucose !== null ? (sweatGlucose > 100 ? '+4%' : '-4%') : ''}
               </span>
             </div>
