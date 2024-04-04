@@ -88,7 +88,7 @@ function Analytics() {
 
     // Clean up the listener when the component unmounts
     return () => unsubscribe();
-  }, [footRegion]); // This useEffect runs when username changes
+  }, [footRegion]); // This useEffect runs when username changesa
 
 
   const makePrediction = async () => {
@@ -469,7 +469,8 @@ const getLatestGlucose = async () => {
                         </strong>
                       </li>
                     ))}
-                  </ul></li>
+                  </ul>
+                  </li>
                 </ul>
               </div>
 
