@@ -90,41 +90,42 @@ function Analytics() {
 
   const makePrediction = async () => {
     try {
-
       console.log("We reached make Pred");
-
-      await getLatestGlucose(); // Wait for getLatestGlucose to complete before proceedinga
-
-      console.log("After await latest glucose value: ", sweatGlucose);
-
+  
+      const glucoseValues = await getLatestGlucose(); // Use the returned values here
+  
+      // Check if glucoseValues are undefined (which means getLatestGlucose failed)
+      if (!glucoseValues) {
+        console.error("Failed to fetch glucose values for prediction.");
+        return; // Exit the function if we don't have the required values
+      }
+  
+      console.log("After await latest glucose value: ", glucoseValues.bloodGlucose);
+  
       await fetchPersonalMetrics();
   
       const data = {
         "input_data": {
-          "glucose_level_value": sweatGlucose, 
-          "finger_stick_value": fingerStickValue, 
-          "basal_value": basalValue, 
-          "basis_gsr_value": basisGsrValue, 
-          "basis_skin_temperature_value": basisSkinTemperatureValue, 
+          "glucose_level_value": glucoseValues.bloodGlucose,
+          "finger_stick_value": fingerStickValue,
+          "basal_value": basalValue,
+          "basis_gsr_value": basisGsrValue,
+          "basis_skin_temperature_value": basisSkinTemperatureValue,
           "bolus_dose": bolusDose
-        }, 
-        "hyperglycemia_threshold": 140, 
+        },
+        "hyperglycemia_threshold": 140,
         "hypoglycemia_threshold": 70
       };
-
-      console.log("Data sent to plot prediction: ", data)
   
-      // Note: responseType is not needed here since the default is JSON
+      console.log("Data sent to plot prediction: ", data);
+  
       const response = await axios.post('http://127.0.0.1:5000/plot-prediction', data);
-      
-      // Extract the data from the response
+  
       const { image, prediction_state, prediction_time } = response.data;
   
-      // Log the prediction state and time
       console.log("Prediction State:", prediction_state);
       console.log("Prediction Time:", prediction_time);
   
-      // Update state with the prediction state and time
       setPredictionState(prediction_state);
       setPredictionTime(prediction_time);
   
@@ -132,20 +133,17 @@ function Analytics() {
         makeCall();
       }
   
-      // Convert base64 string to a URL for the image and update state
       const imageUrl = `data:image/png;base64,${image}`;
       setPredictionImage(imageUrl);
-      setshowGlucosePrediction(true); // Indicate that the prediction image should now be displayed
-  
+      setshowGlucosePrediction(true);
     } catch (error) {
-      // Log any error that occurs during the Axios request
       console.error('Error making the prediction:', error);
       if (error.response) {
-        // Log the response error for debugging
         console.error("Error Response:", error.response);
       }
     }
   };
+  
 
   // This function fetches the latest glucose data for a given user.
   // Assuming setSweatGlucose and setBloodGlucose are React state setter functions
