@@ -108,8 +108,8 @@ function Analytics() {
           "basis_skin_temperature_value": basisSkinTemperatureValue, 
           "bolus_dose": bolusDose
         }, 
-        "hyperglycemia_threshold": 180, 
-        "hypoglycemia_threshold": 100
+        "hyperglycemia_threshold": 140, 
+        "hypoglycemia_threshold": 70
       };
 
       console.log("Data sent to plot prediction: ", data)
