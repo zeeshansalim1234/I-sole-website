@@ -148,7 +148,7 @@ function Analytics() {
   const getLatestGlucose = async () => {
     try {
       const username = 'Lubaba';
-      const response = await axios.get(`https://i-sole-backend.com/get_latest_glucose_value_new/${username}`);
+      const response = await axios.get(`https://i-sole-backend.com/get_latest_glucose_value_new/Lubaba`);
       if (response.data.success) {
         const { sweat_glucose, blood_glucose } = response.data;
         setSweatGlucose(sweat_glucose);
