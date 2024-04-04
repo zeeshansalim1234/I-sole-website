@@ -150,9 +150,9 @@ function Analytics() {
       const username = 'Lubaba';
       const response = await axios.get(`https://i-sole-backend.com/get_latest_glucose_value_new/Lubaba`);
       if (response.data.success) {
-        const { sweat_glucose, blood_glucose } = response.data;
+        const { sweat_glucose } = response.data;
         setSweatGlucose(sweat_glucose);
-        setBloodGlucose(blood_glucose);
+        //setBloodGlucose(blood_glucose);
         console.log("sweat glucose: ", sweat_glucose);
       } else {
         console.error('Failed to fetch latest glucose data:', response.data.message);
