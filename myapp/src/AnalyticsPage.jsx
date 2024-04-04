@@ -105,22 +105,16 @@ function Analytics() {
   
       console.log("After await latest glucose value: ", glucoseValues.bloodGlucose);
   
-      const personalMetrics = await fetchPersonalMetrics();
-
-      // Check if personalMetrics are not fetched successfully
-      if (!personalMetrics) {
-        console.error("Failed to fetch personal metrics for prediction.");
-        return; // Exit the function if we don't have the required metrics
-      }
+      await fetchPersonalMetrics();
   
       const data = {
         "input_data": {
           "glucose_level_value": glucoseValues.bloodGlucose,
-          "finger_stick_value": personalMetrics.finger_stick_value,
-          "basal_value": personalMetrics.basal_value,
-          "basis_gsr_value": personalMetrics.basis_gsr_value,
-          "basis_skin_temperature_value": personalMetrics.basis_skin_temperature_value,
-          "bolus_dose": personalMetrics.bolus_dose
+          "finger_stick_value": fingerStickValue,
+          "basal_value": basalValue,
+          "basis_gsr_value": basisGsrValue,
+          "basis_skin_temperature_value": basisSkinTemperatureValue,
+          "bolus_dose": bolusDose
         },
         "hyperglycemia_threshold": 140,
         "hypoglycemia_threshold": 70
@@ -219,11 +213,8 @@ const getLatestGlucose = async () => {
       setBasisGsrValue(basis_gsr_value);
       setBasisSkinTemperatureValue(basis_skin_temperature_value);
       setFingerStickValue(finger_stick_value);
-      return response.data.data;
-
     } catch (error) {
       console.error('Error fetching personal metrics:', error);
-      return null;
     }
   };
   
