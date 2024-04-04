@@ -464,13 +464,21 @@ const getLatestGlucose = async () => {
                   <li>
                     Diabetic Ulceration
                     <ul>
-                    {Object.entries(riskData || {}).map(([key, risk]) => (
-                      <li key={key}>
-                        {key.replace("_RISK", "").toUpperCase()}: <strong className={risk ? (risk.toLowerCase() + '-risk') : ''}>
-                          {risk || '-'}
-                        </strong>
-                      </li>
-                    ))}
+                    {Object.entries(riskData || {}).map(([key, risk]) => {
+                        // Transform "P1_RISK" to "P1"
+                        const formattedKey = key.replace("_RISK", "").toUpperCase();
+
+                        // Capitalize the first letter of each word in the risk string
+                        const formattedRisk = risk ? risk.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ') : '-';
+
+                        return (
+                          <li key={key}>
+                            {formattedKey}: <strong className={risk ? risk.toLowerCase() + '-risk' : ''}>
+                              {formattedRisk || '-'}
+                            </strong>
+                          </li>
+                        );
+                      })}
                   </ul>
 
 
